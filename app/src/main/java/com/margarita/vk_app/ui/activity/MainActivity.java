@@ -1,11 +1,12 @@
-package com.margarita.vk_app;
+package com.margarita.vk_app.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
 
-import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
+import com.margarita.vk_app.CurrentUser;
+import com.margarita.vk_app.R;
 import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.mvp.presenter.MainPresenter;
 import com.margarita.vk_app.mvp.view.MainView;
@@ -14,7 +15,7 @@ import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
 
-public class MainActivity extends MvpAppCompatActivity implements MainView {
+public class MainActivity extends BaseActivity implements MainView {
 
     // Аннотация для управления жизненным циклом презентера
     @InjectPresenter
