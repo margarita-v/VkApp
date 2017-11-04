@@ -10,6 +10,7 @@ import com.margarita.vk_app.R;
 import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.mvp.presenter.MainPresenter;
 import com.margarita.vk_app.mvp.view.MainView;
+import com.margarita.vk_app.ui.fragment.NewsFeedFragment;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKSdk;
@@ -64,5 +65,6 @@ public class MainActivity extends BaseActivity implements MainView {
                 "Current user id: " + CurrentUser.getId(),
                 Toast.LENGTH_LONG)
                 .show();
+        setContent(new NewsFeedFragment());
     }
 }
