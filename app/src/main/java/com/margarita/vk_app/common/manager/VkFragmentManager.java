@@ -144,7 +144,7 @@ public class VkFragmentManager {
      */
     private void commitTransaction(BaseActivity activity, FragmentTransaction transaction) {
         transaction.commit();
-        activity.changeFragment(currentFragment);
+        activity.setFragmentOnScreen(currentFragment);
     }
 
     /**
