@@ -13,13 +13,13 @@ public class ApplicationModule {
 
     private Application application;
 
-    public ApplicationModule(Application application) {
-        this.application = application;
+    public ApplicationModule(Application app) {
+        application = app;
     }
 
     @Provides
     @Singleton
     public Context provideContext() {
-        return this.application;
+        return application;
     }
 }

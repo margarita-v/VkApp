@@ -5,6 +5,7 @@ import com.margarita.vk_app.di.module.ManagerModule;
 import com.margarita.vk_app.di.module.RestModule;
 import com.margarita.vk_app.ui.activity.BaseActivity;
 import com.margarita.vk_app.ui.activity.MainActivity;
+import com.margarita.vk_app.ui.fragment.NewsFeedFragment;
 
 import javax.inject.Singleton;
 
@@ -17,4 +18,6 @@ public interface ApplicationComponent {
     void inject(BaseActivity activity);
 
     void inject(MainActivity activity);
+
+    void inject(NewsFeedFragment fragment);
 }

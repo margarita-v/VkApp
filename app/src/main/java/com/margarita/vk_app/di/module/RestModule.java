@@ -1,6 +1,7 @@
 package com.margarita.vk_app.di.module;
 
 import com.margarita.vk_app.rest.RestClient;
+import com.margarita.vk_app.rest.api.WallApi;
 
 import javax.inject.Singleton;
 
@@ -13,12 +14,18 @@ public class RestModule {
     private RestClient restClient;
 
     public RestModule() {
-        this.restClient = new RestClient();
+        restClient = new RestClient();
     }
 
     @Provides
     @Singleton
     public RestClient provideRestClient() {
-        return this.restClient;
+        return restClient;
+    }
+
+    @Provides
+    @Singleton
+    public WallApi provideWallApi() {
+        return restClient.createService(WallApi.class);
     }
 }
