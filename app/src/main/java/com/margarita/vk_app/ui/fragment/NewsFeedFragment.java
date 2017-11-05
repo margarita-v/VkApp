@@ -4,10 +4,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
 
-import com.margarita.vk_app.CurrentUser;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.rest.api.WallApi;
+import com.margarita.vk_app.rest.model.request.WallGetRequestModel;
 import com.margarita.vk_app.rest.model.response.WallGetResponse;
 
 import javax.inject.Inject;
@@ -34,16 +34,18 @@ public class NewsFeedFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        wallApi.get("-86529522", CurrentUser.getAccessToken(), 1, "5.67")
+        wallApi.get(new WallGetRequestModel(-86529522).toMap())
                 .enqueue(new Callback<WallGetResponse>() {
             @Override
             public void onResponse(Call<WallGetResponse> call,
                                    Response<WallGetResponse> response) {
-                Toast.makeText(getActivity(),
-                        "Likes: " + response.body()
-                                .getResponse().getItems().get(0).getLikes().getCount(),
-                        Toast.LENGTH_LONG)
-                        .show();
+                if (response.body() != null) {
+                    Toast.makeText(getActivity(),
+                            "Likes: " + response.body()
+                                    .getResponse().getItems().get(0).getLikes().getCount(),
+                            Toast.LENGTH_LONG)
+                            .show();
+                }
             }
 
             @Override
