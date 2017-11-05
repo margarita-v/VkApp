@@ -8,8 +8,7 @@ import com.margarita.vk_app.CurrentUser;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.rest.api.WallApi;
-import com.margarita.vk_app.rest.model.response.BaseItemResponse;
-import com.margarita.vk_app.rest.model.response.Full;
+import com.margarita.vk_app.rest.model.response.WallGetResponse;
 
 import javax.inject.Inject;
 
@@ -36,18 +35,19 @@ public class NewsFeedFragment extends BaseFragment {
         super.onActivityCreated(savedInstanceState);
 
         wallApi.get("-86529522", CurrentUser.getAccessToken(), 1, "5.67")
-                .enqueue(new Callback<Full<BaseItemResponse>>() {
+                .enqueue(new Callback<WallGetResponse>() {
             @Override
-            public void onResponse(Call<Full<BaseItemResponse>> call,
-                                   Response<Full<BaseItemResponse>> response) {
+            public void onResponse(Call<WallGetResponse> call,
+                                   Response<WallGetResponse> response) {
                 Toast.makeText(getActivity(),
-                        "Count: " + response.body().getResponse().getCount(),
+                        "Likes: " + response.body()
+                                .getResponse().getItems().get(0).getLikes().getCount(),
                         Toast.LENGTH_LONG)
                         .show();
             }
 
             @Override
-            public void onFailure(Call<Full<BaseItemResponse>> call, Throwable t) {
+            public void onFailure(Call<WallGetResponse> call, Throwable t) {
                 t.printStackTrace();
             }
         });
