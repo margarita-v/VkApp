@@ -7,18 +7,23 @@ import android.widget.FrameLayout;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.margarita.vk_app.R;
+import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.manager.VkFragmentManager;
 import com.margarita.vk_app.ui.fragment.BaseFragment;
 
+import javax.inject.Inject;
+
 public abstract class BaseActivity extends MvpAppCompatActivity {
 
+    @Inject
     VkFragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
-        fragmentManager = new VkFragmentManager();
+
+        VkApplication.getApplicationComponent().inject(this);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

@@ -7,6 +7,7 @@ import android.widget.Toast;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.margarita.vk_app.CurrentUser;
 import com.margarita.vk_app.R;
+import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.mvp.presenter.MainPresenter;
 import com.margarita.vk_app.mvp.view.MainView;
@@ -25,6 +26,7 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        VkApplication.getApplicationComponent().inject(this);
         mainPresenter.checkAuth();
     }
 
