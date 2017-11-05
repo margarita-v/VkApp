@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/footer"
+    android:layout_width="match_parent"
+    android:layout_height="48dp">
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="16dp"
+        android:lines="1"
+        android:textColor="@color/colorTextSecondary"
+        android:textSize="13sp"
+        android:textStyle="bold"/>
+
+    <RelativeLayout
+        android:id="@+id/comments"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/tvDate"
+        android:layout_toEndOf="@id/tvDate"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/tvCommentsIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
+            android:lines="1"
+            android:text="@string/font_comment"
+            android:textColor="@color/colorIcon"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tvCommentsCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tvCommentsIcon"
+            android:layout_toRightOf="@id/tvCommentsIcon"
+            android:layout_toEndOf="@id/tvCommentsIcon"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:lines="1"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="13sp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/reposts"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@id/comments"
+        android:layout_toEndOf="@id/comments"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/tvRepostsIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
+            android:lines="1"
+            android:text="@string/font_repost"
+            android:textColor="@color/colorIcon"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tvRepostsCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tvRepostsIcon"
+            android:layout_toRightOf="@id/tvRepostsIcon"
+            android:layout_toEndOf="@id/tvRepostsIcon"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:lines="1"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="13sp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/likes"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:background="?android:attr/selectableItemBackground"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingLeft="16dp"
+        android:paddingRight="16dp">
+
+        <TextView
+            android:id="@+id/tvLikesIcon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="4dp"
+            android:layout_marginEnd="4dp"
+            android:lines="1"
+            android:text="@string/font_repost"
+            android:textColor="@color/colorIcon"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tvLikesCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/tvLikesIcon"
+            android:layout_toRightOf="@id/tvLikesIcon"
+            android:layout_toEndOf="@id/tvLikesIcon"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:lines="1"
+            android:textColor="@color/colorTextSecondary"
+            android:textSize="13sp"
+            android:textStyle="bold"/>
+    </RelativeLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/colorDivider"
+        android:layout_alignParentTop="true"/>
+
+</RelativeLayout>

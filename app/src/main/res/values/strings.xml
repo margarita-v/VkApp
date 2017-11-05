@@ -3,4 +3,10 @@
     <integer name="com_vk_sdk_AppId">6245606</integer>
 
     <string name="title_news">News</string>
+    <string name="image_repost">Repost</string>
+    <string name="reposted_text">Reposted</string>
+
+    <string name="font_heart">&#xE87D;</string>
+    <string name="font_comment">&#xE0B9;</string>
+    <string name="font_repost">&#xE050;</string>
 </resources>
