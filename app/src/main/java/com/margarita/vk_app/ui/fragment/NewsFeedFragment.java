@@ -1,6 +1,7 @@
 package com.margarita.vk_app.ui.fragment;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -10,8 +11,11 @@ import android.widget.Toast;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.BaseAdapter;
+import com.margarita.vk_app.common.utils.VkListHelper;
 import com.margarita.vk_app.models.common.WallItem;
+import com.margarita.vk_app.models.view.BaseViewModel;
 import com.margarita.vk_app.models.view.NewsItemBody;
+import com.margarita.vk_app.models.view.NewsItemHeader;
 import com.margarita.vk_app.rest.api.WallApi;
 import com.margarita.vk_app.rest.model.request.WallGetRequestModel;
 import com.margarita.vk_app.rest.model.response.WallGetResponse;
@@ -50,29 +54,34 @@ public class NewsFeedFragment extends BaseFragment {
         wallApi.get(new WallGetRequestModel(-86529522).toMap())
                 .enqueue(new Callback<WallGetResponse>() {
             @Override
-            public void onResponse(Call<WallGetResponse> call,
-                                   Response<WallGetResponse> response) {
-                if (response.body() != null) {
+            public void onResponse(@NonNull Call<WallGetResponse> call,
+                                   @NonNull Response<WallGetResponse> response) {
 
-                    List<NewsItemBody> list = new ArrayList<>();
-                    List<WallItem> wallItems = response.body().getResponse().getItems();
+                WallGetResponse responseBody = response.body();
+                if (responseBody != null) {
 
-                    for (WallItem item: wallItems) {
-                        list.add(new NewsItemBody(item));
+                    List<WallItem> wallItems =
+                            VkListHelper.getWallItemsInfo(responseBody.getResponse());
+
+                    List<BaseViewModel> list = new ArrayList<>();
+
+                    for (WallItem wallItem: wallItems) {
+                        list.add(new NewsItemHeader(wallItem));
+                        list.add(new NewsItemBody(wallItem));
                     }
 
                     adapter.setItems(list);
 
                     Toast.makeText(getActivity(),
-                            "Likes: " + response.body()
-                                    .getResponse().getItems().get(0).getLikes().getCount(),
+                            "Likes: " + responseBody.getResponse()
+                                    .getItems().get(0).getLikes().getCount(),
                             Toast.LENGTH_LONG)
                             .show();
                 }
             }
 
             @Override
-            public void onFailure(Call<WallGetResponse> call, Throwable t) {
+            public void onFailure(@NonNull Call<WallGetResponse> call, @NonNull Throwable t) {
                 t.printStackTrace();
             }
         });

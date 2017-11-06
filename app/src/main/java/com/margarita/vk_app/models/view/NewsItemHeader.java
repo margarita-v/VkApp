@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.margarita.vk_app.models.common.WallItem;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
+import com.margarita.vk_app.ui.holder.NewsItemHeaderHolder;
 
 public class NewsItemHeader extends BaseViewModel {
 
@@ -27,7 +28,7 @@ public class NewsItemHeader extends BaseViewModel {
 
     @Override
     protected BaseViewHolder onCreateViewHolder(View view) {
-        return null;
+        return new NewsItemHeaderHolder(view);
     }
 
     @Override

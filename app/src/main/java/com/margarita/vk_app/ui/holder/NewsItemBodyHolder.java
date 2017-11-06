@@ -25,7 +25,4 @@ public class NewsItemBodyHolder extends BaseViewHolder<NewsItemBody> {
         textView.setText(null);
     }
 
-    public TextView getTextView() {
-        return textView;
-    }
 }
