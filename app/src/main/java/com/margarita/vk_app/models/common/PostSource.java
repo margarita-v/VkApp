@@ -1,23 +1,16 @@
 
-package com.margarita.vk_app.models;
+package com.margarita.vk_app.models.common;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Attachment {
+public class PostSource {
 
     @Expose
     private String type;
 
-    @Expose
-    private Photo photo;
-
     public String getType() {
         return type;
-    }
-
-    public Photo getPhoto() {
-        return photo;
     }
 
 }

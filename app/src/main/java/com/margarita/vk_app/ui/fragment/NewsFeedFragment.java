@@ -2,13 +2,22 @@ package com.margarita.vk_app.ui.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.Toast;
 
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
+import com.margarita.vk_app.common.BaseAdapter;
+import com.margarita.vk_app.models.common.WallItem;
+import com.margarita.vk_app.models.view.NewsFeedItemBody;
 import com.margarita.vk_app.rest.api.WallApi;
 import com.margarita.vk_app.rest.model.request.WallGetRequestModel;
 import com.margarita.vk_app.rest.model.response.WallGetResponse;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -20,6 +29,10 @@ public class NewsFeedFragment extends BaseFragment {
 
     @Inject
     WallApi wallApi;
+
+    RecyclerView rvList;
+
+    BaseAdapter adapter;
 
     public NewsFeedFragment() {
     }
@@ -40,6 +53,16 @@ public class NewsFeedFragment extends BaseFragment {
             public void onResponse(Call<WallGetResponse> call,
                                    Response<WallGetResponse> response) {
                 if (response.body() != null) {
+
+                    List<NewsFeedItemBody> list = new ArrayList<>();
+                    List<WallItem> wallItems = response.body().getResponse().getItems();
+
+                    for (WallItem item: wallItems) {
+                        list.add(new NewsFeedItemBody(item));
+                    }
+
+                    adapter.setItems(list);
+
                     Toast.makeText(getActivity(),
                             "Likes: " + response.body()
                                     .getResponse().getItems().get(0).getLikes().getCount(),
@@ -56,6 +79,13 @@ public class NewsFeedFragment extends BaseFragment {
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        setUpList(view);
+        setUpAdapter();
+    }
+
+    @Override
     protected int getMainContentLayout() {
         return R.layout.fragment_news_feed;
     }
@@ -63,5 +93,15 @@ public class NewsFeedFragment extends BaseFragment {
     @Override
     protected int onCreateToolbarTitle() {
         return R.string.title_news;
+    }
+
+    private void setUpList(View rootView) {
+        rvList = rootView.findViewById(R.id.rvList);
+        rvList.setLayoutManager(new LinearLayoutManager(getContext()));
+    }
+
+    private void setUpAdapter() {
+        adapter = new BaseAdapter();
+        rvList.setAdapter(adapter);
     }
 }

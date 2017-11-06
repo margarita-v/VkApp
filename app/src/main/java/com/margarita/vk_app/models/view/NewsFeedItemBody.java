@@ -2,7 +2,7 @@ package com.margarita.vk_app.models.view;
 
 import android.view.View;
 
-import com.margarita.vk_app.models.WallItem;
+import com.margarita.vk_app.models.common.WallItem;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
 import com.margarita.vk_app.ui.holder.NewsItemBodyHolder;
 

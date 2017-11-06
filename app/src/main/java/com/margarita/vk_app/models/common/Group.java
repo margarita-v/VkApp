@@ -1,5 +1,5 @@
 
-package com.margarita.vk_app.models;
+package com.margarita.vk_app.models.common;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

@@ -27,7 +27,7 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder<BaseViewMod
 
     @Override
     public void onBindViewHolder(BaseViewHolder<BaseViewModel> holder, int position) {
-        holder.bindViewHolder(list.get(position));
+        holder.bindViewHolder(getItem(position));
     }
 
     @Override
@@ -38,12 +38,16 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder<BaseViewMod
 
     @Override
     public int getItemViewType(int position) {
-        return typeInstances.keyAt(position);
+        return getItem(position).getType().getId();
     }
 
     @Override
     public int getItemCount() {
         return list.size();
+    }
+
+    private BaseViewModel getItem(int position) {
+        return list.get(position);
     }
 
     /**
@@ -52,7 +56,7 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder<BaseViewMod
      */
     private void registerTypeInstance(BaseViewModel item) {
         int key = item.getType().getId();
-        if (typeInstances.indexOfKey(key) != -1) {
+        if (typeInstances.indexOfKey(key) == -1) {
             typeInstances.put(key, item);
         }
     }
@@ -61,7 +65,7 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder<BaseViewMod
      * Add new items to the adapter
      * @param newItems Items which will be added to the adapter
      */
-    public void addItems(List<BaseViewModel> newItems) {
+    public void addItems(List<? extends BaseViewModel> newItems) {
         for (BaseViewModel newItem: newItems) {
             registerTypeInstance(newItem);
         }
@@ -74,7 +78,7 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder<BaseViewMod
      * Set a new item list to the adapter
      * @param items Items which will be set to the adapter
      */
-    public void setItems(List<BaseViewModel> items) {
+    public void setItems(List<? extends BaseViewModel> items) {
         list.clear();
         typeInstances.clear();
         addItems(items);
