@@ -11,7 +11,7 @@ import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.BaseAdapter;
 import com.margarita.vk_app.models.common.WallItem;
-import com.margarita.vk_app.models.view.NewsFeedItemBody;
+import com.margarita.vk_app.models.view.NewsItemBody;
 import com.margarita.vk_app.rest.api.WallApi;
 import com.margarita.vk_app.rest.model.request.WallGetRequestModel;
 import com.margarita.vk_app.rest.model.response.WallGetResponse;
@@ -54,11 +54,11 @@ public class NewsFeedFragment extends BaseFragment {
                                    Response<WallGetResponse> response) {
                 if (response.body() != null) {
 
-                    List<NewsFeedItemBody> list = new ArrayList<>();
+                    List<NewsItemBody> list = new ArrayList<>();
                     List<WallItem> wallItems = response.body().getResponse().getItems();
 
                     for (WallItem item: wallItems) {
-                        list.add(new NewsFeedItemBody(item));
+                        list.add(new NewsItemBody(item));
                     }
 
                     adapter.setItems(list);

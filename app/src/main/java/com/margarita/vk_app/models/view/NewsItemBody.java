@@ -6,13 +6,13 @@ import com.margarita.vk_app.models.common.WallItem;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
 import com.margarita.vk_app.ui.holder.NewsItemBodyHolder;
 
-public class NewsFeedItemBody extends BaseViewModel {
+public class NewsItemBody extends BaseViewModel {
 
     private int id;
 
     private String text;
 
-    public NewsFeedItemBody(WallItem wallItem) {
+    public NewsItemBody(WallItem wallItem) {
         this.id = wallItem.getId();
         this.text = wallItem.getText();
     }

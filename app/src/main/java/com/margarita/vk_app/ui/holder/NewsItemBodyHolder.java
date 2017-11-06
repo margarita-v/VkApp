@@ -4,9 +4,9 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.margarita.vk_app.R;
-import com.margarita.vk_app.models.view.NewsFeedItemBody;
+import com.margarita.vk_app.models.view.NewsItemBody;
 
-public class NewsItemBodyHolder extends BaseViewHolder<NewsFeedItemBody> {
+public class NewsItemBodyHolder extends BaseViewHolder<NewsItemBody> {
 
     private TextView textView;
 
@@ -16,7 +16,7 @@ public class NewsItemBodyHolder extends BaseViewHolder<NewsFeedItemBody> {
     }
 
     @Override
-    public void bindViewHolder(NewsFeedItemBody newsFeedItemBody) {
+    public void bindViewHolder(NewsItemBody newsFeedItemBody) {
         textView.setText(newsFeedItemBody.getText());
     }
 

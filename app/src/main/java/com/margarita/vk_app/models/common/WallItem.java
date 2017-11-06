@@ -1,11 +1,16 @@
 
 package com.margarita.vk_app.models.common;
 
+import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 public class WallItem {
+
+    private String senderName;
+
+    private String senderPhoto;
 
     @Expose
     private Integer id;
@@ -37,7 +42,11 @@ public class WallItem {
     private Integer canPin;
 
     @Expose
-    private List<Attachment> attachments = null;
+    private List<Attachment> attachments = new ArrayList<>();
+
+    @SerializedName("copy_history")
+    @Expose
+    private List<WallItem> copyHistory = new ArrayList<>();
 
     @SerializedName("post_source")
     @Expose
@@ -117,6 +126,34 @@ public class WallItem {
 
     public Views getViews() {
         return views;
+    }
+
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
+
+    public String getSenderPhoto() {
+        return senderPhoto;
+    }
+
+    public void setSenderPhoto(String senderPhoto) {
+        this.senderPhoto = senderPhoto;
+    }
+
+    /**
+     * Check if the wall item contains repost
+     * @return True if the wall item contains repost
+     */
+    public boolean hasSharedRepost() {
+        return copyHistory.size() > 0;
+    }
+
+    public WallItem getSharedRepost() {
+        return hasSharedRepost() ? copyHistory.get(0) : null;
     }
 
 }
