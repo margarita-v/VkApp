@@ -8,7 +8,7 @@ import com.margarita.vk_app.models.view.BaseViewModel;
 public abstract class BaseViewHolder<Item extends BaseViewModel>
         extends RecyclerView.ViewHolder {
 
-    public BaseViewHolder(View itemView) {
+    BaseViewHolder(View itemView) {
         super(itemView);
     }
 
