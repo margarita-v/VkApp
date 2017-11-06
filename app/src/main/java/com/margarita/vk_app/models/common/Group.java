@@ -3,8 +3,9 @@ package com.margarita.vk_app.models.common;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.margarita.vk_app.models.Owner;
 
-public class Group {
+public class Group implements Owner {
 
     @Expose
     private Integer id;
@@ -43,7 +44,7 @@ public class Group {
     @Expose
     private String photo200;
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
@@ -81,6 +82,16 @@ public class Group {
 
     public String getPhoto200() {
         return photo200;
+    }
+
+    @Override
+    public String getFullName() {
+        return name;
+    }
+
+    @Override
+    public String getPhoto() {
+        return photo100;
     }
 
 }
