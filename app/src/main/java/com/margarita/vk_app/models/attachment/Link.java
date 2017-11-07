@@ -6,6 +6,8 @@ import com.vk.sdk.api.model.VKAttachments;
 
 public class Link implements Attachment {
 
+    private static final String ICON_FONT = new String(new char[]{0xE250});
+
     @Expose
     private String url;
 
@@ -68,6 +70,6 @@ public class Link implements Attachment {
 
     @Override
     public String getIconFont() {
-        return "0xE250";
+        return ICON_FONT;
     }
 }

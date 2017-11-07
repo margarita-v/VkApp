@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.margarita.vk_app.di.components.ApplicationComponent;
 import com.margarita.vk_app.di.components.DaggerApplicationComponent;
+import com.margarita.vk_app.di.module.ApplicationModule;
 import com.vk.sdk.VKSdk;
 
 public class VkApplication extends Application {
@@ -18,7 +19,8 @@ public class VkApplication extends Application {
     }
 
     private void initComponent() {
-        applicationComponent = DaggerApplicationComponent.builder().build();
+        applicationComponent = DaggerApplicationComponent.builder()
+                .applicationModule(new ApplicationModule(this)).build();
     }
 
     public static ApplicationComponent getApplicationComponent() {

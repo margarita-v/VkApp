@@ -20,14 +20,14 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    public Context provideContext() {
+    Context provideContext() {
         return application;
     }
 
     @Provides
     @Singleton
-    public Typeface provideGoogleTypeface(Context context) {
+    Typeface provideGoogleTypeface(Context context) {
         return Typeface.createFromAsset(context.getAssets(),
-                "MaterialIcons-Regular.ttf");
+                "fonts/MaterialIcons-Regular.ttf");
     }
 }

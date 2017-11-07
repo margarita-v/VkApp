@@ -19,13 +19,13 @@ public class RestModule {
 
     @Provides
     @Singleton
-    public RestClient provideRestClient() {
+    RestClient provideRestClient() {
         return restClient;
     }
 
     @Provides
     @Singleton
-    public WallApi provideWallApi() {
+    WallApi provideWallApi() {
         return restClient.createService(WallApi.class);
     }
 }

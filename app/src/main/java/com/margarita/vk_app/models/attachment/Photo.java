@@ -6,6 +6,8 @@ import com.vk.sdk.api.model.VKAttachments;
 
 public class Photo implements Attachment {
 
+    private static final String ICON_FONT = new String(new char[]{0xE251});
+
     @Expose
     private Integer id;
 
@@ -124,6 +126,6 @@ public class Photo implements Attachment {
 
     @Override
     public String getIconFont() {
-        return "0xE251";
+        return ICON_FONT;
     }
 }
