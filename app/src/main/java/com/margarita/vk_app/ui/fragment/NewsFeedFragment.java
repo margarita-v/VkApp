@@ -3,13 +3,9 @@ package com.margarita.vk_app.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
 
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
-import com.margarita.vk_app.common.BaseAdapter;
 import com.margarita.vk_app.common.utils.VkListHelper;
 import com.margarita.vk_app.models.common.WallItem;
 import com.margarita.vk_app.models.view.BaseViewModel;
@@ -29,14 +25,10 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewsFeedFragment extends BaseFragment {
+public class NewsFeedFragment extends BaseFeedFragment {
 
     @Inject
     WallApi wallApi;
-
-    RecyclerView rvList;
-
-    BaseAdapter adapter;
 
     public NewsFeedFragment() {
     }
@@ -83,29 +75,7 @@ public class NewsFeedFragment extends BaseFragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        setUpList(view);
-        setUpAdapter();
-    }
-
-    @Override
-    protected int getMainContentLayout() {
-        return R.layout.fragment_news_feed;
-    }
-
-    @Override
     protected int onCreateToolbarTitle() {
         return R.string.title_news;
-    }
-
-    private void setUpList(View rootView) {
-        rvList = rootView.findViewById(R.id.rvList);
-        rvList.setLayoutManager(new LinearLayoutManager(getContext()));
-    }
-
-    private void setUpAdapter() {
-        adapter = new BaseAdapter();
-        rvList.setAdapter(adapter);
     }
 }
