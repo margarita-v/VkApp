@@ -1,10 +1,10 @@
-
-package com.margarita.vk_app.models.common;
+package com.margarita.vk_app.models.attachment;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.vk.sdk.api.model.VKAttachments;
 
-public class Photo {
+public class Photo implements Attachment {
 
     @Expose
     private Integer id;
@@ -57,12 +57,8 @@ public class Photo {
     @Expose
     private String accessKey;
 
-    public Integer getId() {
+    public int getId() {
         return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 
     public Integer getAlbumId() {
@@ -119,6 +115,11 @@ public class Photo {
 
     public String getAccessKey() {
         return accessKey;
+    }
+
+    @Override
+    public String getType() {
+        return VKAttachments.TYPE_PHOTO;
     }
 
 }

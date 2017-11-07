@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.margarita.vk_app.models.attachment.ApiAttachment;
 
 public class WallItem {
 
@@ -42,7 +43,7 @@ public class WallItem {
     private Integer canPin;
 
     @Expose
-    private List<Attachment> attachments = new ArrayList<>();
+    private List<ApiAttachment> attachments = new ArrayList<>();
 
     @SerializedName("copy_history")
     @Expose
@@ -104,7 +105,7 @@ public class WallItem {
         return canPin;
     }
 
-    public List<Attachment> getAttachments() {
+    public List<ApiAttachment> getAttachments() {
         return attachments;
     }
 

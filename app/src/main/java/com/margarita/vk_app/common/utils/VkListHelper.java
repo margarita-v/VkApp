@@ -7,7 +7,7 @@ import com.margarita.vk_app.rest.model.response.ItemWithSendersResponse;
 import java.util.List;
 
 public class VkListHelper {
-    
+
     /**
      * Function for set sender's name and photo for all wall items in response.
      * @param response Response which contains info about sender
