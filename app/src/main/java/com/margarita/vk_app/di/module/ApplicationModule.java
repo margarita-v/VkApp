@@ -24,10 +24,9 @@ public class ApplicationModule {
         return application;
     }
 
-
     @Provides
     @Singleton
-    Typeface provideGoogleTypeface(Context context) {
+    public Typeface provideGoogleTypeface(Context context) {
         return Typeface.createFromAsset(context.getAssets(),
                 "MaterialIcons-Regular.ttf");
     }

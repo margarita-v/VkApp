@@ -12,7 +12,7 @@ public class ManagerModule {
 
     @Provides
     @Singleton
-    VkFragmentManager provideFragmentManager() {
+    public VkFragmentManager provideFragmentManager() {
         return new VkFragmentManager();
     }
 }
