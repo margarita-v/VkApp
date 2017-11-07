@@ -77,4 +77,8 @@ public class VkDocument implements Attachment {
         return VKAttachments.TYPE_DOC;
     }
 
+    @Override
+    public String getIconFont() {
+        return "0xE24D";
+    }
 }

@@ -12,9 +12,18 @@ public class NewsItemBody extends BaseViewModel {
 
     private String text;
 
+    private String attachmentsString;
+
     public NewsItemBody(WallItem wallItem) {
         this.id = wallItem.getId();
-        this.text = wallItem.getText();
+
+        if (wallItem.hasSharedRepost()) {
+            this.text = wallItem.getSharedRepost().getText();
+            this.attachmentsString = wallItem.getSharedRepost().getAttachmentsString();
+        } else {
+            this.text = wallItem.getText();
+            this.attachmentsString = wallItem.getAttachmentsString();
+        }
     }
 
     @Override
@@ -33,5 +42,9 @@ public class NewsItemBody extends BaseViewModel {
 
     public String getText() {
         return text;
+    }
+
+    public String getAttachmentsString() {
+        return attachmentsString;
     }
 }

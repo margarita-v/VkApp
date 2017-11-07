@@ -122,4 +122,8 @@ public class Photo implements Attachment {
         return VKAttachments.TYPE_PHOTO;
     }
 
+    @Override
+    public String getIconFont() {
+        return "0xE251";
+    }
 }

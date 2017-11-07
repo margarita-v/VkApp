@@ -9,6 +9,8 @@ import com.margarita.vk_app.models.attachment.ApiAttachment;
 
 public class WallItem {
 
+    private String attachmentsString;
+
     private String senderName;
 
     private String senderPhoto;
@@ -129,6 +131,14 @@ public class WallItem {
         return views;
     }
 
+    public String getAttachmentsString() {
+        return attachmentsString;
+    }
+
+    public void setAttachmentsString(String attachmentsString) {
+        this.attachmentsString = attachmentsString;
+    }
+
     public String getSenderName() {
         return senderName;
     }
@@ -156,5 +166,4 @@ public class WallItem {
     public WallItem getSharedRepost() {
         return hasSharedRepost() ? copyHistory.get(0) : null;
     }
-
 }

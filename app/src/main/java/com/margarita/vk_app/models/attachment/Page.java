@@ -34,4 +34,8 @@ public class Page implements Attachment {
         return VKAttachments.TYPE_WIKI_PAGE;
     }
 
+    @Override
+    public String getIconFont() {
+        return "";
+    }
 }

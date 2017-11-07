@@ -115,4 +115,8 @@ public class Video implements Attachment {
         return VKAttachments.TYPE_VIDEO;
     }
 
+    @Override
+    public String getIconFont() {
+        return "0xE02C";
+    }
 }

@@ -70,5 +70,4 @@ public class ApiAttachment {
     public Page getPage() {
         return page;
     }
-
 }

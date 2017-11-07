@@ -8,21 +8,26 @@ import com.margarita.vk_app.models.view.NewsItemBody;
 
 public class NewsItemBodyHolder extends BaseViewHolder<NewsItemBody> {
 
-    private TextView textView;
+    private TextView tvText;
+
+    private TextView tvAttachments;
 
     public NewsItemBodyHolder(View itemView) {
         super(itemView);
-        textView = itemView.findViewById(R.id.tvText);
+        tvText = itemView.findViewById(R.id.tvText);
+        tvAttachments = itemView.findViewById(R.id.tvAttachments);
     }
 
     @Override
     public void bindViewHolder(NewsItemBody newsFeedItemBody) {
-        textView.setText(newsFeedItemBody.getText());
+        tvText.setText(newsFeedItemBody.getText());
+        tvAttachments.setText(newsFeedItemBody.getAttachmentsString());
     }
 
     @Override
     public void unbindViewHolder() {
-        textView.setText(null);
+        tvText.setText(null);
+        tvAttachments.setText(null);
     }
 
 }

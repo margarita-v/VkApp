@@ -66,4 +66,8 @@ public class Link implements Attachment {
         return VKAttachments.TYPE_LINK;
     }
 
+    @Override
+    public String getIconFont() {
+        return "0xE250";
+    }
 }

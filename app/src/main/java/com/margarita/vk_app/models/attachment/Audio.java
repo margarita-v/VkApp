@@ -77,4 +77,8 @@ public class Audio implements Attachment {
         return VKAttachments.TYPE_AUDIO;
     }
 
+    @Override
+    public String getIconFont() {
+        return "0xE310";
+    }
 }
