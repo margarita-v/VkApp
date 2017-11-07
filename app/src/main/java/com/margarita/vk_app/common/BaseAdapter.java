@@ -56,7 +56,7 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder<BaseViewMod
      */
     private void registerTypeInstance(BaseViewModel item) {
         int key = item.getType().getId();
-        if (typeInstances.indexOfKey(key) == -1) {
+        if (typeInstances.indexOfKey(key) < 0) {
             typeInstances.put(key, item);
         }
     }

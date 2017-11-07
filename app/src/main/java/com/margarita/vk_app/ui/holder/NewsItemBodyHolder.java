@@ -39,8 +39,7 @@ public class NewsItemBodyHolder extends BaseViewHolder<NewsItemBody> {
 
     @Override
     public void unbindViewHolder() {
-        tvText.setText(null);
-        tvAttachments.setText(null);
+        clearTextView(tvText);
+        clearTextView(tvAttachments);
     }
-
 }

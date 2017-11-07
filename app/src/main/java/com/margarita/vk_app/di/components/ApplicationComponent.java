@@ -7,6 +7,7 @@ import com.margarita.vk_app.ui.activity.BaseActivity;
 import com.margarita.vk_app.ui.activity.MainActivity;
 import com.margarita.vk_app.ui.fragment.NewsFeedFragment;
 import com.margarita.vk_app.ui.holder.NewsItemBodyHolder;
+import com.margarita.vk_app.ui.holder.NewsItemFooterHolder;
 
 import javax.inject.Singleton;
 
@@ -16,11 +17,14 @@ import dagger.Component;
 @Component(modules = {ManagerModule.class, ApplicationModule.class, RestModule.class})
 public interface ApplicationComponent {
 
+    // Activities
     void inject(BaseActivity activity);
-
     void inject(MainActivity activity);
 
+    // Fragments
     void inject(NewsFeedFragment fragment);
 
+    // View holders
     void inject(NewsItemBodyHolder holder);
+    void inject(NewsItemFooterHolder holder);
 }

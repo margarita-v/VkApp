@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
@@ -15,6 +14,7 @@ import com.margarita.vk_app.common.utils.VkListHelper;
 import com.margarita.vk_app.models.common.WallItem;
 import com.margarita.vk_app.models.view.BaseViewModel;
 import com.margarita.vk_app.models.view.NewsItemBody;
+import com.margarita.vk_app.models.view.NewsItemFooter;
 import com.margarita.vk_app.models.view.NewsItemHeader;
 import com.margarita.vk_app.rest.api.WallApi;
 import com.margarita.vk_app.rest.model.request.WallGetRequestModel;
@@ -68,15 +68,10 @@ public class NewsFeedFragment extends BaseFragment {
                     for (WallItem wallItem: wallItems) {
                         list.add(new NewsItemHeader(wallItem));
                         list.add(new NewsItemBody(wallItem));
+                        list.add(new NewsItemFooter(wallItem));
                     }
 
                     adapter.setItems(list);
-
-                    Toast.makeText(getActivity(),
-                            "Likes: " + responseBody.getResponse()
-                                    .getItems().get(0).getLikes().getCount(),
-                            Toast.LENGTH_LONG)
-                            .show();
                 }
             }
 

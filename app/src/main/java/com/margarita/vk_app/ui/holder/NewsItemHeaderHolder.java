@@ -47,7 +47,7 @@ public class NewsItemHeaderHolder extends BaseViewHolder<NewsItemHeader> {
     @Override
     public void unbindViewHolder() {
         civProfileImage.setImageBitmap(null);
-        tvProfileName.setText(null);
-        tvRepostedProfileName.setText(null);
+        clearTextView(tvProfileName);
+        clearTextView(tvRepostedProfileName);
     }
 }

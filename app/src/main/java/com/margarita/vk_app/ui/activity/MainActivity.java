@@ -2,10 +2,8 @@ package com.margarita.vk_app.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
-import com.margarita.vk_app.CurrentUser;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.consts.ApiConstants;
@@ -63,10 +61,6 @@ public class MainActivity extends BaseActivity implements MainView {
 
     @Override
     public void signedIn() {
-        Toast.makeText(this,
-                "Current user id: " + CurrentUser.getId(),
-                Toast.LENGTH_LONG)
-                .show();
         setContent(new NewsFeedFragment());
     }
 }
