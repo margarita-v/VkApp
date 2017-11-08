@@ -1,7 +1,6 @@
 package com.margarita.vk_app.ui.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.margarita.vk_app.R;
@@ -21,9 +20,11 @@ import java.util.List;
 
 import javax.inject.Inject;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import io.reactivex.ObservableSource;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 public class NewsFeedFragment extends BaseFeedFragment {
 
@@ -44,34 +45,45 @@ public class NewsFeedFragment extends BaseFeedFragment {
         super.onActivityCreated(savedInstanceState);
 
         wallApi.get(new WallGetRequestModel(-86529522).toMap())
-                .enqueue(new Callback<WallGetResponse>() {
-            @Override
-            public void onResponse(@NonNull Call<WallGetResponse> call,
-                                   @NonNull Response<WallGetResponse> response) {
-
-                WallGetResponse responseBody = response.body();
-                if (responseBody != null) {
-
-                    List<WallItem> wallItems =
-                            VkListHelper.getWallItemsInfo(responseBody.getResponse());
-
-                    List<BaseViewModel> list = new ArrayList<>();
-
-                    for (WallItem wallItem: wallItems) {
-                        list.add(new NewsItemHeader(wallItem));
-                        list.add(new NewsItemBody(wallItem));
-                        list.add(new NewsItemFooter(wallItem));
+                // Преобразование данных Observable с WallGetResponse в WallItem
+                .flatMap(new Function<WallGetResponse, ObservableSource<WallItem>>() {
+                    @Override
+                    public ObservableSource<WallItem> apply(WallGetResponse wallGetResponse)
+                            throws Exception {
+                        return io.reactivex.Observable.fromIterable(
+                                VkListHelper.getWallItemsInfo(wallGetResponse.getResponse()));
                     }
-
-                    adapter.setItems(list);
-                }
-            }
-
-            @Override
-            public void onFailure(@NonNull Call<WallGetResponse> call, @NonNull Throwable t) {
-                t.printStackTrace();
-            }
-        });
+                })
+                // Преобразование данных Observable с WallItem в BaseViewModel
+                .flatMap(new Function<WallItem, ObservableSource<BaseViewModel>>() {
+                    @Override
+                    public ObservableSource<BaseViewModel> apply(WallItem wallItem)
+                            throws Exception {
+                        List<BaseViewModel> result = new ArrayList<>();
+                        result.add(new NewsItemHeader(wallItem));
+                        result.add(new NewsItemBody(wallItem));
+                        result.add(new NewsItemFooter(wallItem));
+                        return io.reactivex.Observable.fromIterable(result);
+                    }
+                })
+                /*
+                 Преобразование данных в Observable из одного элемента - списка
+                 Rx цепочка передает Observable<BaseViewModel>;
+                 После преобразования будет Observable<List<BaseViewModel>>
+                 Нужно для порционной передачи данных в адаптер:
+                 свой список для каждой загрузки. */
+                .toList()
+                // Поток, в котором будет выполняться процесс Observable
+                .subscribeOn(Schedulers.io())
+                // Поток, в котором будут выполнять последующие операции.
+                // Выполнится только добавление данных в адаптер и его оповещение
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<BaseViewModel>>() {
+                    @Override
+                    public void accept(List<BaseViewModel> items) throws Exception {
+                        adapter.addItems(items);
+                    }
+                });
     }
 
     @Override

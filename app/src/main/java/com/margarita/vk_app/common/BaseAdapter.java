@@ -65,7 +65,7 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder<BaseViewMod
      * Add new items to the adapter
      * @param newItems Items which will be added to the adapter
      */
-    private void addItems(List<? extends BaseViewModel> newItems) {
+    public void addItems(List<? extends BaseViewModel> newItems) {
         for (BaseViewModel newItem: newItems) {
             registerTypeInstance(newItem);
         }
