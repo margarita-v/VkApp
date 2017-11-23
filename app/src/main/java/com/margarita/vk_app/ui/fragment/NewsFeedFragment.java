@@ -6,24 +6,20 @@ import android.support.annotation.Nullable;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.utils.VkListHelper;
-import com.margarita.vk_app.models.common.WallItem;
 import com.margarita.vk_app.models.view.BaseViewModel;
 import com.margarita.vk_app.models.view.NewsItemBody;
 import com.margarita.vk_app.models.view.NewsItemFooter;
 import com.margarita.vk_app.models.view.NewsItemHeader;
 import com.margarita.vk_app.rest.api.WallApi;
 import com.margarita.vk_app.rest.model.request.WallGetRequestModel;
-import com.margarita.vk_app.rest.model.response.WallGetResponse;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
 
-import io.reactivex.ObservableSource;
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 public class NewsFeedFragment extends BaseFeedFragment {
@@ -46,25 +42,16 @@ public class NewsFeedFragment extends BaseFeedFragment {
 
         wallApi.get(new WallGetRequestModel(-86529522).toMap())
                 // Преобразование данных Observable с WallGetResponse в WallItem
-                .flatMap(new Function<WallGetResponse, ObservableSource<WallItem>>() {
-                    @Override
-                    public ObservableSource<WallItem> apply(WallGetResponse wallGetResponse)
-                            throws Exception {
-                        return io.reactivex.Observable.fromIterable(
-                                VkListHelper.getWallItemsInfo(wallGetResponse.getResponse()));
-                    }
-                })
+                .flatMap(full ->
+                        Observable.fromIterable(
+                                VkListHelper.getWallItemsInfo(full.getResponse())))
                 // Преобразование данных Observable с WallItem в BaseViewModel
-                .flatMap(new Function<WallItem, ObservableSource<BaseViewModel>>() {
-                    @Override
-                    public ObservableSource<BaseViewModel> apply(WallItem wallItem)
-                            throws Exception {
-                        List<BaseViewModel> result = new ArrayList<>();
-                        result.add(new NewsItemHeader(wallItem));
-                        result.add(new NewsItemBody(wallItem));
-                        result.add(new NewsItemFooter(wallItem));
-                        return io.reactivex.Observable.fromIterable(result);
-                    }
+                .flatMap(wallItem -> {
+                    List<BaseViewModel> result = new ArrayList<>();
+                    result.add(new NewsItemHeader(wallItem));
+                    result.add(new NewsItemBody(wallItem));
+                    result.add(new NewsItemFooter(wallItem));
+                    return Observable.fromIterable(result);
                 })
                 /*
                  Преобразование данных в Observable из одного элемента - списка
@@ -78,12 +65,7 @@ public class NewsFeedFragment extends BaseFeedFragment {
                 // Поток, в котором будут выполнять последующие операции.
                 // Выполнится только добавление данных в адаптер и его оповещение
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<BaseViewModel>>() {
-                    @Override
-                    public void accept(List<BaseViewModel> items) throws Exception {
-                        adapter.addItems(items);
-                    }
-                });
+                .subscribe(items -> adapter.addItems(items));
     }
 
     @Override
