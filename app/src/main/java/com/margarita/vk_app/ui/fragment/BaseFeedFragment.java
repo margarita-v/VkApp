@@ -7,17 +7,24 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.common.BaseAdapter;
+import com.margarita.vk_app.models.view.BaseViewModel;
+import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
+import com.margarita.vk_app.mvp.view.BaseFeedView;
 
-public abstract class BaseFeedFragment extends BaseFragment {
+import java.util.List;
+
+public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedView {
 
     RecyclerView rvList;
     BaseAdapter adapter;
 
     protected SwipeRefreshLayout swipeRefreshLayout;
     protected ProgressBar progressBar;
+    protected BaseFeedPresenter presenter;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
@@ -25,11 +32,18 @@ public abstract class BaseFeedFragment extends BaseFragment {
         setUpList(view);
         setUpAdapter();
         setUpSwipeContainer(view);
+        presenter = onCreateFeedPresenter();
+        presenter.loadStart();
     }
 
     @Override
     protected int getMainContentLayout() {
         return R.layout.fragment_news_feed;
+    }
+
+    @Override
+    protected int onCreateToolbarTitle() {
+        return 0;
     }
 
     private void setUpList(View rootView) {
@@ -44,6 +58,46 @@ public abstract class BaseFeedFragment extends BaseFragment {
 
     private void setUpSwipeContainer(View rootView) {
         swipeRefreshLayout = rootView.findViewById(R.id.swipeContainer);
+        swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
+        swipeRefreshLayout.setOnRefreshListener(
+                () -> onCreateFeedPresenter().loadRefresh());
         progressBar = getBaseActivity().getProgressBar();
+    }
+
+    protected abstract BaseFeedPresenter onCreateFeedPresenter();
+
+    @Override
+    public void showRefreshing() {
+
+    }
+
+    @Override
+    public void hideRefreshing() {
+        swipeRefreshLayout.setRefreshing(false);
+    }
+
+    @Override
+    public void showListProgress() {
+        progressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideListProgress() {
+        progressBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showError(String message) {
+        Toast.makeText(getBaseActivity(), message, Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void setItems(List<BaseViewModel> items) {
+        adapter.setItems(items);
+    }
+
+    @Override
+    public void addItems(List<BaseViewModel> items) {
+        adapter.addItems(items);
     }
 }
