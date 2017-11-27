@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.LayoutRes;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
+import android.widget.ProgressBar;
 
 import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.margarita.vk_app.R;
@@ -15,6 +16,8 @@ import javax.inject.Inject;
 
 public abstract class BaseActivity extends MvpAppCompatActivity {
 
+    protected ProgressBar progressBar;
+
     @Inject
     VkFragmentManager fragmentManager;
 
@@ -25,11 +28,17 @@ public abstract class BaseActivity extends MvpAppCompatActivity {
 
         VkApplication.getApplicationComponent().inject(this);
 
+        progressBar = findViewById(R.id.progressBar);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FrameLayout frameLayout = findViewById(R.id.container);
         getLayoutInflater().inflate(getMainContentLayout(), frameLayout);
+    }
+
+    public ProgressBar getProgressBar() {
+        return progressBar;
     }
 
     @Override
@@ -71,7 +80,7 @@ public abstract class BaseActivity extends MvpAppCompatActivity {
      * @return True if the current fragment was removed
      */
     public boolean removeCurrentFragment() {
-        return  fragmentManager.removeCurrentFragment(this);
+        return fragmentManager.removeCurrentFragment(this);
     }
 
     /**

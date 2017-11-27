@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.arellomobile.mvp.MvpAppCompatFragment;
+import com.margarita.vk_app.ui.activity.BaseActivity;
 
 public abstract class BaseFragment extends MvpAppCompatFragment {
 
@@ -30,5 +31,9 @@ public abstract class BaseFragment extends MvpAppCompatFragment {
 
     public String createToolbarTitle(Context context) {
         return context.getString(onCreateToolbarTitle());
+    }
+
+    public BaseActivity getBaseActivity() {
+        return (BaseActivity) getActivity();
     }
 }
