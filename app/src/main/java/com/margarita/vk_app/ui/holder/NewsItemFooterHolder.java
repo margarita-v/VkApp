@@ -1,6 +1,8 @@
 package com.margarita.vk_app.ui.holder;
 
+import android.content.Context;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 
@@ -25,12 +27,15 @@ public class NewsItemFooterHolder extends BaseViewHolder<NewsItemFooter> {
     private TextView tvRepostIcon;
     private TextView tvRepostCount;
 
+    private Context context;
+
     @Inject
     Typeface googleFont;
 
     public NewsItemFooterHolder(View itemView) {
         super(itemView);
         VkApplication.getApplicationComponent().inject(this);
+        context = itemView.getContext();
 
         tvDate = itemView.findViewById(R.id.tvDate);
         tvLikesIcon = itemView.findViewById(R.id.tvLikesIcon);
@@ -69,7 +74,16 @@ public class NewsItemFooterHolder extends BaseViewHolder<NewsItemFooter> {
      */
     private void bindFooterItem(TextView tvCount, TextView tvIcon, CounterViewModel counter) {
         tvCount.setText(String.valueOf(counter.getCount()));
-        tvCount.setTextColor(counter.getTextColor());
-        tvIcon.setTextColor(counter.getIconColor());
+        setColor(tvCount, counter.getTextColor());
+        setColor(tvIcon, counter.getIconColor());
+    }
+
+    /**
+     * Set text color for TextView
+     * @param textView TextView which text color will be changed
+     * @param color Color which will be set
+     */
+    private void setColor(TextView textView, int color) {
+        textView.setTextColor(ContextCompat.getColor(context, color));
     }
 }
