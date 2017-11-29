@@ -9,4 +9,6 @@ public class ApiConstants {
 
     // Для получения определенного количества записей
     public static final int DEFAULT_COUNT = 10;
+
+    public static final int OWNER_ID = -86529522;
 }

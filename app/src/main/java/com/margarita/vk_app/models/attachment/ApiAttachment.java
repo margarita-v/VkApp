@@ -13,14 +13,19 @@ public class ApiAttachment {
     @Expose
     private Photo photo;
 
+    @Expose
     private Audio audio;
 
+    @Expose
     private Video video;
 
+    @Expose
     private VkDocument document;
 
+    @Expose
     private Link link;
 
+    @Expose
     private Page page;
 
     public Attachment getAttachment() {

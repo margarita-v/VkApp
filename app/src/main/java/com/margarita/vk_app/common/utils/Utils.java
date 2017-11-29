@@ -3,6 +3,9 @@ package com.margarita.vk_app.common.utils;
 import android.support.annotation.NonNull;
 
 import com.margarita.vk_app.models.attachment.ApiAttachment;
+import com.margarita.vk_app.models.attachment.Attachment;
+import com.margarita.vk_app.models.attachment.VkDocument;
+import com.vk.sdk.api.model.VKAttachments;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -21,17 +24,21 @@ public class Utils {
 
     /**
      * Convert attachments to string of a font icons
-     * @param attachments List of attachments which will be converted
+     * @param apiAttachments List of attachments which will be converted
      * @return String as a font icons for all attachments
      */
     @NonNull
-    static String convertAttachmentsToFontIcons(List<ApiAttachment> attachments) {
+    static String convertAttachmentsToFontIcons(List<ApiAttachment> apiAttachments) {
         StringBuilder result = new StringBuilder();
 
-        for (ApiAttachment attachment: attachments) {
-            result.append(attachment.getAttachment().getIconFont()).append(" ");
+        for (ApiAttachment apiAttachment: apiAttachments) {
+            //TODO Hot fix! Attachment for VkDocument accidentally returns null always.
+            Attachment attachment = apiAttachment.getAttachment();
+            if (attachment != null)
+                result.append(attachment.getIconFont()).append(" ");
+            else if (apiAttachment.getType().equals(VKAttachments.TYPE_DOC))
+                result.append(VkDocument.ICON_FONT).append(" ");
         }
-
         return result.toString();
     }
 

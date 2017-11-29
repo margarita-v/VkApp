@@ -34,7 +34,11 @@ public class NewsItemBodyHolder extends BaseViewHolder<NewsItemBody> {
     @Override
     public void bindViewHolder(NewsItemBody newsFeedItemBody) {
         tvText.setText(newsFeedItemBody.getText());
-        tvAttachments.setText(newsFeedItemBody.getAttachmentsString());
+        String attachmentsString = newsFeedItemBody.getAttachmentsString();
+        if (!attachmentsString.isEmpty())
+            tvAttachments.setText(attachmentsString);
+        else
+            tvAttachments.setVisibility(View.GONE);
     }
 
     @Override

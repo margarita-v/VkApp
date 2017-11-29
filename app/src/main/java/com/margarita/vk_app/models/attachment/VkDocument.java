@@ -6,7 +6,7 @@ import com.vk.sdk.api.model.VKAttachments;
 
 public class VkDocument implements Attachment {
 
-    private static final String ICON_FONT = new String(new char[]{0xE02C});
+    public static final String ICON_FONT = new String(new char[]{0xE02C});
 
     @Expose
     private int id;

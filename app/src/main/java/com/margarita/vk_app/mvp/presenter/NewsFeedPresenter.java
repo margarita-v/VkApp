@@ -3,6 +3,7 @@ package com.margarita.vk_app.mvp.presenter;
 import com.arellomobile.mvp.InjectViewState;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.utils.VkListHelper;
+import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.models.view.BaseViewModel;
 import com.margarita.vk_app.models.view.NewsItemBody;
 import com.margarita.vk_app.models.view.NewsItemFooter;
@@ -30,7 +31,7 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView> {
 
     @Override
     public Observable<BaseViewModel> onCreateDataObservable(int offset, int count) {
-        return wallApi.get(new WallGetRequestModel(-86529522).toMap())
+        return wallApi.get(new WallGetRequestModel(ApiConstants.OWNER_ID).toMap())
 
                 // Преобразование данных Observable с WallGetResponse в WallItem
                 .flatMap(full -> Observable.fromIterable(
