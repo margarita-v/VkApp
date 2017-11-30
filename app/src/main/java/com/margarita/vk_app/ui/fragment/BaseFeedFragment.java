@@ -3,14 +3,15 @@ package com.margarita.vk_app.ui.fragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SimpleItemAnimator;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.common.BaseAdapter;
+import com.margarita.vk_app.common.manager.VkLinearLayoutManager;
 import com.margarita.vk_app.models.view.BaseViewModel;
 import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
 import com.margarita.vk_app.mvp.view.BaseFeedView;
@@ -48,7 +49,18 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
 
     private void setUpList(View rootView) {
         rvList = rootView.findViewById(R.id.rvList);
-        rvList.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        VkLinearLayoutManager layoutManager = new VkLinearLayoutManager(getContext());
+        rvList.setLayoutManager(layoutManager);
+        rvList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                if (layoutManager.isOnNextPagePosition())
+                    presenter.loadNext(adapter.getRealItemCount());
+            }
+        });
+
+        ((SimpleItemAnimator) rvList.getItemAnimator()).setSupportsChangeAnimations(false);
     }
 
     private void setUpAdapter() {
@@ -88,7 +100,7 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
 
     @Override
     public void showError(String message) {
-        Toast.makeText(getBaseActivity(), message, Toast.LENGTH_LONG).show();
+        Toast.makeText(getBaseActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override

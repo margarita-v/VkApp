@@ -10,7 +10,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public abstract class   BaseFeedPresenter<V extends BaseFeedView> extends MvpPresenter<V> {
+public abstract class BaseFeedPresenter<V extends BaseFeedView> extends MvpPresenter<V> {
 
     private static final int START_PAGE_SIZE = 15;
 
@@ -18,7 +18,7 @@ public abstract class   BaseFeedPresenter<V extends BaseFeedView> extends MvpPre
 
     private boolean isLoading;
 
-    public void loadData(ProgressType progressType, int offset, int count) {
+    private void loadData(ProgressType progressType, int offset, int count) {
         if (!isLoading) {
             isLoading = true;
             onCreateDataObservable(count, offset)
@@ -42,7 +42,7 @@ public abstract class   BaseFeedPresenter<V extends BaseFeedView> extends MvpPre
      * Show different progress bars which type depends on progress type
      * @param progressType Current progress type
      */
-    public void showProgress(ProgressType progressType) {
+    private void showProgress(ProgressType progressType) {
         switch (progressType) {
             case Refreshing:
                 getViewState().showRefreshing();
@@ -57,7 +57,7 @@ public abstract class   BaseFeedPresenter<V extends BaseFeedView> extends MvpPre
      * Hide progress bar
      * @param progressType Current progress type
      */
-    public void hideProgress(ProgressType progressType) {
+    private void hideProgress(ProgressType progressType) {
         switch (progressType) {
             case Refreshing:
                 getViewState().hideRefreshing();

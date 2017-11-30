@@ -31,8 +31,8 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView> {
 
     @Override
     public Observable<BaseViewModel> onCreateDataObservable(int offset, int count) {
-        return wallApi.get(new WallGetRequestModel(ApiConstants.OWNER_ID).toMap())
-
+        return wallApi.get(new WallGetRequestModel(ApiConstants.OWNER_ID, count, offset)
+                .toMap())
                 // Преобразование данных Observable с WallGetResponse в WallItem
                 .flatMap(full -> Observable.fromIterable(
                         VkListHelper.getWallItemsInfo(full.getResponse())))
