@@ -9,9 +9,7 @@ import com.margarita.vk_app.ui.holder.NewsItemBodyHolder;
 public class NewsItemBody extends BaseViewModel {
 
     private int id;
-
     private String text;
-
     private String attachmentsString;
 
     public NewsItemBody(WallItem wallItem) {
@@ -46,5 +44,10 @@ public class NewsItemBody extends BaseViewModel {
 
     public String getAttachmentsString() {
         return attachmentsString;
+    }
+
+    @Override
+    public boolean isItemDecorator() {
+        return true;
     }
 }

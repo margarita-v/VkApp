@@ -62,4 +62,9 @@ public class NewsItemFooter extends BaseViewModel {
     public RepostCounter getRepostCounter() {
         return repostCounter;
     }
+
+    @Override
+    public boolean isItemDecorator() {
+        return true;
+    }
 }

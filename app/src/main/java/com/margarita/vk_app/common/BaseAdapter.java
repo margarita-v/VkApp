@@ -46,6 +46,15 @@ public class BaseAdapter extends RecyclerView.Adapter<BaseViewHolder<BaseViewMod
         return list.size();
     }
 
+    public int getRealItemCount() {
+        int count = 0;
+        for (BaseViewModel item: list) {
+            if (!item.isItemDecorator())
+                count++;
+        }
+        return count;
+    }
+
     private BaseViewModel getItem(int position) {
         return list.get(position);
     }

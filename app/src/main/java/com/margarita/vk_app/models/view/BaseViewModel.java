@@ -36,4 +36,17 @@ public abstract class BaseViewModel {
             return id;
         }
     }
+
+    /**
+     * Function which checks if the current view model is just a decorator of list element.
+     * By default view model is not a decorator.
+     * For decorators method will be overridden.
+     * In our case, header is a real list item, so body and footer are decorators for a header
+     * (because adapter contains different view models,
+     * but header, body and footer presents one list item).
+     * @return True if the current view model is decorator
+     */
+    public boolean isItemDecorator() {
+        return false;
+    }
 }
