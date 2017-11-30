@@ -1,5 +1,6 @@
 package com.margarita.vk_app.di.components;
 
+import com.margarita.vk_app.common.manager.NetworkManager;
 import com.margarita.vk_app.di.module.ApplicationModule;
 import com.margarita.vk_app.di.module.ManagerModule;
 import com.margarita.vk_app.di.module.RestModule;
@@ -31,4 +32,7 @@ public interface ApplicationComponent {
 
     // Presenters
     void inject(NewsFeedPresenter presenter);
+
+    // Managers
+    void inject(NetworkManager manager);
 }

@@ -6,7 +6,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RestClient {
 
-    private static final String BASE_URL = "https://api.vk.com/method/";
+    public static final String VK_URL = "https://api.vk.com";
+
+    private static final String BASE_URL = VK_URL + "/method/";
 
     private Retrofit retrofit;
 

@@ -1,10 +1,13 @@
 package com.margarita.vk_app.mvp.presenter;
 
 import com.arellomobile.mvp.MvpPresenter;
+import com.margarita.vk_app.common.manager.NetworkManager;
 import com.margarita.vk_app.models.view.BaseViewModel;
 import com.margarita.vk_app.mvp.view.BaseFeedView;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -20,10 +23,21 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView> extends MvpPrese
 
     private boolean isLoading;
 
+    @Inject
+    NetworkManager networkManager;
+
     private void loadData(ProgressType progressType, int offset, int count) {
         if (!isLoading) {
             isLoading = true;
-            onLoadDataObservable(count, offset)
+
+            networkManager.getNetworkObservable()
+                    .flatMap(isVkAvailable -> {
+                        if (!isVkAvailable && offset > 0)
+                            return Observable.empty();
+                        return isVkAvailable
+                                ? onLoadDataObservable(offset, count)
+                                : onRestoreDataObservable();
+                    })
                     .toList()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
