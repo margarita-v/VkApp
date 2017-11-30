@@ -4,7 +4,9 @@ package com.margarita.vk_app.models.common;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Comments {
+import io.realm.RealmObject;
+
+public class Comments extends RealmObject {
 
     @Expose
     private Integer count;

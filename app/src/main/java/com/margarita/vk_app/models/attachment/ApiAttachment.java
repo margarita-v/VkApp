@@ -5,7 +5,9 @@ import com.vk.sdk.api.model.VKAttachments;
 
 import java.util.NoSuchElementException;
 
-public class ApiAttachment {
+import io.realm.RealmObject;
+
+public class ApiAttachment extends RealmObject {
 
     @Expose
     private String type;

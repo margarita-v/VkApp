@@ -9,6 +9,8 @@ import java.util.List;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import io.realm.Realm;
+import io.realm.RealmObject;
 
 public abstract class BaseFeedPresenter<V extends BaseFeedView> extends MvpPresenter<V> {
 
@@ -21,7 +23,7 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView> extends MvpPrese
     private void loadData(ProgressType progressType, int offset, int count) {
         if (!isLoading) {
             isLoading = true;
-            onCreateDataObservable(count, offset)
+            onLoadDataObservable(count, offset)
                     .toList()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -36,7 +38,15 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView> extends MvpPrese
         }
     }
 
-    public abstract Observable<BaseViewModel> onCreateDataObservable(int offset, int count);
+    /**
+     * Load data from server
+     */
+    public abstract Observable<BaseViewModel> onLoadDataObservable(int offset, int count);
+
+    /**
+     * Load data from database
+     */
+    public abstract Observable<BaseViewModel> onRestoreDataObservable();
 
     /**
      * Show different progress bars which type depends on progress type
@@ -113,6 +123,15 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView> extends MvpPrese
         getViewState().showError(throwable.getMessage());
     }
     //endregion
+
+    /**
+     * Save item to the database
+     * @param item Item which will be added or updated
+     */
+    void saveToDatabase(RealmObject item) {
+        Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> realm1.copyToRealmOrUpdate(item));
+    }
 
     /**
      * Progress types for different loading states

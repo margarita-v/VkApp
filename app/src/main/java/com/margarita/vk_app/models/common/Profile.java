@@ -4,7 +4,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.margarita.vk_app.models.Owner;
 
-public class Profile implements Owner {
+import io.realm.RealmObject;
+
+public class Profile extends RealmObject implements Owner {
 
     @Expose
     private int id;

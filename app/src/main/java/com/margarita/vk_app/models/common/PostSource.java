@@ -4,7 +4,9 @@ package com.margarita.vk_app.models.common;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PostSource {
+import io.realm.RealmObject;
+
+public class PostSource extends RealmObject {
 
     @Expose
     private String type;

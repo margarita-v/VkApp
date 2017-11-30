@@ -4,7 +4,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.vk.sdk.api.model.VKAttachments;
 
-public class Page implements Attachment {
+import io.realm.RealmObject;
+
+public class Page extends RealmObject implements Attachment {
 
     @Expose
     private int id;

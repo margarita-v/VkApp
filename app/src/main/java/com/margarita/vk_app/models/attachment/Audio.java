@@ -4,7 +4,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.vk.sdk.api.model.VKAttachments;
 
-public class Audio implements Attachment {
+import io.realm.RealmObject;
+
+public class Audio extends RealmObject implements Attachment {
 
     private static final String ICON_FONT = new String(new char[]{0xE310});
 

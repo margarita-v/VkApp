@@ -5,7 +5,9 @@ import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.margarita.vk_app.models.Owner;
 
-public class Group implements Owner {
+import io.realm.RealmObject;
+
+public class Group extends RealmObject implements Owner {
 
     @Expose
     private Integer id;

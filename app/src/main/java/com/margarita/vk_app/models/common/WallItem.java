@@ -1,13 +1,15 @@
 
 package com.margarita.vk_app.models.common;
 
-import java.util.ArrayList;
-import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.margarita.vk_app.models.attachment.ApiAttachment;
 
-public class WallItem {
+import io.realm.RealmList;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
+
+public class WallItem extends RealmObject {
 
     private String attachmentsString;
 
@@ -15,6 +17,7 @@ public class WallItem {
 
     private String senderPhoto;
 
+    @PrimaryKey
     @Expose
     private Integer id;
 
@@ -45,11 +48,11 @@ public class WallItem {
     private Integer canPin;
 
     @Expose
-    private List<ApiAttachment> attachments = new ArrayList<>();
+    private RealmList<ApiAttachment> attachments = new RealmList<>();
 
     @SerializedName("copy_history")
     @Expose
-    private List<WallItem> copyHistory = new ArrayList<>();
+    private RealmList<WallItem> copyHistory = new RealmList<>();
 
     @SerializedName("post_source")
     @Expose
@@ -107,7 +110,7 @@ public class WallItem {
         return canPin;
     }
 
-    public List<ApiAttachment> getAttachments() {
+    public RealmList<ApiAttachment> getAttachments() {
         return attachments;
     }
 
