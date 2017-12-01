@@ -18,21 +18,29 @@ import com.margarita.vk_app.mvp.view.BaseFeedView;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedView {
 
+    @BindView(R.id.rvList)
     RecyclerView rvList;
+
     BaseAdapter adapter;
 
+    @BindView(R.id.swipeContainer)
     protected SwipeRefreshLayout swipeRefreshLayout;
+
     protected ProgressBar progressBar;
     protected BaseFeedPresenter presenter;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        setUpList(view);
+        ButterKnife.bind(this, view);
+        setUpList();
         setUpAdapter();
-        setUpSwipeContainer(view);
+        setUpSwipeContainer();
         presenter = onCreateFeedPresenter();
         presenter.loadStart();
     }
@@ -47,9 +55,7 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
         return 0;
     }
 
-    private void setUpList(View rootView) {
-        rvList = rootView.findViewById(R.id.rvList);
-
+    private void setUpList() {
         VkLinearLayoutManager layoutManager = new VkLinearLayoutManager(getContext());
         rvList.setLayoutManager(layoutManager);
         rvList.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -68,8 +74,7 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
         rvList.setAdapter(adapter);
     }
 
-    private void setUpSwipeContainer(View rootView) {
-        swipeRefreshLayout = rootView.findViewById(R.id.swipeContainer);
+    private void setUpSwipeContainer() {
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(
                 () -> onCreateFeedPresenter().loadRefresh());

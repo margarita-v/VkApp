@@ -8,24 +8,27 @@ import com.bumptech.glide.Glide;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.models.view.NewsItemHeader;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class NewsItemHeaderHolder extends BaseViewHolder<NewsItemHeader> {
 
+    @BindView(R.id.civProfileImage)
     private CircleImageView civProfileImage;
 
+    @BindView(R.id.tvProfileName)
     private TextView tvProfileName;
 
+    @BindView(R.id.tvRepostsIcon)
     private ImageView ivRepostedIcon;
 
+    @BindView(R.id.tvRepostedProfileName)
     private TextView tvRepostedProfileName;
 
     public NewsItemHeaderHolder(View itemView) {
         super(itemView);
-        civProfileImage = itemView.findViewById(R.id.civProfileImage);
-        tvProfileName = itemView.findViewById(R.id.tvProfileName);
-        ivRepostedIcon = itemView.findViewById(R.id.ivRepostedIcon);
-        tvRepostedProfileName = itemView.findViewById(R.id.tvRepostedProfileName);
+        ButterKnife.bind(this, itemView);
     }
 
     @Override

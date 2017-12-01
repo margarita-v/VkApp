@@ -10,10 +10,15 @@ import com.margarita.vk_app.models.view.NewsItemBody;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class NewsItemBodyHolder extends BaseViewHolder<NewsItemBody> {
 
+    @BindView(R.id.tvText)
     private TextView tvText;
 
+    @BindView(R.id.tvAttachments)
     private TextView tvAttachments;
 
     @Inject
@@ -21,14 +26,9 @@ public class NewsItemBodyHolder extends BaseViewHolder<NewsItemBody> {
 
     public NewsItemBodyHolder(View itemView) {
         super(itemView);
+        ButterKnife.bind(this, itemView);
         VkApplication.getApplicationComponent().inject(this);
-
-        tvText = itemView.findViewById(R.id.tvText);
-        tvAttachments = itemView.findViewById(R.id.tvAttachments);
-
-        if (tvAttachments != null) {
-            tvAttachments.setTypeface(googleFont);
-        }
+        tvAttachments.setTypeface(googleFont);
     }
 
     @Override

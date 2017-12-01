@@ -14,8 +14,12 @@ import com.margarita.vk_app.ui.fragment.BaseFragment;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public abstract class BaseActivity extends MvpAppCompatActivity {
 
+    @BindView(R.id.progressBar)
     protected ProgressBar progressBar;
 
     @Inject
@@ -25,10 +29,9 @@ public abstract class BaseActivity extends MvpAppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
+        ButterKnife.bind(this);
 
         VkApplication.getApplicationComponent().inject(this);
-
-        progressBar = findViewById(R.id.progressBar);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);

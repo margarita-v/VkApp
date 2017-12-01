@@ -14,17 +14,30 @@ import com.margarita.vk_app.models.view.counter.CounterViewModel;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class NewsItemFooterHolder extends BaseViewHolder<NewsItemFooter> {
 
+    @BindView(R.id.tvDate)
     private TextView tvDate;
 
+    @BindView(R.id.tvLikesIcon)
     private TextView tvLikesIcon;
+
+    @BindView(R.id.tvLikesCount)
     private TextView tvLikesCount;
 
+    @BindView(R.id.tvCommentsIcon)
     private TextView tvCommentsIcon;
+
+    @BindView(R.id.tvCommentsCount)
     private TextView tvCommentsCount;
 
+    @BindView(R.id.tvRepostsIcon)
     private TextView tvRepostIcon;
+
+    @BindView(R.id.tvRepostsCount)
     private TextView tvRepostCount;
 
     private Context context;
@@ -34,17 +47,9 @@ public class NewsItemFooterHolder extends BaseViewHolder<NewsItemFooter> {
 
     public NewsItemFooterHolder(View itemView) {
         super(itemView);
+        ButterKnife.bind(this, itemView);
         VkApplication.getApplicationComponent().inject(this);
         context = itemView.getContext();
-
-        tvDate = itemView.findViewById(R.id.tvDate);
-        tvLikesIcon = itemView.findViewById(R.id.tvLikesIcon);
-        tvLikesCount = itemView.findViewById(R.id.tvLikesCount);
-        tvCommentsIcon = itemView.findViewById(R.id.tvCommentsIcon);
-        tvCommentsCount = itemView.findViewById(R.id.tvCommentsCount);
-        tvRepostIcon = itemView.findViewById(R.id.tvRepostsIcon);
-        tvRepostCount = itemView.findViewById(R.id.tvRepostsCount);
-
         tvLikesIcon.setTypeface(googleFont);
         tvCommentsIcon.setTypeface(googleFont);
         tvRepostIcon.setTypeface(googleFont);
