@@ -25,7 +25,7 @@ import com.vk.sdk.api.VKError;
 
 public class MainActivity extends BaseActivity implements MainView {
 
-    // Аннотация для управления жизненным циклом презентера
+    // Annotation for control of presenter's lifecycle
     @InjectPresenter
     MainPresenter mainPresenter;
 
@@ -38,6 +38,14 @@ public class MainActivity extends BaseActivity implements MainView {
     public static final int SECOND_SECTION_SIZE = 4;
 
     /**
+     * Sections of drawer's items
+     */
+    private static PrimaryDrawerItem[] FIRST_SECTION =
+            new PrimaryDrawerItem[FIRST_SECTION_SIZE];
+    private static PrimaryDrawerItem[] SECOND_SECTION =
+            new PrimaryDrawerItem[SECOND_SECTION_SIZE];
+
+    /**
      * All items of navigation drawer
      */
     private static final SparseArray<Icon> DRAWER_ITEMS = new SparseArray<>();
@@ -45,7 +53,7 @@ public class MainActivity extends BaseActivity implements MainView {
     /**
      * Item for a new section of navigation drawer
      */
-    private static final SectionDrawerItem SECTION_ITEM = new SectionDrawerItem()
+    private static final SectionDrawerItem SECTION_NAME_ITEM = new SectionDrawerItem()
             .withName(R.string.drawer_item_section);
 
     static {
@@ -56,6 +64,9 @@ public class MainActivity extends BaseActivity implements MainView {
         DRAWER_ITEMS.append(R.string.drawer_item_topics, Icon.gmd_record_voice_over);
         DRAWER_ITEMS.append(R.string.drawer_item_info, Icon.gmd_info);
         DRAWER_ITEMS.append(R.string.drawer_item_group_rules, Icon.gmd_assignment);
+
+        FIRST_SECTION = getDrawerItems(0, FIRST_SECTION_SIZE);
+        SECOND_SECTION = getDrawerItems(FIRST_SECTION_SIZE, SECOND_SECTION_SIZE);
     }
 
     @Override
@@ -77,13 +88,13 @@ public class MainActivity extends BaseActivity implements MainView {
         VKCallback<VKAccessToken> callback = new VKCallback<VKAccessToken>() {
             @Override
             public void onResult(VKAccessToken res) {
-                // Пользователь успешно авторизовался
+                // User authorized successfully
                 mainPresenter.checkAuth();
             }
 
             @Override
             public void onError(VKError error) {
-                // Произошла ошибка авторизации (например, пользователь запретил авторизацию)
+                // Authorization error (for example, user had forbid authorization)
             }
         };
 
@@ -113,9 +124,9 @@ public class MainActivity extends BaseActivity implements MainView {
                 .withTranslucentStatusBar(true)
                 .withActionBarDrawerToggle(true)
                 .withAccountHeader(accountHeader)
-                .addDrawerItems(getDrawerItems(0, FIRST_SECTION_SIZE))
-                .addDrawerItems(SECTION_ITEM)
-                .addDrawerItems(getDrawerItems(FIRST_SECTION_SIZE, SECOND_SECTION_SIZE))
+                .addDrawerItems(FIRST_SECTION)
+                .addDrawerItems(SECTION_NAME_ITEM)
+                .addDrawerItems(SECOND_SECTION)
                 .build();
     }
 
@@ -125,7 +136,7 @@ public class MainActivity extends BaseActivity implements MainView {
      * @param size Size of result array
      * @return Array of drawer items
      */
-    private PrimaryDrawerItem[] getDrawerItems(int offset, int size) {
+    private static PrimaryDrawerItem[] getDrawerItems(int offset, int size) {
         PrimaryDrawerItem[] result = new PrimaryDrawerItem[size];
 
         for (int i = 0; i < size; i++) {
