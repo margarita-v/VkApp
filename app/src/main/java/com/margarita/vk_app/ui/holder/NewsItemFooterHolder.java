@@ -20,25 +20,25 @@ import butterknife.ButterKnife;
 public class NewsItemFooterHolder extends BaseViewHolder<NewsItemFooter> {
 
     @BindView(R.id.tvDate)
-    private TextView tvDate;
+    TextView tvDate;
 
     @BindView(R.id.tvLikesIcon)
-    private TextView tvLikesIcon;
+    TextView tvLikesIcon;
 
     @BindView(R.id.tvLikesCount)
-    private TextView tvLikesCount;
+    TextView tvLikesCount;
 
     @BindView(R.id.tvCommentsIcon)
-    private TextView tvCommentsIcon;
+    TextView tvCommentsIcon;
 
     @BindView(R.id.tvCommentsCount)
-    private TextView tvCommentsCount;
+    TextView tvCommentsCount;
 
     @BindView(R.id.tvRepostsIcon)
-    private TextView tvRepostIcon;
+    TextView tvRepostIcon;
 
     @BindView(R.id.tvRepostsCount)
-    private TextView tvRepostCount;
+    TextView tvRepostCount;
 
     private Context context;
 

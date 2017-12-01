@@ -22,6 +22,9 @@ public abstract class BaseActivity extends MvpAppCompatActivity {
     @BindView(R.id.progressBar)
     protected ProgressBar progressBar;
 
+    @BindView(R.id.toolbar)
+    protected Toolbar toolbar;
+
     @Inject
     VkFragmentManager fragmentManager;
 
@@ -30,12 +33,9 @@ public abstract class BaseActivity extends MvpAppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_base);
         ButterKnife.bind(this);
-
         VkApplication.getApplicationComponent().inject(this);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
         FrameLayout frameLayout = findViewById(R.id.container);
         getLayoutInflater().inflate(getMainContentLayout(), frameLayout);
     }

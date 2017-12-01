@@ -38,9 +38,9 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        setUpList();
-        setUpAdapter();
-        setUpSwipeContainer();
+        setupList();
+        setupAdapter();
+        setupSwipeContainer();
         presenter = onCreateFeedPresenter();
         presenter.loadStart();
     }
@@ -55,7 +55,7 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
         return 0;
     }
 
-    private void setUpList() {
+    private void setupList() {
         VkLinearLayoutManager layoutManager = new VkLinearLayoutManager(getContext());
         rvList.setLayoutManager(layoutManager);
         rvList.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -69,12 +69,12 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
         ((SimpleItemAnimator) rvList.getItemAnimator()).setSupportsChangeAnimations(false);
     }
 
-    private void setUpAdapter() {
+    private void setupAdapter() {
         adapter = new BaseAdapter();
         rvList.setAdapter(adapter);
     }
 
-    private void setUpSwipeContainer() {
+    private void setupSwipeContainer() {
         swipeRefreshLayout.setColorSchemeResources(R.color.colorAccent);
         swipeRefreshLayout.setOnRefreshListener(
                 () -> onCreateFeedPresenter().loadRefresh());

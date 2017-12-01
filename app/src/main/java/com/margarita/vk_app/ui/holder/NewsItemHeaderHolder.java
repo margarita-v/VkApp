@@ -15,16 +15,16 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class NewsItemHeaderHolder extends BaseViewHolder<NewsItemHeader> {
 
     @BindView(R.id.civProfileImage)
-    private CircleImageView civProfileImage;
+    CircleImageView civProfileImage;
 
     @BindView(R.id.tvProfileName)
-    private TextView tvProfileName;
+    TextView tvProfileName;
 
-    @BindView(R.id.tvRepostsIcon)
-    private ImageView ivRepostedIcon;
+    @BindView(R.id.ivRepostedIcon)
+    ImageView ivRepostedIcon;
 
     @BindView(R.id.tvRepostedProfileName)
-    private TextView tvRepostedProfileName;
+    TextView tvRepostedProfileName;
 
     public NewsItemHeaderHolder(View itemView) {
         super(itemView);

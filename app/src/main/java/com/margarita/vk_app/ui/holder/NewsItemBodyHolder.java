@@ -16,10 +16,10 @@ import butterknife.ButterKnife;
 public class NewsItemBodyHolder extends BaseViewHolder<NewsItemBody> {
 
     @BindView(R.id.tvText)
-    private TextView tvText;
+    TextView tvText;
 
     @BindView(R.id.tvAttachments)
-    private TextView tvAttachments;
+    TextView tvAttachments;
 
     @Inject
     Typeface googleFont;

@@ -10,6 +10,8 @@ import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.mvp.presenter.MainPresenter;
 import com.margarita.vk_app.mvp.view.MainView;
 import com.margarita.vk_app.ui.fragment.NewsFeedFragment;
+import com.mikepenz.materialdrawer.Drawer;
+import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKSdk;
@@ -21,11 +23,14 @@ public class MainActivity extends BaseActivity implements MainView {
     @InjectPresenter
     MainPresenter mainPresenter;
 
+    private Drawer drawer;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         VkApplication.getApplicationComponent().inject(this);
         mainPresenter.checkAuth();
+        setupDrawer();
     }
 
     @Override
@@ -62,5 +67,14 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public void signedIn() {
         setContent(new NewsFeedFragment());
+    }
+
+    private void setupDrawer() {
+        drawer = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(toolbar)
+                .withTranslucentStatusBar(true)
+                .withActionBarDrawerToggle(true)
+                .build();
     }
 }
