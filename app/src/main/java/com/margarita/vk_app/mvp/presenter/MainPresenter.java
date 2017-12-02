@@ -15,6 +15,8 @@ import java.util.concurrent.Callable;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import io.realm.Realm;
 import io.realm.RealmObject;
 
@@ -39,17 +41,44 @@ public class MainPresenter extends MvpPresenter<MainView> {
      */
     public void checkAuth() {
         if (!CurrentUser.isAuthorized()) {
-            getViewState().startSignIn();
+            showSignInView();
         } else {
+            showProfile();
             getViewState().signedIn();
         }
+    }
+
+    /**
+     * Show user's profile
+     */
+    private void showProfile() {
+        networkManager.getNetworkStateObservable()
+                .flatMap(isVkAvailable -> {
+                    if (!CurrentUser.isAuthorized())
+                        showSignInView();
+                    return isVkAvailable
+                            ? getProfileFromServer()
+                            : getProfileFromDatabase();
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(profile -> getViewState().showCurrentUser(profile),
+                        Throwable::printStackTrace);
+
+    }
+
+    /**
+     * Show sign in view
+     */
+    private void showSignInView() {
+        getViewState().startSignIn();
     }
 
     /**
      * Get user's profile from server
      * @return Observable for user's profile
      */
-    public Observable<Profile> getProfileFromServer() {
+    private Observable<Profile> getProfileFromServer() {
         return usersApi.get(new UserGetRequestModel(CurrentUser.getId()).toMap())
                 .flatMap(listFull -> Observable.fromIterable(listFull.getResponse()))
                 .doOnNext(this::saveToDb);
@@ -59,7 +88,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
      * Get user's profile from local database
      * @return Observable for user's profile
      */
-    public Observable<Profile> getProfileFromDatabase() {
+    private Observable<Profile> getProfileFromDatabase() {
         return Observable.fromCallable(getProfileFromRealmCallable());
     }
 
@@ -81,7 +110,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
      * Save item to local database
      * @param item Item which will be saved
      */
-    public void saveToDb(RealmObject item) {
+    private void saveToDb(RealmObject item) {
         Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> realm1.copyToRealmOrUpdate(item));
     }

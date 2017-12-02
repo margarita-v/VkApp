@@ -38,6 +38,10 @@ public class NetworkManager {
         return networkInfo != null && networkInfo.isConnected() || Util.isEmulator();
     }
 
+    /**
+     * Check if the Vk server is available
+     * @return Boolean value as Callable (true if the server if available)
+     */
     private Callable<Boolean> isVkAvailableCallable() {
         return () -> {
             try {
@@ -57,7 +61,7 @@ public class NetworkManager {
         };
     }
 
-    public Observable<Boolean> getNetworkObservable() {
+    public Observable<Boolean> getNetworkStateObservable() {
         return Observable.fromCallable(isVkAvailableCallable());
     }
 }

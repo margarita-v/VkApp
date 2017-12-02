@@ -10,6 +10,7 @@
     <string name="font_comment">&#xE0B9;</string>
     <string name="font_repost">&#xE050;</string>
 
+    <string name="drawer_logout">Logout</string>
     <string name="drawer_item_news">News</string>
     <string name="drawer_item_my_posts">My Posts</string>
     <string name="drawer_item_settings">Settings</string>

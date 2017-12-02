@@ -30,7 +30,7 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView> extends MvpPrese
         if (!isLoading) {
             isLoading = true;
 
-            networkManager.getNetworkObservable()
+            networkManager.getNetworkStateObservable()
                     .flatMap(isVkAvailable -> {
                         if (!isVkAvailable && offset > 0)
                             return Observable.empty();

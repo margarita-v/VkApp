@@ -8,20 +8,26 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.consts.ApiConstants;
+import com.margarita.vk_app.models.common.Profile;
 import com.margarita.vk_app.mvp.presenter.MainPresenter;
 import com.margarita.vk_app.mvp.view.MainView;
 import com.margarita.vk_app.ui.fragment.NewsFeedFragment;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial.Icon;
 import com.mikepenz.materialdrawer.AccountHeader;
 import com.mikepenz.materialdrawer.AccountHeaderBuilder;
-import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileDrawerItem;
+import com.mikepenz.materialdrawer.model.ProfileSettingDrawerItem;
 import com.mikepenz.materialdrawer.model.SectionDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IProfile;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity implements MainView {
 
@@ -29,7 +35,7 @@ public class MainActivity extends BaseActivity implements MainView {
     @InjectPresenter
     MainPresenter mainPresenter;
 
-    private Drawer drawer;
+    private AccountHeader accountHeader;
 
     /**
      * Sizes for different sections of navigation drawer
@@ -57,6 +63,7 @@ public class MainActivity extends BaseActivity implements MainView {
             .withName(R.string.drawer_item_section);
 
     static {
+
         DRAWER_ITEMS.append(R.string.drawer_item_news, Icon.gmd_home);
         DRAWER_ITEMS.append(R.string.drawer_item_my_posts, Icon.gmd_list);
         DRAWER_ITEMS.append(R.string.drawer_item_settings, Icon.gmd_settings);
@@ -113,12 +120,35 @@ public class MainActivity extends BaseActivity implements MainView {
         setContent(new NewsFeedFragment());
     }
 
+    @Override
+    public void showCurrentUser(Profile profile) {
+        List<IProfile> profileDrawerItems = new ArrayList<>();
+
+        profileDrawerItems.add(new ProfileDrawerItem()
+                .withName(profile.getFullName())
+                .withEmail(VKAccessToken.currentToken().email)
+                .withIcon(profile.getDisplayProfilePhoto()));
+
+        profileDrawerItems.add(new ProfileSettingDrawerItem()
+                .withName(R.string.drawer_logout)
+                .withOnDrawerItemClickListener((view, position, drawerItem) -> {
+                    accountHeader.clear();
+                    VKSdk.logout();
+                    return false;
+                }));
+
+        accountHeader.setProfiles(profileDrawerItems);
+    }
+
+    /**
+     * Setup navigation drawer
+     */
     private void setupDrawer() {
-        AccountHeader accountHeader = new AccountHeaderBuilder()
+        accountHeader = new AccountHeaderBuilder()
                 .withActivity(this)
                 .build();
 
-        drawer = new DrawerBuilder()
+        new DrawerBuilder()
                 .withActivity(this)
                 .withToolbar(toolbar)
                 .withTranslucentStatusBar(true)
