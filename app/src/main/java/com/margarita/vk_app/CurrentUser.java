@@ -7,7 +7,10 @@ import com.vk.sdk.VKSdk;
 
 public class CurrentUser {
 
-    // Токен доступа от сервера Vk
+    /**
+     * Get access token to Vk server
+     * @return Token for access to Vk server
+     */
     @Nullable
     public static String getAccessToken() {
         return VKAccessToken.currentToken() == null
@@ -15,7 +18,10 @@ public class CurrentUser {
                 : VKAccessToken.currentToken().accessToken;
     }
 
-    // ID пользователя, если токен получен
+    /**
+     * Get user's id
+     * @return User' id, if token is available
+     */
     @Nullable
     public static String getId() {
         return VKAccessToken.currentToken() == null
@@ -23,9 +29,14 @@ public class CurrentUser {
                 : VKAccessToken.currentToken().userId;
     }
 
+    /**
+     * Check if the user is authorized
+     * @return True if the user if logged in and his token is not obsolete
+     */
     public static boolean isAuthorized() {
         return VKSdk.isLoggedIn()
                 && VKAccessToken.currentToken() != null
-                && !VKAccessToken.currentToken().isExpired(); // если токен не устарел
+                // Check if the token is not obsolete
+                && !VKAccessToken.currentToken().isExpired();
     }
 }

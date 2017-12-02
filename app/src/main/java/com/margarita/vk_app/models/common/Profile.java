@@ -5,9 +5,11 @@ import com.google.gson.annotations.SerializedName;
 import com.margarita.vk_app.models.Owner;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class Profile extends RealmObject implements Owner {
 
+    @PrimaryKey
     @Expose
     private int id;
 
