@@ -1,6 +1,7 @@
 package com.margarita.vk_app.di.module;
 
 import com.margarita.vk_app.rest.RestClient;
+import com.margarita.vk_app.rest.api.UsersApi;
 import com.margarita.vk_app.rest.api.WallApi;
 
 import javax.inject.Singleton;
@@ -27,5 +28,11 @@ public class RestModule {
     @Singleton
     WallApi provideWallApi() {
         return restClient.createService(WallApi.class);
+    }
+
+    @Provides
+    @Singleton
+    UsersApi provideUsersApi() {
+        return restClient.createService(UsersApi.class);
     }
 }

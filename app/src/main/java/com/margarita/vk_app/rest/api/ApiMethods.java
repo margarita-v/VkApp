@@ -1,6 +1,8 @@
 package com.margarita.vk_app.rest.api;
 
-public class ApiMethods {
+class ApiMethods {
 
-    public static final String WALL_GET = "wall.get";
+    static final String WALL_GET = "wall.get";
+
+    static final String USERS_GET = "users.get";
 }
