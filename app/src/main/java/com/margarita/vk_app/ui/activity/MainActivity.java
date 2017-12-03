@@ -63,7 +63,6 @@ public class MainActivity extends BaseActivity implements MainView {
             .withName(R.string.drawer_item_section);
 
     static {
-
         DRAWER_ITEMS.append(R.string.drawer_item_news, Icon.gmd_home);
         DRAWER_ITEMS.append(R.string.drawer_item_my_posts, Icon.gmd_list);
         DRAWER_ITEMS.append(R.string.drawer_item_settings, Icon.gmd_settings);

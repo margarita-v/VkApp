@@ -1,6 +1,7 @@
 package com.margarita.vk_app.mvp.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
+import com.margarita.vk_app.CurrentUser;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.utils.VkListHelper;
 import com.margarita.vk_app.consts.ApiConstants;
@@ -20,12 +21,15 @@ import java.util.concurrent.Callable;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableTransformer;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
 @InjectViewState
 public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView> {
+
+    private boolean isIdFilterEnabled = false;
 
     @Inject
     WallApi wallApi;
@@ -37,6 +41,10 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView> {
         VkApplication.getApplicationComponent().inject(this);
     }
 
+    public void setIdFilterEnabled(boolean enabled) {
+        isIdFilterEnabled = enabled;
+    }
+
     @Override
     public Observable<BaseViewModel> onLoadDataObservable(int offset, int count) {
         return wallApi.get(new WallGetRequestModel(ApiConstants.OWNER_ID, count, offset)
@@ -44,6 +52,7 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView> {
                 // Преобразование данных Observable с WallGetResponse в WallItem
                 .flatMap(full -> Observable.fromIterable(
                         VkListHelper.getWallItemsInfo(full.getResponse())))
+                .compose(applyFilter())
                 .doOnNext(this::saveToDatabase)
                 // Преобразование данных Observable с WallItem в BaseViewModel
                 .flatMap(wallItem -> {
@@ -59,6 +68,7 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView> {
     public Observable<BaseViewModel> onRestoreDataObservable() {
         return Observable.fromCallable(getListFromRealmCallable())
                 .flatMap(Observable::fromIterable)
+                .compose(applyFilter())
                 .flatMap(wallItem -> Observable.fromIterable(parseToListItem(wallItem)));
     }
 
@@ -82,5 +92,19 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView> {
         result.add(new NewsItemBody(wallItem));
         result.add(new NewsItemFooter(wallItem));
         return result;
+    }
+
+    /**
+     * Filter Observable by current user's id
+     * @return Filtered Observable if filter is enabled and user's id is not null
+     */
+    protected ObservableTransformer<WallItem, WallItem> applyFilter() {
+        return baseItemObservable -> {
+            String userId = CurrentUser.getId();
+            return isIdFilterEnabled && userId != null
+                    ? baseItemObservable.filter(
+                            wallItem -> userId.equals(wallItem.getFromId().toString()))
+                    : baseItemObservable;
+        };
     }
 }

@@ -1,13 +1,16 @@
 package com.margarita.vk_app.consts;
 
+import com.vk.sdk.VKScope;
+
 public class ApiConstants {
 
     public static final Double DEFAULT_VERSION = 5.67;
 
     /**
-     * To getting permission for sending requests to Vk server
+     * To getting permission for sending requests to Vk server.
+     * Allows us to request user's email to show it in navigation drawer
      */
-    public static final String[] DEFAULT_LOGIN_SCOPE = {};
+    public static final String[] DEFAULT_LOGIN_SCOPE = {VKScope.EMAIL};
 
     /**
      * To getting a concrete count of items
