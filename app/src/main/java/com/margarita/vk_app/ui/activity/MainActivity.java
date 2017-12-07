@@ -11,6 +11,7 @@ import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.models.common.Profile;
 import com.margarita.vk_app.mvp.presenter.MainPresenter;
 import com.margarita.vk_app.mvp.view.MainView;
+import com.margarita.vk_app.ui.fragment.BaseFragment;
 import com.margarita.vk_app.ui.fragment.NewsFeedFragment;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial.Icon;
 import com.mikepenz.materialdrawer.AccountHeader;
@@ -137,6 +138,11 @@ public class MainActivity extends BaseActivity implements MainView {
                 }));
 
         accountHeader.setProfiles(profileDrawerItems);
+    }
+
+    @Override
+    public void showFragmentFromDrawer(BaseFragment fragment) {
+        setContent(fragment);
     }
 
     /**

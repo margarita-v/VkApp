@@ -152,7 +152,7 @@ public class VkFragmentManager {
      * @param fragment Fragment which will be checked
      * @return True if the current fragments's class name is equal to the fragment's name
      */
-    private boolean isAlreadyContains(BaseFragment fragment) {
+    public boolean isAlreadyContains(BaseFragment fragment) {
 
         return fragment != null && currentFragment != null &&
                 currentFragment.getClass().getName()

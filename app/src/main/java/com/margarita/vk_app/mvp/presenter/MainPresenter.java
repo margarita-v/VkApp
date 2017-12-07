@@ -3,12 +3,17 @@ package com.margarita.vk_app.mvp.presenter;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.margarita.vk_app.CurrentUser;
+import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.manager.NetworkManager;
+import com.margarita.vk_app.common.manager.VkFragmentManager;
 import com.margarita.vk_app.models.common.Profile;
 import com.margarita.vk_app.mvp.view.MainView;
 import com.margarita.vk_app.rest.api.UsersApi;
 import com.margarita.vk_app.rest.model.request.UserGetRequestModel;
+import com.margarita.vk_app.ui.fragment.BaseFragment;
+import com.margarita.vk_app.ui.fragment.MyPostsFragment;
+import com.margarita.vk_app.ui.fragment.NewsFeedFragment;
 
 import java.util.concurrent.Callable;
 
@@ -25,6 +30,9 @@ import io.realm.RealmObject;
  */
 @InjectViewState
 public class MainPresenter extends MvpPresenter<MainView> {
+
+    @Inject
+    VkFragmentManager fragmentManager;
 
     @Inject
     UsersApi usersApi;
@@ -113,5 +121,26 @@ public class MainPresenter extends MvpPresenter<MainView> {
     private void saveToDb(RealmObject item) {
         Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> realm1.copyToRealmOrUpdate(item));
+    }
+
+    /**
+     * Event of drawer item click
+     * @param id ID of chosen drawer item
+     */
+    public void onClickDrawerItem(int id) {
+        BaseFragment fragment = null;
+
+        switch (id) {
+            case R.string.drawer_item_news:
+                fragment = new NewsFeedFragment();
+                break;
+            case R.string.drawer_item_my_posts:
+                fragment = new MyPostsFragment();
+                break;
+        }
+
+        if (fragment != null && fragmentManager.isAlreadyContains(fragment)) {
+            getViewState().showFragmentFromDrawer(fragment);
+        }
     }
 }
