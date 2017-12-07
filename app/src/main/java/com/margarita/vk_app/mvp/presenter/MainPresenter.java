@@ -3,7 +3,6 @@ package com.margarita.vk_app.mvp.presenter;
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
 import com.margarita.vk_app.CurrentUser;
-import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.manager.NetworkManager;
 import com.margarita.vk_app.common.manager.VkFragmentManager;
@@ -11,6 +10,7 @@ import com.margarita.vk_app.models.common.Profile;
 import com.margarita.vk_app.mvp.view.MainView;
 import com.margarita.vk_app.rest.api.UsersApi;
 import com.margarita.vk_app.rest.model.request.UserGetRequestModel;
+import com.margarita.vk_app.ui.activity.drawer.DrawerItemType;
 import com.margarita.vk_app.ui.fragment.BaseFragment;
 import com.margarita.vk_app.ui.fragment.MyPostsFragment;
 import com.margarita.vk_app.ui.fragment.NewsFeedFragment;
@@ -129,18 +129,21 @@ public class MainPresenter extends MvpPresenter<MainView> {
      */
     public void onClickDrawerItem(int id) {
         BaseFragment fragment = null;
+        DrawerItemType itemType = DrawerItemType.getTypeById(id);
 
-        switch (id) {
-            case R.string.drawer_item_news:
-                fragment = new NewsFeedFragment();
-                break;
-            case R.string.drawer_item_my_posts:
-                fragment = new MyPostsFragment();
-                break;
-        }
+        if (itemType != null) {
+            switch (itemType) {
+                case News:
+                    fragment = new NewsFeedFragment();
+                    break;
+                case Posts:
+                    fragment = new MyPostsFragment();
+                    break;
+            }
 
-        if (fragment != null && fragmentManager.isAlreadyContains(fragment)) {
-            getViewState().showFragmentFromDrawer(fragment);
+            if (fragment != null && !fragmentManager.isAlreadyContains(fragment)) {
+                getViewState().showFragmentFromDrawer(fragment);
+            }
         }
     }
 }

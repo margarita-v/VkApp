@@ -11,6 +11,8 @@ import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.models.common.Profile;
 import com.margarita.vk_app.mvp.presenter.MainPresenter;
 import com.margarita.vk_app.mvp.view.MainView;
+import com.margarita.vk_app.ui.activity.drawer.DrawerItem;
+import com.margarita.vk_app.ui.activity.drawer.DrawerItemType;
 import com.margarita.vk_app.ui.fragment.BaseFragment;
 import com.margarita.vk_app.ui.fragment.NewsFeedFragment;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial.Icon;
@@ -55,7 +57,7 @@ public class MainActivity extends BaseActivity implements MainView {
     /**
      * All items of navigation drawer
      */
-    private static final SparseArray<Icon> DRAWER_ITEMS = new SparseArray<>();
+    private static final SparseArray<DrawerItem> DRAWER_ITEMS = new SparseArray<>();
 
     /**
      * Item for a new section of navigation drawer
@@ -64,13 +66,26 @@ public class MainActivity extends BaseActivity implements MainView {
             .withName(R.string.drawer_item_section);
 
     static {
-        DRAWER_ITEMS.append(R.string.drawer_item_news, Icon.gmd_home);
-        DRAWER_ITEMS.append(R.string.drawer_item_my_posts, Icon.gmd_list);
-        DRAWER_ITEMS.append(R.string.drawer_item_settings, Icon.gmd_settings);
-        DRAWER_ITEMS.append(R.string.drawer_item_members, Icon.gmd_people);
-        DRAWER_ITEMS.append(R.string.drawer_item_topics, Icon.gmd_record_voice_over);
-        DRAWER_ITEMS.append(R.string.drawer_item_info, Icon.gmd_info);
-        DRAWER_ITEMS.append(R.string.drawer_item_group_rules, Icon.gmd_assignment);
+        DRAWER_ITEMS.append(DrawerItemType.News.getId(),
+                new DrawerItem(R.string.drawer_item_news, Icon.gmd_home));
+
+        DRAWER_ITEMS.append(DrawerItemType.Posts.getId(),
+                new DrawerItem(R.string.drawer_item_my_posts, Icon.gmd_list));
+
+        DRAWER_ITEMS.append(DrawerItemType.Settings.getId(),
+                new DrawerItem(R.string.drawer_item_settings, Icon.gmd_settings));
+
+        DRAWER_ITEMS.append(DrawerItemType.Members.getId(),
+                new DrawerItem(R.string.drawer_item_members, Icon.gmd_people));
+
+        DRAWER_ITEMS.append(DrawerItemType.Topics.getId(),
+                new DrawerItem(R.string.drawer_item_topics, Icon.gmd_record_voice_over));
+
+        DRAWER_ITEMS.append(DrawerItemType.Info.getId(),
+                new DrawerItem(R.string.drawer_item_info, Icon.gmd_info));
+
+        DRAWER_ITEMS.append(DrawerItemType.GroupRules.getId(),
+                new DrawerItem(R.string.drawer_item_group_rules, Icon.gmd_assignment));
 
         FIRST_SECTION = getDrawerItems(0, FIRST_SECTION_SIZE);
         SECOND_SECTION = getDrawerItems(FIRST_SECTION_SIZE, SECOND_SECTION_SIZE);
@@ -101,7 +116,7 @@ public class MainActivity extends BaseActivity implements MainView {
 
             @Override
             public void onError(VKError error) {
-                // Authorization error (for example, user had forbid authorization)
+                // Authorization error (for example, user had forbidden authorization)
             }
         };
 
@@ -162,6 +177,10 @@ public class MainActivity extends BaseActivity implements MainView {
                 .addDrawerItems(FIRST_SECTION)
                 .addDrawerItems(SECTION_NAME_ITEM)
                 .addDrawerItems(SECOND_SECTION)
+                .withOnDrawerItemClickListener(((view, position, drawerItem) -> {
+                    mainPresenter.onClickDrawerItem((int) drawerItem.getIdentifier());
+                    return false;
+                }))
                 .build();
     }
 
@@ -176,10 +195,11 @@ public class MainActivity extends BaseActivity implements MainView {
 
         for (int i = 0; i < size; i++) {
             int itemsOffset = i + offset;
+            DrawerItem drawerItem = DRAWER_ITEMS.valueAt(itemsOffset);
             result[i] = new PrimaryDrawerItem()
-                    .withIdentifier(itemsOffset + 1)
-                    .withName(DRAWER_ITEMS.keyAt(itemsOffset))
-                    .withIcon(DRAWER_ITEMS.valueAt(itemsOffset));
+                    .withIdentifier(DRAWER_ITEMS.keyAt(itemsOffset))
+                    .withName(drawerItem.getNameResourceId())
+                    .withIcon(drawerItem.getIcon());
         }
         return result;
     }
