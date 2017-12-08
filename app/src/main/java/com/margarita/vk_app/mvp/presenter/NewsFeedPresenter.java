@@ -12,7 +12,7 @@ import com.margarita.vk_app.models.view.NewsItemFooter;
 import com.margarita.vk_app.models.view.NewsItemHeader;
 import com.margarita.vk_app.mvp.view.BaseFeedView;
 import com.margarita.vk_app.rest.api.WallApi;
-import com.margarita.vk_app.rest.model.request.WallGetRequestModel;
+import com.margarita.vk_app.rest.model.request.WallGetRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,7 +47,7 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView> {
 
     @Override
     public Observable<BaseViewModel> onLoadDataObservable(int offset, int count) {
-        return wallApi.get(new WallGetRequestModel(ApiConstants.OWNER_ID, count, offset)
+        return wallApi.get(new WallGetRequest(ApiConstants.OWNER_ID, count, offset)
                 .toMap())
                 // Преобразование данных Observable с WallGetResponse в WallItem
                 .flatMap(full -> Observable.fromIterable(

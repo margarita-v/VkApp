@@ -9,7 +9,7 @@ import com.margarita.vk_app.common.manager.VkFragmentManager;
 import com.margarita.vk_app.models.common.Profile;
 import com.margarita.vk_app.mvp.view.MainView;
 import com.margarita.vk_app.rest.api.UsersApi;
-import com.margarita.vk_app.rest.model.request.UserGetRequestModel;
+import com.margarita.vk_app.rest.model.request.UserGetRequest;
 import com.margarita.vk_app.ui.activity.drawer.DrawerItemType;
 import com.margarita.vk_app.ui.fragment.BaseFragment;
 import com.margarita.vk_app.ui.fragment.MyPostsFragment;
@@ -87,7 +87,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
      * @return Observable for user's profile
      */
     private Observable<Profile> getProfileFromServer() {
-        return usersApi.get(new UserGetRequestModel(CurrentUser.getId()).toMap())
+        return usersApi.get(new UserGetRequest(CurrentUser.getId()).toMap())
                 .flatMap(listFull -> Observable.fromIterable(listFull.getResponse()))
                 .doOnNext(this::saveToDb);
     }

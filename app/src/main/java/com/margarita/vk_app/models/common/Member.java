@@ -1,6 +1,7 @@
 package com.margarita.vk_app.models.common;
 
 import com.google.gson.annotations.SerializedName;
+import com.vk.sdk.api.VKApiConst;
 
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
@@ -8,7 +9,6 @@ import io.realm.annotations.PrimaryKey;
 public class Member extends RealmObject {
 
     //region String constants for fields names
-    private static final String GROUP_ID = "group_id";
     private static final String PHOTO = "photo_100";
     private static final String FIRST_NAME = "first_name";
     private static final String LAST_NAME = "last_name";
@@ -17,7 +17,7 @@ public class Member extends RealmObject {
     @PrimaryKey
     private int id;
 
-    @SerializedName(GROUP_ID)
+    @SerializedName(VKApiConst.GROUP_ID)
     private int groupId;
 
     @SerializedName(PHOTO)

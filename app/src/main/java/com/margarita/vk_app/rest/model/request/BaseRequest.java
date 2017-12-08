@@ -8,7 +8,7 @@ import com.vk.sdk.api.VKApiConst;
 import java.util.HashMap;
 import java.util.Map;
 
-public abstract class BaseRequestModel {
+public abstract class BaseRequest {
 
     @SerializedName(VKApiConst.VERSION)
     private Double version = ApiConstants.DEFAULT_VERSION;
@@ -36,4 +36,11 @@ public abstract class BaseRequestModel {
     }
 
     public abstract void onMapCreate(Map<String, String> map);
+
+    /**
+     * Method for putting to map int values which will be converted to String
+     */
+    void putToMap(Map<String, String> map, String key, int value) {
+        map.put(key, String.valueOf(value));
+    }
 }

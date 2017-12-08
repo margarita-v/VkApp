@@ -6,7 +6,7 @@ import com.vk.sdk.api.VKApiConst;
 
 import java.util.Map;
 
-public class WallGetRequestModel extends BaseRequestModel {
+public class WallGetRequest extends BaseRequest {
 
     @SerializedName(VKApiConst.OWNER_ID)
     private int ownerId;
@@ -21,11 +21,11 @@ public class WallGetRequestModel extends BaseRequestModel {
     @SerializedName(VKApiConst.EXTENDED)
     private int extended = 1;
 
-    public WallGetRequestModel(int ownerId) {
+    public WallGetRequest(int ownerId) {
         this.ownerId = ownerId;
     }
 
-    public WallGetRequestModel(int ownerId, int count, int offset) {
+    public WallGetRequest(int ownerId, int count, int offset) {
         this.ownerId = ownerId;
         this.count = count;
         this.offset = offset;
@@ -71,9 +71,5 @@ public class WallGetRequestModel extends BaseRequestModel {
         putToMap(map, VKApiConst.COUNT, count);
         putToMap(map, VKApiConst.OFFSET, offset);
         putToMap(map, VKApiConst.EXTENDED, extended);
-    }
-
-    private void putToMap(Map<String, String> map, String key, int value) {
-        map.put(key, String.valueOf(value));
     }
 }

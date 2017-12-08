@@ -6,7 +6,7 @@ import com.vk.sdk.api.VKApiConst;
 
 import java.util.Map;
 
-public class UserGetRequestModel extends BaseRequestModel {
+public class UserGetRequest extends BaseRequest {
 
     @SerializedName(VKApiConst.USER_IDS)
     private String userIds;
@@ -14,7 +14,7 @@ public class UserGetRequestModel extends BaseRequestModel {
     @SerializedName(VKApiConst.FIELDS)
     private String fields = ApiConstants.DEFAULT_USER_FIELDS;
 
-    public UserGetRequestModel(String userIds) {
+    public UserGetRequest(String userIds) {
         this.userIds = userIds;
     }
 
