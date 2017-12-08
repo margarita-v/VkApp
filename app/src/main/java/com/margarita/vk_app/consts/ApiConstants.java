@@ -26,4 +26,9 @@ public class ApiConstants {
      * For getting additional user's fields from server
      */
     public static final String DEFAULT_USER_FIELDS = "photo_100";
+
+    /**
+     * For getting additional member's fields
+     */
+    public static final String DEFAULT_MEMBERS_FIELDS = "name,photo_100";
 }

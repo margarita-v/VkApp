@@ -9,6 +9,8 @@ import io.realm.annotations.PrimaryKey;
 
 public class Profile extends RealmObject implements Owner {
 
+    private static final char SPACE = ' ';
+
     @PrimaryKey
     @Expose
     private int id;
@@ -80,7 +82,7 @@ public class Profile extends RealmObject implements Owner {
 
     @Override
     public String getFullName() {
-        return firstName + " " + lastName;
+        return firstName + SPACE + lastName;
     }
 
     @Override
