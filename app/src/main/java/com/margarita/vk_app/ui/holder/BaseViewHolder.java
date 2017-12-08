@@ -9,7 +9,7 @@ import com.margarita.vk_app.models.view.BaseViewModel;
 public abstract class BaseViewHolder<Item extends BaseViewModel>
         extends RecyclerView.ViewHolder {
 
-    BaseViewHolder(View itemView) {
+    protected BaseViewHolder(View itemView) {
         super(itemView);
     }
 
@@ -21,7 +21,7 @@ public abstract class BaseViewHolder<Item extends BaseViewModel>
      * Clear text view's text on unbind view holder
      * @param textView TextView which text will be cleared
      */
-    void clearTextView(TextView textView) {
+    protected void clearTextView(TextView textView) {
         textView.setText(null);
     }
 }

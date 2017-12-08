@@ -1,25 +1,18 @@
-package com.margarita.vk_app.models.view;
+package com.margarita.vk_app.models.view.profile;
 
 import android.view.View;
 
 import com.margarita.vk_app.models.common.WallItem;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
-import com.margarita.vk_app.ui.holder.NewsItemHeaderHolder;
+import com.margarita.vk_app.ui.holder.profile.NewsItemHeaderHolder;
 
-public class NewsItemHeader extends BaseViewModel {
-
-    private int id;
-
-    private String profileName;
-    private String profilePhoto;
+public class NewsItemHeader extends ProfileViewModel {
 
     private boolean isRepost;
     private String repostProfileName;
 
     public NewsItemHeader(WallItem wallItem) {
-        this.id = wallItem.getId();
-        this.profileName = wallItem.getSenderName();
-        this.profilePhoto = wallItem.getSenderPhoto();
+        super(wallItem.getId(), wallItem.getSenderName(), wallItem.getSenderPhoto());
         this.isRepost = wallItem.hasSharedRepost();
 
         if (this.isRepost)
@@ -36,18 +29,6 @@ public class NewsItemHeader extends BaseViewModel {
         return LayoutTypes.NewsFeedItemHeader;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public String getProfileName() {
-        return profileName;
-    }
-
-    public String getProfilePhoto() {
-        return profilePhoto;
-    }
-
     public boolean isRepost() {
         return isRepost;
     }
@@ -55,5 +36,4 @@ public class NewsItemHeader extends BaseViewModel {
     public String getRepostProfileName() {
         return repostProfileName;
     }
-
 }
