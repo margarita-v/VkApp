@@ -18,6 +18,7 @@ public class UserGetRequest extends BaseRequest {
         this.userIds = userIds;
     }
 
+    //region Getters
     public String getUserIds() {
         return userIds;
     }
@@ -25,6 +26,7 @@ public class UserGetRequest extends BaseRequest {
     public String getFields() {
         return fields;
     }
+    //endregion
 
     @Override
     public void onMapCreate(Map<String, String> map) {

@@ -6,34 +6,30 @@ import com.vk.sdk.api.VKApiConst;
 
 import java.util.Map;
 
-public class WallGetRequest extends BaseRequest {
+public class BoardGetTopics extends BaseRequest {
 
-    @SerializedName(VKApiConst.OWNER_ID)
-    private int ownerId;
+    @SerializedName(VKApiConst.GROUP_ID)
+    private int groupId;
 
     @SerializedName(VKApiConst.COUNT)
     private int count = ApiConstants.DEFAULT_COUNT;
 
     @SerializedName(VKApiConst.OFFSET)
-    private int offset;
+    private int offset = 0;
 
-    // Для возможности получения массива из profiles и groups
-    @SerializedName(VKApiConst.EXTENDED)
-    private int extended = 1;
-
-    public WallGetRequest(int ownerId) {
-        this.ownerId = ownerId;
+    private BoardGetTopics(int groupId) {
+        this.groupId = Math.abs(groupId);
     }
 
-    public WallGetRequest(int ownerId, int count, int offset) {
-        this.ownerId = ownerId;
+    public BoardGetTopics(int groupId, int count, int offset) {
+        this(groupId);
         this.count = count;
         this.offset = offset;
     }
 
     //region Getters
-    public int getOwnerId() {
-        return ownerId;
+    public int getGroupId() {
+        return groupId;
     }
 
     public int getCount() {
@@ -43,17 +39,12 @@ public class WallGetRequest extends BaseRequest {
     public int getOffset() {
         return offset;
     }
-
-    public int getExtended() {
-        return extended;
-    }
     //endregion
 
     @Override
     public void onMapCreate(Map<String, String> map) {
-        putToMap(map, VKApiConst.OWNER_ID, ownerId);
+        putToMap(map, VKApiConst.GROUP_ID, groupId);
         putToMap(map, VKApiConst.COUNT, count);
         putToMap(map, VKApiConst.OFFSET, offset);
-        putToMap(map, VKApiConst.EXTENDED, extended);
     }
 }

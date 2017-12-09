@@ -7,4 +7,6 @@ class ApiMethods {
     static final String USERS_GET = "users.get";
 
     static final String GROUPS_GET_MEMBERS = "groups.getMembers";
+
+    static final String BOARD_GET_TOPICS = "board.getTopics";
 }

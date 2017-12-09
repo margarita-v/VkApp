@@ -20,7 +20,7 @@ public class GroupsGetMembersRequest extends BaseRequest {
     @SerializedName(VKApiConst.FIELDS)
     private String fields = ApiConstants.DEFAULT_MEMBERS_FIELDS;
 
-    public GroupsGetMembersRequest(int groupId) {
+    private GroupsGetMembersRequest(int groupId) {
         this.groupId = Math.abs(groupId);
     }
 

@@ -1,6 +1,7 @@
 package com.margarita.vk_app.di.module;
 
 import com.margarita.vk_app.rest.RestClient;
+import com.margarita.vk_app.rest.api.BoardApi;
 import com.margarita.vk_app.rest.api.GroupsApi;
 import com.margarita.vk_app.rest.api.UsersApi;
 import com.margarita.vk_app.rest.api.WallApi;
@@ -41,5 +42,11 @@ public class RestModule {
     @Singleton
     GroupsApi provideGroupsApi() {
         return restClient.createService(GroupsApi.class);
+    }
+
+    @Provides
+    @Singleton
+    BoardApi provideBoardApi() {
+        return restClient.createService(BoardApi.class);
     }
 }
