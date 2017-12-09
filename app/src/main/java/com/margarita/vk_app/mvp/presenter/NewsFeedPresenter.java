@@ -27,14 +27,19 @@ import io.realm.RealmResults;
 import io.realm.Sort;
 
 @InjectViewState
-public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView> {
+public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView, WallItem> {
 
+    /**
+     * Filter by user's id
+     */
     private boolean isIdFilterEnabled = false;
 
     @Inject
     WallApi wallApi;
 
-    // Sort field for query to the database
+    /**
+     * Sort field for query to the database
+     */
     private static final String SORT_FIELD = "date";
 
     public NewsFeedPresenter() {
@@ -47,14 +52,14 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView> {
 
     @Override
     public Observable<BaseViewModel> onLoadDataObservable(int offset, int count) {
-        return wallApi.get(new WallGetRequest(ApiConstants.OWNER_ID, count, offset)
+        return wallApi.get(new WallGetRequest(ApiConstants.GROUP_ID, count, offset)
                 .toMap())
-                // Преобразование данных Observable с WallGetResponse в WallItem
+                // Convert Observable data from WallGetResponse to WallItem
                 .flatMap(full -> Observable.fromIterable(
                         VkListHelper.getWallItemsInfo(full.getResponse())))
                 .compose(applyFilter())
                 .doOnNext(this::saveToDatabase)
-                // Преобразование данных Observable с WallItem в BaseViewModel
+                // Convert Observable data from WallItem to BaseViewModel
                 .flatMap(wallItem -> {
                     List<BaseViewModel> items = new ArrayList<>();
                     items.add(new NewsItemHeader(wallItem));
@@ -72,7 +77,8 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView> {
                 .flatMap(wallItem -> Observable.fromIterable(parseToListItem(wallItem)));
     }
 
-    private Callable<List<WallItem>> getListFromRealmCallable() {
+    @Override
+    protected Callable<List<WallItem>> getListFromRealmCallable() {
         return () -> {
             Realm realm = Realm.getDefaultInstance();
             RealmResults<WallItem> realmResults = realm.where(WallItem.class)
@@ -98,7 +104,7 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView> {
      * Filter Observable by current user's id
      * @return Filtered Observable if filter is enabled and user's id is not null
      */
-    protected ObservableTransformer<WallItem, WallItem> applyFilter() {
+    private ObservableTransformer<WallItem, WallItem> applyFilter() {
         return baseItemObservable -> {
             String userId = CurrentUser.getId();
             return isIdFilterEnabled && userId != null

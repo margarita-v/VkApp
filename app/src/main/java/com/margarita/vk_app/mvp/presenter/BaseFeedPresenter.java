@@ -6,6 +6,7 @@ import com.margarita.vk_app.models.view.BaseViewModel;
 import com.margarita.vk_app.mvp.view.BaseFeedView;
 
 import java.util.List;
+import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 
@@ -15,7 +16,7 @@ import io.reactivex.schedulers.Schedulers;
 import io.realm.Realm;
 import io.realm.RealmObject;
 
-public abstract class BaseFeedPresenter<V extends BaseFeedView> extends MvpPresenter<V> {
+public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPresenter<V> {
 
     private static final int START_PAGE_SIZE = 15;
 
@@ -61,6 +62,12 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView> extends MvpPrese
      * Load data from database
      */
     public abstract Observable<BaseViewModel> onRestoreDataObservable();
+
+    /**
+     * Get list of items from local database as Callable
+     * @return List of items as Callable
+     */
+    protected abstract Callable<List<T>> getListFromRealmCallable();
 
     /**
      * Show different progress bars which type depends on progress type
