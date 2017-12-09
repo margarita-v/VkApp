@@ -12,10 +12,10 @@ import butterknife.BindView;
 public class NewsItemHeaderHolder extends ProfileHolder<NewsItemHeader> {
 
     @BindView(R.id.ivRepostedIcon)
-    protected ImageView ivRepostedIcon;
+    ImageView ivRepostedIcon;
 
     @BindView(R.id.tvRepostedProfileName)
-    protected TextView tvRepostedProfileName;
+    TextView tvRepostedProfileName;
 
     public NewsItemHeaderHolder(View itemView) {
         super(itemView);

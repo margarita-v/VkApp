@@ -18,10 +18,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 abstract class ProfileHolder<T extends ProfileViewModel> extends BaseViewHolder<T> {
 
     @BindView(R.id.civProfileImage)
-    protected CircleImageView civProfileImage;
+    CircleImageView civProfileImage;
 
     @BindView(R.id.tvProfileName)
-    protected TextView tvProfileName;
+    TextView tvProfileName;
 
     ProfileHolder(View itemView) {
         super(itemView);

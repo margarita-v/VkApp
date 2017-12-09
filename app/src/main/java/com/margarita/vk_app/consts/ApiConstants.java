@@ -18,9 +18,9 @@ public class ApiConstants {
     public static final int DEFAULT_COUNT = 10;
 
     /**
-     * ID of group or page which data will be loaded
+     * ID of group which data will be loaded
      */
-    public static final int OWNER_ID = -86529522;
+    public static final int GROUP_ID = -86529522;
 
     /**
      * For getting additional user's fields from server

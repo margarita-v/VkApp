@@ -11,7 +11,7 @@ public class MemberViewModel extends ProfileViewModel {
     private int groupId;
 
     public MemberViewModel(Member member) {
-        super(member.getId(), member.getPhoto(), member.getFullName());
+        super(member.getId(), member.getFullName(), member.getPhoto());
         this.groupId = member.getGroupId();
     }
 

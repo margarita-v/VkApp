@@ -14,6 +14,8 @@ public class Member extends RealmObject {
     private static final String LAST_NAME = "last_name";
     //endregion
 
+    private static final char SPACE = ' ';
+
     @PrimaryKey
     private int id;
 
@@ -29,8 +31,6 @@ public class Member extends RealmObject {
     @SerializedName(LAST_NAME)
     private String lastName;
 
-    private String fullName;
-
     public Member() {
 
     }
@@ -40,7 +40,6 @@ public class Member extends RealmObject {
         this.photo = profile.getPhoto();
         this.firstName = profile.getFirstName();
         this.lastName = profile.getLastName();
-        this.fullName = profile.getFullName();
     }
 
     public int getId() {
@@ -55,15 +54,7 @@ public class Member extends RealmObject {
         return photo;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
     public String getFullName() {
-        return fullName;
+        return firstName + SPACE + lastName;
     }
 }
