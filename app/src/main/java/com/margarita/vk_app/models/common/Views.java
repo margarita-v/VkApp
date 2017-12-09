@@ -14,5 +14,4 @@ public class Views extends RealmObject {
     public Integer getCount() {
         return count;
     }
-
 }

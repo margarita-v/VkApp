@@ -1,5 +1,6 @@
 package com.margarita.vk_app.models.common;
 
+import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.vk.sdk.api.VKApiConst;
 
@@ -17,18 +18,23 @@ public class Member extends RealmObject {
     private static final char SPACE = ' ';
 
     @PrimaryKey
+    @Expose
     private int id;
 
     @SerializedName(VKApiConst.GROUP_ID)
+    @Expose
     private int groupId;
 
     @SerializedName(PHOTO)
+    @Expose
     private String photo;
 
     @SerializedName(FIRST_NAME)
+    @Expose
     private String firstName;
 
     @SerializedName(LAST_NAME)
+    @Expose
     private String lastName;
 
     public Member() {

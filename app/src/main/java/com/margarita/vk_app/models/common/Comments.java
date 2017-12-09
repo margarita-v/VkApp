@@ -22,5 +22,4 @@ public class Comments extends RealmObject {
     public Integer getCanPost() {
         return canPost;
     }
-
 }

@@ -93,5 +93,4 @@ public class Profile extends RealmObject implements Owner {
     public String getDisplayProfilePhoto() {
         return photo100;
     }
-
 }

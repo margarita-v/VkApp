@@ -6,9 +6,7 @@ public class CounterViewModel {
 
     protected int count;
 
-    protected int iconColor = R.color.colorIconDisabled;
-
-    protected int textColor = R.color.colorIconDisabled;
+    private int iconColor, textColor;
 
     CounterViewModel(int count) {
         this.count = count;

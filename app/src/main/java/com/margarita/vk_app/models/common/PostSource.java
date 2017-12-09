@@ -14,5 +14,4 @@ public class PostSource extends RealmObject {
     public String getType() {
         return type;
     }
-
 }

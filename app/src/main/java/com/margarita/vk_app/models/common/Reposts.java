@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
-public class Reposts extends RealmObject{
+public class Reposts extends RealmObject {
 
     @Expose
     private Integer count;
@@ -22,5 +22,4 @@ public class Reposts extends RealmObject{
     public Integer getUserReposted() {
         return userReposted;
     }
-
 }

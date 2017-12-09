@@ -38,5 +38,4 @@ public class Likes extends RealmObject {
     public Integer getCanPublish() {
         return canPublish;
     }
-
 }

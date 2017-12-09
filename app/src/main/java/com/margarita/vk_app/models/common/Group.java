@@ -95,5 +95,4 @@ public class Group extends RealmObject implements Owner {
     public String getPhoto() {
         return photo100;
     }
-
 }
