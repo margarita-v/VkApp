@@ -24,7 +24,8 @@ public abstract class BaseViewModel {
         NewsFeedItemHeader(R.layout.item_news_header),
         NewsFeedItemBody(R.layout.item_news_body),
         NewsFeedItemFooter(R.layout.item_news_footer),
-        Member(R.layout.member_item);
+        Member(R.layout.member_item),
+        Topic(R.layout.topic_item);
 
         private final int id;
 

@@ -11,59 +11,53 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingTop="16dp">
-        
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:id="@+id/civProfileImage"
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                tools:src="@color/colorAccent"/>
 
-            <TextView
-                android:id="@+id/tvProfileName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_toEndOf="@id/civProfileImage"
-                android:layout_toRightOf="@id/civProfileImage"
-                android:lines="1"
-                android:textColor="@color/vk_black"
-                android:textSize="16sp"
-                android:textStyle="bold"/>
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/civProfileImage"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            tools:src="@color/colorAccent"/>
 
-            <ImageView
-                android:id="@+id/ivRepostedIcon"
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/tvProfileName"
-                android:layout_toEndOf="@id/tvProfileName"
-                android:src="@drawable/ic_arrow_back_black_24dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginRight="4dp"
-                android:tint="@color/colorIcon"
-                android:contentDescription="@string/image_repost"/>
+        <TextView
+            android:id="@+id/tvProfileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_toEndOf="@id/civProfileImage"
+            android:layout_toRightOf="@id/civProfileImage"
+            android:lines="1"
+            android:textColor="@color/vk_black"
+            android:textSize="16sp"
+            android:textStyle="bold"/>
 
-            <TextView
-                android:id="@+id/tvRepostedProfileName"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toEndOf="@id/ivRepostedIcon"
-                android:layout_toRightOf="@id/ivRepostedIcon"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="@string/reposted_text"
-                android:textSize="15sp"/>
+        <ImageView
+            android:id="@+id/ivRepostedIcon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/tvProfileName"
+            android:layout_toEndOf="@id/tvProfileName"
+            android:src="@drawable/ic_arrow_back_black_24dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginRight="4dp"
+            android:tint="@color/colorIcon"
+            android:contentDescription="@string/image_repost"/>
 
-        </RelativeLayout>
+        <TextView
+            android:id="@+id/tvRepostedProfileName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@id/ivRepostedIcon"
+            android:layout_toRightOf="@id/ivRepostedIcon"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/reposted_text"
+            android:textSize="15sp"/>
     </RelativeLayout>
 
     <View

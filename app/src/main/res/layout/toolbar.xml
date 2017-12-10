@@ -14,5 +14,4 @@
         app:titleTextColor="@color/colorDefaultWhite"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
-
 </LinearLayout>
