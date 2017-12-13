@@ -4,6 +4,7 @@ import android.view.View;
 
 import com.margarita.vk_app.models.common.Topic;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
+import com.margarita.vk_app.ui.holder.TopicViewHolder;
 
 public class TopicViewModel extends BaseViewModel {
 
@@ -22,7 +23,7 @@ public class TopicViewModel extends BaseViewModel {
 
     @Override
     protected BaseViewHolder onCreateViewHolder(View view) {
-        return null;
+        return new TopicViewHolder(view);
     }
 
     @Override
