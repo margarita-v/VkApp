@@ -10,6 +10,16 @@ import com.margarita.vk_app.ui.holder.BaseViewHolder;
 
 public abstract class BaseViewModel {
 
+    protected int id;
+
+    public BaseViewModel(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
     public BaseViewHolder createViewHolder(ViewGroup parent) {
 
         return onCreateViewHolder(LayoutInflater.from(parent.getContext())

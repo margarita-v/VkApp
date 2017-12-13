@@ -11,7 +11,6 @@ import com.margarita.vk_app.ui.holder.NewsItemFooterHolder;
 
 public class NewsItemFooter extends BaseViewModel {
 
-    private int id;
     private int ownerId;
     private long dateLong;
 
@@ -20,7 +19,7 @@ public class NewsItemFooter extends BaseViewModel {
     private RepostCounter repostCounter;
 
     public NewsItemFooter(WallItem wallItem) {
-        this.id = wallItem.getId();
+        super(wallItem.getId());
         this.ownerId = wallItem.getOwnerId();
         this.dateLong = wallItem.getDate();
 
@@ -37,10 +36,6 @@ public class NewsItemFooter extends BaseViewModel {
     @Override
     public LayoutTypes getType() {
         return LayoutTypes.NewsFeedItemFooter;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public int getOwnerId() {

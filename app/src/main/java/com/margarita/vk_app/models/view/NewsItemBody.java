@@ -8,12 +8,11 @@ import com.margarita.vk_app.ui.holder.NewsItemBodyHolder;
 
 public class NewsItemBody extends BaseViewModel {
 
-    private int id;
     private String text;
     private String attachmentsString;
 
     public NewsItemBody(WallItem wallItem) {
-        this.id = wallItem.getId();
+        super(wallItem.getId());
 
         if (wallItem.hasSharedRepost()) {
             this.text = wallItem.getSharedRepost().getText();
@@ -32,10 +31,6 @@ public class NewsItemBody extends BaseViewModel {
     @Override
     public LayoutTypes getType() {
         return LayoutTypes.NewsFeedItemBody;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getText() {
