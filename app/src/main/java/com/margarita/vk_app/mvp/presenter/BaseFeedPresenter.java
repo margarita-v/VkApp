@@ -15,6 +15,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.realm.Realm;
 import io.realm.RealmObject;
+import io.realm.RealmQuery;
+import io.realm.RealmResults;
+import io.realm.Sort;
 
 /**
  * Base presenter for all presenters which are used in fragments
@@ -70,9 +73,34 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
 
     /**
      * Get list of items from local database as Callable
+     * @param sortField Sort field for query to the database
+     * @param sort Sort order for result items
      * @return List of items as Callable
      */
-    protected abstract Callable<List<T>> getListFromRealmCallable();
+    Callable<List<T>> getListFromRealmCallable(String sortField, Sort sort) {
+        return () -> {
+            Realm realm = Realm.getDefaultInstance();
+            // Perform the query which depends on item's type
+            RealmResults<T> results = performQuery(realm)
+                    .findAllSorted(sortField, sort);
+            return getQueryResult(realm, results);
+        };
+    }
+
+    /**
+     * Perform query to the database
+     * @param realm Realm instance for access to the database
+     * @return Set of query result
+     */
+    protected abstract RealmQuery<T> performQuery(Realm realm);
+
+    /**
+     * Get a list of items as a query result
+     * @param realm Realm instance for access to the database
+     * @param results Set of query result
+     * @return List of items
+     */
+    protected abstract List<T> getQueryResult(Realm realm, RealmResults<T> results);
 
     /**
      * Show different progress bars which type depends on progress type

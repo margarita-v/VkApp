@@ -11,12 +11,12 @@ import com.margarita.vk_app.rest.api.GroupsApi;
 import com.margarita.vk_app.rest.model.request.GroupsGetMembersRequest;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.realm.Realm;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
@@ -49,18 +49,18 @@ public class MembersPresenter extends BaseFeedPresenter<BaseFeedView, Member> {
 
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
-        return Observable.fromCallable(getListFromRealmCallable())
+        return Observable.fromCallable(getListFromRealmCallable(SORT_FIELD, Sort.ASCENDING))
                 .flatMap(Observable::fromIterable)
                 .map(MemberViewModel::new);
     }
 
     @Override
-    protected Callable<List<Member>> getListFromRealmCallable() {
-        return () -> {
-            Realm realm = Realm.getDefaultInstance();
-            RealmResults<Member> results = realm.where(Member.class)
-                    .findAllSorted(SORT_FIELD, Sort.ASCENDING);
-            return realm.copyFromRealm(results);
-        };
+    protected RealmQuery<Member> performQuery(Realm realm) {
+        return realm.where(Member.class);
+    }
+
+    @Override
+    protected List<Member> getQueryResult(Realm realm, RealmResults<Member> results) {
+        return realm.copyFromRealm(results);
     }
 }

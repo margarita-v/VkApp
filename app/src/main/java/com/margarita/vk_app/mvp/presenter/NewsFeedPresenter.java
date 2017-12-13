@@ -16,13 +16,13 @@ import com.margarita.vk_app.rest.model.request.WallGetRequest;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableTransformer;
 import io.realm.Realm;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
@@ -71,20 +71,20 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView, WallItem>
 
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
-        return Observable.fromCallable(getListFromRealmCallable())
+        return Observable.fromCallable(getListFromRealmCallable(SORT_FIELD, Sort.DESCENDING))
                 .flatMap(Observable::fromIterable)
                 .compose(applyFilter())
                 .flatMap(wallItem -> Observable.fromIterable(parseToListItem(wallItem)));
     }
 
     @Override
-    protected Callable<List<WallItem>> getListFromRealmCallable() {
-        return () -> {
-            Realm realm = Realm.getDefaultInstance();
-            RealmResults<WallItem> realmResults = realm.where(WallItem.class)
-                    .findAllSorted(SORT_FIELD, Sort.DESCENDING);
-            return realm.copyToRealm(realmResults);
-        };
+    protected RealmQuery<WallItem> performQuery(Realm realm) {
+        return realm.where(WallItem.class);
+    }
+
+    @Override
+    protected List<WallItem> getQueryResult(Realm realm, RealmResults<WallItem> results) {
+        return realm.copyFromRealm(results);
     }
 
     /**

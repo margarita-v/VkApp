@@ -11,12 +11,12 @@ import com.margarita.vk_app.rest.api.BoardApi;
 import com.margarita.vk_app.rest.model.request.BoardGetTopicsRequest;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.realm.Realm;
+import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
@@ -51,19 +51,19 @@ public class BoardPresenter extends BaseFeedPresenter<BaseFeedView, Topic> {
 
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
-        return Observable.fromCallable(getListFromRealmCallable())
+        return Observable.fromCallable(getListFromRealmCallable(SORT_FIELD, Sort.DESCENDING))
                 .flatMap(Observable::fromIterable)
                 .map(TopicViewModel::new);
     }
 
     @Override
-    protected Callable<List<Topic>> getListFromRealmCallable() {
-        return () -> {
-            Realm realm = Realm.getDefaultInstance();
-            RealmResults<Topic> realmResults = realm.where(Topic.class)
-                    .equalTo(FIELD_NAME, ApiConstants.GROUP_ID)
-                    .findAllSorted(SORT_FIELD, Sort.DESCENDING);
-            return realm.copyToRealm(realmResults);
-        };
+    protected RealmQuery<Topic> performQuery(Realm realm) {
+        return realm.where(Topic.class)
+                .equalTo(FIELD_NAME, ApiConstants.GROUP_ID);
+    }
+
+    @Override
+    protected List<Topic> getQueryResult(Realm realm, RealmResults<Topic> results) {
+        return realm.copyFromRealm(results);
     }
 }
