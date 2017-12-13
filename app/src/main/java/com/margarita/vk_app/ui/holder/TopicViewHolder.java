@@ -12,10 +12,10 @@ import butterknife.ButterKnife;
 public class TopicViewHolder extends BaseViewHolder<TopicViewModel> {
 
     @BindView(R.id.tvTitle)
-    private TextView tvTitle;
+    TextView tvTitle;
 
     @BindView(R.id.tvCommentsCount)
-    private TextView tvCommentsCount;
+    TextView tvCommentsCount;
 
     public TopicViewHolder(View itemView) {
         super(itemView);

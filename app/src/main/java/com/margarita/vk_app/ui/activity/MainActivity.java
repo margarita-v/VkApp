@@ -9,7 +9,7 @@ import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.models.common.Profile;
-import com.margarita.vk_app.mvp.presenter.MainPresenter;
+import com.margarita.vk_app.mvp.presenter.main.MainPresenter;
 import com.margarita.vk_app.mvp.view.MainView;
 import com.margarita.vk_app.ui.activity.drawer.DrawerItem;
 import com.margarita.vk_app.ui.activity.drawer.DrawerItemType;

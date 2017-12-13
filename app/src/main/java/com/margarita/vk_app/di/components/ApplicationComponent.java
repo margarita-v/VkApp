@@ -4,7 +4,8 @@ import com.margarita.vk_app.common.manager.NetworkManager;
 import com.margarita.vk_app.di.module.ApplicationModule;
 import com.margarita.vk_app.di.module.ManagerModule;
 import com.margarita.vk_app.di.module.RestModule;
-import com.margarita.vk_app.mvp.presenter.MainPresenter;
+import com.margarita.vk_app.mvp.presenter.BoardPresenter;
+import com.margarita.vk_app.mvp.presenter.main.MainPresenter;
 import com.margarita.vk_app.mvp.presenter.MembersPresenter;
 import com.margarita.vk_app.mvp.presenter.NewsFeedPresenter;
 import com.margarita.vk_app.ui.activity.BaseActivity;
@@ -36,6 +37,7 @@ public interface ApplicationComponent {
     void inject(NewsFeedPresenter presenter);
     void inject(MainPresenter presenter);
     void inject(MembersPresenter presenter);
+    void inject(BoardPresenter presenter);
 
     // Managers
     void inject(NetworkManager manager);

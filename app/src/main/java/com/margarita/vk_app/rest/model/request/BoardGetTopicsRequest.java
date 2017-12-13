@@ -6,7 +6,7 @@ import com.vk.sdk.api.VKApiConst;
 
 import java.util.Map;
 
-public class BoardGetTopics extends BaseRequest {
+public class BoardGetTopicsRequest extends BaseRequest {
 
     @SerializedName(VKApiConst.GROUP_ID)
     private int groupId;
@@ -17,11 +17,11 @@ public class BoardGetTopics extends BaseRequest {
     @SerializedName(VKApiConst.OFFSET)
     private int offset = 0;
 
-    private BoardGetTopics(int groupId) {
+    private BoardGetTopicsRequest(int groupId) {
         this.groupId = Math.abs(groupId);
     }
 
-    public BoardGetTopics(int groupId, int count, int offset) {
+    public BoardGetTopicsRequest(int groupId, int count, int offset) {
         this(groupId);
         this.count = count;
         this.offset = offset;

@@ -16,6 +16,11 @@ import io.reactivex.schedulers.Schedulers;
 import io.realm.Realm;
 import io.realm.RealmObject;
 
+/**
+ * Base presenter for all presenters which are used in fragments
+ * @param <V> Base class for View
+ * @param <T> Base class for items which will be loaded and shown
+ */
 public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPresenter<V> {
 
     private static final int START_PAGE_SIZE = 15;

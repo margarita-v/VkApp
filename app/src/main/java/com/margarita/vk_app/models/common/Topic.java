@@ -36,4 +36,8 @@ public class Topic extends RealmObject implements Identifiable {
     public int getGroupId() {
         return groupId;
     }
+
+    public void setGroupId(int groupId) {
+        this.groupId = groupId;
+    }
 }

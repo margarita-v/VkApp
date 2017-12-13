@@ -1,4 +1,4 @@
-package com.margarita.vk_app.mvp.presenter;
+package com.margarita.vk_app.mvp.presenter.main;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.arellomobile.mvp.MvpPresenter;
@@ -26,6 +26,9 @@ import io.reactivex.schedulers.Schedulers;
 import io.realm.Realm;
 import io.realm.RealmObject;
 
+/**
+ * Main presenter which used in MainActivity
+ */
 /*
  * Annotation for binding ViewState to presenter
  */
