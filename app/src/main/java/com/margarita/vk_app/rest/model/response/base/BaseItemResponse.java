@@ -1,4 +1,4 @@
-package com.margarita.vk_app.rest.model.response;
+package com.margarita.vk_app.rest.model.response.base;
 
 import java.util.ArrayList;
 import java.util.List;

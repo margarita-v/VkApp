@@ -1,8 +1,9 @@
-package com.margarita.vk_app.rest.model.response;
+package com.margarita.vk_app.rest.model.response.base;
 
 import com.margarita.vk_app.models.Owner;
 import com.margarita.vk_app.models.common.Group;
 import com.margarita.vk_app.models.common.Profile;
+import com.margarita.vk_app.rest.model.response.base.BaseItemResponse;
 
 import java.util.ArrayList;
 import java.util.List;

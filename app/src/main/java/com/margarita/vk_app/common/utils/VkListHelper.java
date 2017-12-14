@@ -2,7 +2,7 @@ package com.margarita.vk_app.common.utils;
 
 import com.margarita.vk_app.models.Owner;
 import com.margarita.vk_app.models.common.WallItem;
-import com.margarita.vk_app.rest.model.response.ItemWithSendersResponse;
+import com.margarita.vk_app.rest.model.response.base.ItemWithSendersResponse;
 
 import java.util.List;
 

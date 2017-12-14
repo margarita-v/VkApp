@@ -1,4 +1,4 @@
-package com.margarita.vk_app.rest.model.response;
+package com.margarita.vk_app.rest.model.response.base;
 
 import com.google.gson.annotations.Expose;
 
