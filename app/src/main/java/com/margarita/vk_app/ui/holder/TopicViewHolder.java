@@ -14,8 +14,8 @@ public class TopicViewHolder extends BaseViewHolder<TopicViewModel> {
     @BindView(R.id.tvTitle)
     TextView tvTitle;
 
-    @BindView(R.id.tvCommentsCount)
-    TextView tvCommentsCount;
+    @BindView(R.id.tvComments)
+    TextView tvComments;
 
     public TopicViewHolder(View itemView) {
         super(itemView);
@@ -25,12 +25,12 @@ public class TopicViewHolder extends BaseViewHolder<TopicViewModel> {
     @Override
     public void bindViewHolder(TopicViewModel topicViewModel) {
         tvTitle.setText(topicViewModel.getTitle());
-        tvCommentsCount.setText(topicViewModel.getCommentsCount());
+        tvComments.setText(topicViewModel.getCommentsCount());
     }
 
     @Override
     public void unbindViewHolder() {
         clearTextView(tvTitle);
-        clearTextView(tvCommentsCount);
+        clearTextView(tvComments);
     }
 }
