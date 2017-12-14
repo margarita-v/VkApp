@@ -4,7 +4,9 @@ package com.margarita.vk_app.models.common;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.margarita.vk_app.models.Owner;
+import com.margarita.vk_app.models.attachment.Link;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 
 public class Group extends RealmObject implements Owner {
@@ -45,6 +47,21 @@ public class Group extends RealmObject implements Owner {
     @SerializedName("photo_200")
     @Expose
     private String photo200;
+
+    @Expose
+    private String status;
+
+    @Expose
+    private String description;
+
+    @Expose
+    private String site;
+
+    @Expose
+    private RealmList<Link> links;
+
+    @Expose
+    private RealmList<Contact> contacts;
 
     public int getId() {
         return id;
@@ -94,5 +111,25 @@ public class Group extends RealmObject implements Owner {
     @Override
     public String getPhoto() {
         return photo100;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getSite() {
+        return site;
+    }
+
+    public RealmList<Link> getLinks() {
+        return links;
+    }
+
+    public RealmList<Contact> getContacts() {
+        return contacts;
     }
 }
