@@ -31,4 +31,10 @@ public class ApiConstants {
      * For getting additional member's fields
      */
     public static final String DEFAULT_MEMBERS_FIELDS = "name,photo_100";
+
+    /**
+     * For getting additional group fields
+     */
+    public static final String DEFAULT_GROUP_FIELDS =
+            "status,description,site,links,contacts";
 }
