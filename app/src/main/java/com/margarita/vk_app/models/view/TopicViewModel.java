@@ -4,10 +4,11 @@ import android.view.View;
 
 import com.margarita.vk_app.models.LayoutTypes;
 import com.margarita.vk_app.models.common.Topic;
+import com.margarita.vk_app.models.view.base.BaseIdModel;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
 import com.margarita.vk_app.ui.holder.TopicViewHolder;
 
-public class TopicViewModel extends BaseViewModel {
+public class TopicViewModel extends BaseIdModel {
 
     private int groupId;
 

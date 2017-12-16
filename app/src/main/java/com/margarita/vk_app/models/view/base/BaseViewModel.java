@@ -1,4 +1,4 @@
-package com.margarita.vk_app.models.view;
+package com.margarita.vk_app.models.view.base;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,17 +7,10 @@ import android.view.ViewGroup;
 import com.margarita.vk_app.models.LayoutTypes;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
 
+/**
+ * Base class for all view models
+ */
 public abstract class BaseViewModel {
-
-    protected int id;
-
-    public BaseViewModel(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
-    }
 
     public BaseViewHolder createViewHolder(ViewGroup parent) {
 

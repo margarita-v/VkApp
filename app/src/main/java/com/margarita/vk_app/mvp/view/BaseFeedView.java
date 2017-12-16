@@ -1,7 +1,7 @@
 package com.margarita.vk_app.mvp.view;
 
 import com.arellomobile.mvp.MvpView;
-import com.margarita.vk_app.models.view.BaseViewModel;
+import com.margarita.vk_app.models.view.base.BaseViewModel;
 
 import java.util.List;
 

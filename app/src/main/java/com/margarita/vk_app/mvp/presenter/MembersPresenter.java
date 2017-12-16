@@ -4,7 +4,7 @@ import com.arellomobile.mvp.InjectViewState;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.models.common.Member;
-import com.margarita.vk_app.models.view.BaseViewModel;
+import com.margarita.vk_app.models.view.base.BaseViewModel;
 import com.margarita.vk_app.models.view.profile.MemberViewModel;
 import com.margarita.vk_app.mvp.view.BaseFeedView;
 import com.margarita.vk_app.rest.api.GroupsApi;

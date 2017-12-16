@@ -1,11 +1,11 @@
 package com.margarita.vk_app.models.view.profile;
 
-import com.margarita.vk_app.models.view.BaseViewModel;
+import com.margarita.vk_app.models.view.base.BaseIdModel;
 
 /**
  * Base class for view models which contain info about profile
  */
-public abstract class ProfileViewModel extends BaseViewModel {
+public abstract class ProfileViewModel extends BaseIdModel {
 
     protected String name;
     protected String photo;

@@ -12,7 +12,7 @@ import android.widget.Toast;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.common.BaseAdapter;
 import com.margarita.vk_app.common.manager.VkLinearLayoutManager;
-import com.margarita.vk_app.models.view.BaseViewModel;
+import com.margarita.vk_app.models.view.base.BaseViewModel;
 import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
 import com.margarita.vk_app.mvp.view.BaseFeedView;
 

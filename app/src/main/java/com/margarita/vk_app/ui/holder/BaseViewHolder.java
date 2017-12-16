@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.margarita.vk_app.models.view.BaseViewModel;
+import com.margarita.vk_app.models.view.base.BaseViewModel;
 
 public abstract class BaseViewHolder<Item extends BaseViewModel>
         extends RecyclerView.ViewHolder {

@@ -2,7 +2,7 @@ package com.margarita.vk_app.mvp.presenter;
 
 import com.arellomobile.mvp.MvpPresenter;
 import com.margarita.vk_app.common.manager.NetworkManager;
-import com.margarita.vk_app.models.view.BaseViewModel;
+import com.margarita.vk_app.models.view.base.BaseViewModel;
 import com.margarita.vk_app.mvp.view.BaseFeedView;
 
 import java.util.List;

@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.SparseArray;
 import android.view.ViewGroup;
 
-import com.margarita.vk_app.models.view.BaseViewModel;
+import com.margarita.vk_app.models.view.base.BaseViewModel;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
 
 import java.util.ArrayList;
