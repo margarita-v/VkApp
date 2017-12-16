@@ -45,6 +45,11 @@ public class MainPresenter extends MvpPresenter<MainView> {
     @Inject
     NetworkManager networkManager;
 
+    /**
+     * Field name for query to the database
+     */
+    private static final String FIELD_NAME = "id";
+
     public MainPresenter() {
         VkApplication.getApplicationComponent().inject(this);
     }
@@ -113,7 +118,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
         return () -> {
             Realm realm = Realm.getDefaultInstance();
             Profile realmResults = realm.where(Profile.class)
-                    .equalTo("id", Integer.parseInt(CurrentUser.getId()))
+                    .equalTo(FIELD_NAME, Integer.parseInt(CurrentUser.getId()))
                     .findFirst();
             return realm.copyFromRealm(realmResults);
         };

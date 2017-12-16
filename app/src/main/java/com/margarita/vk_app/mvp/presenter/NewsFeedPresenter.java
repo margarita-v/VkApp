@@ -27,7 +27,8 @@ import io.realm.RealmResults;
 import io.realm.Sort;
 
 @InjectViewState
-public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView, WallItem> {
+public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView, WallItem>
+        implements BaseFeedPresenter.ParsingInterface<WallItem> {
 
     /**
      * Filter by user's id
@@ -60,21 +61,16 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView, WallItem>
                 .compose(applyFilter())
                 .doOnNext(this::saveToDatabase)
                 // Convert Observable data from WallItem to BaseViewModel
-                .flatMap(wallItem -> {
-                    List<BaseViewModel> items = new ArrayList<>();
-                    items.add(new NewsItemHeader(wallItem));
-                    items.add(new NewsItemBody(wallItem));
-                    items.add(new NewsItemFooter(wallItem));
-                    return Observable.fromIterable(items);
-                });
+                .flatMap(wallItem -> Observable.fromIterable(parseItemToList(wallItem)));
     }
 
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
-        return Observable.fromCallable(getListFromRealmCallable(SORT_FIELD, Sort.DESCENDING))
+        return Observable.fromCallable(
+                getListFromRealmCallable(SORT_FIELD, Sort.DESCENDING))
                 .flatMap(Observable::fromIterable)
                 .compose(applyFilter())
-                .flatMap(wallItem -> Observable.fromIterable(parseToListItem(wallItem)));
+                .flatMap(wallItem -> Observable.fromIterable(parseItemToList(wallItem)));
     }
 
     @Override
@@ -87,17 +83,9 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView, WallItem>
         return realm.copyFromRealm(results);
     }
 
-    /**
-     * Get full list item from wall item
-     * @param wallItem Wall item which will be parsed
-     * @return List item which consists of header, body and footer
-     */
-    private List<BaseViewModel> parseToListItem(WallItem wallItem) {
-        List<BaseViewModel> result = new ArrayList<>();
-        result.add(new NewsItemHeader(wallItem));
-        result.add(new NewsItemBody(wallItem));
-        result.add(new NewsItemFooter(wallItem));
-        return result;
+    @Override
+    protected WallItem getQueryResult(Realm realm, WallItem result) {
+        return realm.copyFromRealm(result);
     }
 
     /**
@@ -112,5 +100,14 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView, WallItem>
                             wallItem -> userId.equals(wallItem.getFromId().toString()))
                     : baseItemObservable;
         };
+    }
+
+    @Override
+    public List<BaseViewModel> parseItemToList(WallItem item) {
+        List<BaseViewModel> result = new ArrayList<>();
+        result.add(new NewsItemHeader(item));
+        result.add(new NewsItemBody(item));
+        result.add(new NewsItemFooter(item));
+        return result;
     }
 }

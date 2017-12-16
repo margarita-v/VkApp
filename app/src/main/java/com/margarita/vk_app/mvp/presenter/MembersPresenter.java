@@ -49,7 +49,8 @@ public class MembersPresenter extends BaseFeedPresenter<BaseFeedView, Member> {
 
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
-        return Observable.fromCallable(getListFromRealmCallable(SORT_FIELD, Sort.ASCENDING))
+        return Observable.fromCallable(
+                getListFromRealmCallable(SORT_FIELD, Sort.ASCENDING))
                 .flatMap(Observable::fromIterable)
                 .map(MemberViewModel::new);
     }
@@ -62,5 +63,10 @@ public class MembersPresenter extends BaseFeedPresenter<BaseFeedView, Member> {
     @Override
     protected List<Member> getQueryResult(Realm realm, RealmResults<Member> results) {
         return realm.copyFromRealm(results);
+    }
+
+    @Override
+    protected Member getQueryResult(Realm realm, Member result) {
+        return realm.copyFromRealm(result);
     }
 }

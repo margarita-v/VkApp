@@ -61,6 +61,8 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
         }
     }
 
+    //region Methods for getting data from server or from the local database
+    
     /**
      * Load data from server
      */
@@ -70,6 +72,10 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
      * Load data from database
      */
     public abstract Observable<BaseViewModel> onRestoreDataObservable();
+
+    //endregion
+
+    //region Methods for getting items from the local database as Callable
 
     /**
      * Get list of items from local database as Callable
@@ -88,6 +94,25 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
     }
 
     /**
+     * Get single item from local database as Callable
+     * @param fieldName Field's name for query to the database
+     * @param value Value for "where" condition in query
+     * @return Single item as Callable
+     */
+    Callable<T> getItemFromRealmCallable(String fieldName, Integer value) {
+        return () -> {
+            Realm realm = Realm.getDefaultInstance();
+            T result = performQuery(realm)
+                    .equalTo(fieldName, value)
+                    .findFirst();
+            return getQueryResult(realm, result);
+        };
+    }
+    //endregion
+
+    //region Methods for the database queries
+
+    /**
      * Perform query to the database
      * @param realm Realm instance for access to the database
      * @return Set of query result
@@ -101,6 +126,16 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
      * @return List of items
      */
     protected abstract List<T> getQueryResult(Realm realm, RealmResults<T> results);
+
+    /**
+     * Get a single item as a query result
+     * @param realm Realm instance for access to the database
+     * @param result Query result
+     * @return Single item
+     */
+    protected abstract T getQueryResult(Realm realm, T result);
+
+    //endregion
 
     /**
      * Show different progress bars which type depends on progress type
@@ -194,5 +229,20 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
         Refreshing,     // On refresh data loading
         ListProgress,   // On first data loading
         Paging          // Load data on scrolling
+    }
+
+    /**
+     * Interface for parsing item to list of view models
+     * if the item is complex
+     * @param <ItemType> Type of item which will be parsed
+     */
+    public interface ParsingInterface<ItemType> {
+
+        /**
+         * Parse item to list of view models
+         * @param item Item which will be parsed
+         * @return List of view models which is associated with item
+         */
+        List<BaseViewModel> parseItemToList(ItemType item);
     }
 }
