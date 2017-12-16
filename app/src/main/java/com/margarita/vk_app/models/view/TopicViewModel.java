@@ -2,6 +2,7 @@ package com.margarita.vk_app.models.view;
 
 import android.view.View;
 
+import com.margarita.vk_app.models.LayoutTypes;
 import com.margarita.vk_app.models.common.Topic;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
 import com.margarita.vk_app.ui.holder.TopicViewHolder;

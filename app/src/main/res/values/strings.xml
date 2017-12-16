@@ -19,4 +19,10 @@
     <string name="drawer_item_topics">Topics</string>
     <string name="drawer_item_info">Info</string>
     <string name="drawer_item_group_rules">Group Rules</string>
+
+    <string name="info_status">Статус</string>
+    <string name="info_description">Описание</string>
+    <string name="info_site">Веб-сайт</string>
+    <string name="info_contacts">Контакты</string>
+    <string name="info_links">Ссылки</string>
 </resources>

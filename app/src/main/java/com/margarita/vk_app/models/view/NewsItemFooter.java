@@ -2,6 +2,7 @@ package com.margarita.vk_app.models.view;
 
 import android.view.View;
 
+import com.margarita.vk_app.models.LayoutTypes;
 import com.margarita.vk_app.models.common.WallItem;
 import com.margarita.vk_app.models.view.counter.CommentsCounter;
 import com.margarita.vk_app.models.view.counter.LikeCounter;
