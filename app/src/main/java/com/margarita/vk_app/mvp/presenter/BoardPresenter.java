@@ -27,10 +27,9 @@ public class BoardPresenter extends BaseFeedPresenter<BaseFeedView, Topic> {
     BoardApi boardApi;
 
     /**
-     * Fields for query to the database
+     * Field for query to the database
      */
     private static final String FIELD_NAME = "groupId";
-    private static final String SORT_FIELD = "id";
 
     public BoardPresenter() {
         VkApplication.getApplicationComponent().inject(this);
@@ -52,7 +51,7 @@ public class BoardPresenter extends BaseFeedPresenter<BaseFeedView, Topic> {
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
         return Observable.fromCallable(
-                getListFromRealmCallable(SORT_FIELD, Sort.DESCENDING))
+                getListFromRealmCallable(getSortField(), Sort.DESCENDING))
                 .flatMap(Observable::fromIterable)
                 .map(TopicViewModel::new);
     }

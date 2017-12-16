@@ -26,9 +26,16 @@ import io.realm.Sort;
  */
 public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPresenter<V> {
 
+    /**
+     * Pages sizes
+     */
     private static final int START_PAGE_SIZE = 15;
-
     private static final int NEXT_PAGE_SIZE = 15;
+
+    /**
+     * Sort field for query to the database
+     */
+    private static final String SORT_FIELD = "id";
 
     private boolean isLoading;
 
@@ -62,7 +69,7 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
     }
 
     //region Methods for getting data from server or from the local database
-    
+
     /**
      * Load data from server
      */
@@ -134,6 +141,14 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
      * @return Single item
      */
     protected abstract T getQueryResult(Realm realm, T result);
+
+    /**
+     * Function which returns a name of sort field
+     * @return Sort field's name
+     */
+    String getSortField() {
+        return SORT_FIELD;
+    }
 
     //endregion
 

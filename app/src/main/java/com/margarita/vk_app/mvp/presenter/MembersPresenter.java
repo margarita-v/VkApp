@@ -26,11 +26,6 @@ public class MembersPresenter extends BaseFeedPresenter<BaseFeedView, Member> {
     @Inject
     GroupsApi groupsApi;
 
-    /**
-     * Sort field for query to the database
-     */
-    private static final String SORT_FIELD = "id";
-
     public MembersPresenter() {
         VkApplication.getApplicationComponent().inject(this);
     }
@@ -50,7 +45,7 @@ public class MembersPresenter extends BaseFeedPresenter<BaseFeedView, Member> {
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
         return Observable.fromCallable(
-                getListFromRealmCallable(SORT_FIELD, Sort.ASCENDING))
+                getListFromRealmCallable(getSortField(), Sort.ASCENDING))
                 .flatMap(Observable::fromIterable)
                 .map(MemberViewModel::new);
     }

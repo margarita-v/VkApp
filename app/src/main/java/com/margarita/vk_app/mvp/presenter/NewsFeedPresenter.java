@@ -39,7 +39,7 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView, WallItem>
     WallApi wallApi;
 
     /**
-     * Sort field for query to the database
+     * Sort field for this class which overrides parent's sort field
      */
     private static final String SORT_FIELD = "date";
 
@@ -67,7 +67,7 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView, WallItem>
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
         return Observable.fromCallable(
-                getListFromRealmCallable(SORT_FIELD, Sort.DESCENDING))
+                getListFromRealmCallable(getSortField(), Sort.DESCENDING))
                 .flatMap(Observable::fromIterable)
                 .compose(applyFilter())
                 .flatMap(wallItem -> Observable.fromIterable(parseItemToList(wallItem)));
@@ -86,6 +86,11 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView, WallItem>
     @Override
     protected WallItem getQueryResult(Realm realm, WallItem result) {
         return realm.copyFromRealm(result);
+    }
+
+    @Override
+    protected String getSortField() {
+        return SORT_FIELD;
     }
 
     /**
