@@ -6,6 +6,7 @@ import com.margarita.vk_app.models.LayoutTypes;
 import com.margarita.vk_app.models.common.Group;
 import com.margarita.vk_app.models.view.base.BaseViewModel;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
+import com.margarita.vk_app.ui.holder.info.InfoStatusViewHolder;
 
 public class InfoStatusViewModel extends BaseViewModel {
 
@@ -21,7 +22,7 @@ public class InfoStatusViewModel extends BaseViewModel {
 
     @Override
     protected BaseViewHolder onCreateViewHolder(View view) {
-        return null;
+        return new InfoStatusViewHolder(view);
     }
 
     @Override
