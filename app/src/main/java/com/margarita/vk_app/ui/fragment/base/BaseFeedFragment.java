@@ -1,4 +1,4 @@
-package com.margarita.vk_app.ui.fragment;
+package com.margarita.vk_app.ui.fragment.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -34,6 +34,12 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
     protected ProgressBar progressBar;
     protected BaseFeedPresenter presenter;
 
+    private boolean hasEndlessList = true;
+
+    public void setHasEndlessList(boolean value) {
+        this.hasEndlessList = value;
+    }
+
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -58,13 +64,15 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
     private void setupList() {
         VkLinearLayoutManager layoutManager = new VkLinearLayoutManager(getContext());
         rvList.setLayoutManager(layoutManager);
-        rvList.addOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
-                if (layoutManager.isOnNextPagePosition())
-                    presenter.loadNext(adapter.getRealItemCount());
-            }
-        });
+        if (hasEndlessList) {
+            rvList.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                    if (layoutManager.isOnNextPagePosition())
+                        presenter.loadNext(adapter.getRealItemCount());
+                }
+            });
+        }
 
         ((SimpleItemAnimator) rvList.getItemAnimator()).setSupportsChangeAnimations(false);
     }

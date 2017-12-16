@@ -4,7 +4,7 @@ import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
 
 import com.margarita.vk_app.ui.activity.BaseActivity;
-import com.margarita.vk_app.ui.fragment.BaseFragment;
+import com.margarita.vk_app.ui.fragment.base.BaseFragment;
 
 import java.util.Stack;
 

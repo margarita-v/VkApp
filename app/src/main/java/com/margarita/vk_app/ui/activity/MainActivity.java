@@ -13,7 +13,7 @@ import com.margarita.vk_app.mvp.presenter.main.MainPresenter;
 import com.margarita.vk_app.mvp.view.MainView;
 import com.margarita.vk_app.ui.activity.drawer.DrawerItem;
 import com.margarita.vk_app.ui.activity.drawer.DrawerItemType;
-import com.margarita.vk_app.ui.fragment.BaseFragment;
+import com.margarita.vk_app.ui.fragment.base.BaseFragment;
 import com.margarita.vk_app.ui.fragment.NewsFeedFragment;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial.Icon;
 import com.mikepenz.materialdrawer.AccountHeader;

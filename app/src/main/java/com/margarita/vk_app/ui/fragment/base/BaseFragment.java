@@ -1,4 +1,4 @@
-package com.margarita.vk_app.ui.fragment;
+package com.margarita.vk_app.ui.fragment.base;
 
 import android.content.Context;
 import android.os.Bundle;

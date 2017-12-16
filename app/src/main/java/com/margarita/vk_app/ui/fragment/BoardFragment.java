@@ -4,6 +4,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
 import com.margarita.vk_app.mvp.presenter.BoardPresenter;
+import com.margarita.vk_app.ui.fragment.base.BaseFeedFragment;
 
 public class BoardFragment extends BaseFeedFragment {
 

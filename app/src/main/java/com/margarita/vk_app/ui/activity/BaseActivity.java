@@ -10,7 +10,7 @@ import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.manager.VkFragmentManager;
-import com.margarita.vk_app.ui.fragment.BaseFragment;
+import com.margarita.vk_app.ui.fragment.base.BaseFragment;
 
 import javax.inject.Inject;
 
