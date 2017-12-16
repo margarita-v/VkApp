@@ -11,6 +11,7 @@ import com.margarita.vk_app.mvp.view.MainView;
 import com.margarita.vk_app.rest.api.UsersApi;
 import com.margarita.vk_app.rest.model.request.UserGetRequest;
 import com.margarita.vk_app.ui.activity.drawer.DrawerItemType;
+import com.margarita.vk_app.ui.fragment.InfoFragment;
 import com.margarita.vk_app.ui.fragment.base.BaseFragment;
 import com.margarita.vk_app.ui.fragment.BoardFragment;
 import com.margarita.vk_app.ui.fragment.MembersFragment;
@@ -154,6 +155,9 @@ public class MainPresenter extends MvpPresenter<MainView> {
                     break;
                 case Topics:
                     fragment = new BoardFragment();
+                    break;
+                case Info:
+                    fragment = new InfoFragment();
                     break;
             }
 

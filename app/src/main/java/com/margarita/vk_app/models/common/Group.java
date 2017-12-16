@@ -8,9 +8,11 @@ import com.margarita.vk_app.models.attachment.Link;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class Group extends RealmObject implements Owner {
 
+    @PrimaryKey
     @Expose
     private Integer id;
 
