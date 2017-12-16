@@ -10,7 +10,15 @@ public class ApiConstants {
      * To getting permission for sending requests to Vk server.
      * Allows us to request user's email to show it in navigation drawer
      */
-    public static final String[] DEFAULT_LOGIN_SCOPE = {VKScope.EMAIL};
+    public static final String[] DEFAULT_LOGIN_SCOPE = {
+            VKScope.AUDIO, VKScope.DIRECT, VKScope.VIDEO,
+            VKScope.WALL, VKScope.MESSAGES, VKScope.PHOTOS,
+            VKScope.PAGES, VKScope.GROUPS, VKScope.EMAIL,
+            VKScope.STATS, VKScope.DOCS};
+
+    public static final String VIDEOS = "videos";
+    public static final String POSTS = "posts";
+    public static final String EXTENDED = "extended";
 
     /**
      * To getting a concrete count of items

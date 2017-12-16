@@ -1,6 +1,6 @@
 package com.margarita.vk_app.rest.api;
 
-import com.margarita.vk_app.rest.model.response.TopicGetResponse;
+import com.margarita.vk_app.rest.model.response.common.TopicGetResponse;
 
 import java.util.Map;
 
