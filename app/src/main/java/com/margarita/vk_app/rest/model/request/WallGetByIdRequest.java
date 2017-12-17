@@ -1,6 +1,7 @@
 package com.margarita.vk_app.rest.model.request;
 
 import com.google.gson.annotations.SerializedName;
+import com.margarita.vk_app.common.utils.Utils;
 import com.margarita.vk_app.consts.ApiConstants;
 
 import java.util.Map;
@@ -16,7 +17,7 @@ public class WallGetByIdRequest extends BaseRequest {
     private static final String DIVIDER = "_";
 
     public WallGetByIdRequest(int ownerId, int postId) {
-        this.posts = ownerId + DIVIDER + postId;
+        this.posts = Utils.concatIds(ownerId, postId);
     }
 
     @Override

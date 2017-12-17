@@ -62,7 +62,7 @@ public class Utils {
      */
     private static final String SIZE_UNITS_NAMES = "kMGTPE";
 
-    private static final String BYTE_UNIT_NAME = " B";
+    private static final String BYTE_UNIT_NAME = " B", DIVIDER = "_";
     private static final char SPACE = ' ', DOT = '.';
 
     /**
@@ -174,4 +174,14 @@ public class Utils {
             }
         }
     }
+
+    //region Functions for joining owner id and owner's item id
+    public static String concatIds(int ownerId, int itemId) {
+        return ownerId + DIVIDER + itemId;
+    }
+
+    public static String concatIds(String ownerId, String itemId) {
+        return ownerId + DIVIDER + itemId;
+    }
+    //endregion
 }

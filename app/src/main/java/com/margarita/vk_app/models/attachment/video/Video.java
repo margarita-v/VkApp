@@ -1,7 +1,8 @@
-package com.margarita.vk_app.models.attachment;
+package com.margarita.vk_app.models.attachment.video;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.margarita.vk_app.models.attachment.Attachment;
 import com.vk.sdk.api.model.VKAttachments;
 
 import io.realm.RealmObject;
@@ -60,6 +61,9 @@ public class Video extends RealmObject implements Attachment {
     @Expose
     private int canAdd;
 
+    @Expose
+    private File files;
+
     public int getId() {
         return id;
     }
@@ -114,6 +118,10 @@ public class Video extends RealmObject implements Attachment {
 
     public String getPlayer() {
         return player;
+    }
+
+    public File getFiles() {
+        return files;
     }
 
     @Override
