@@ -38,4 +38,6 @@
     <string name="video_icon">Video icon</string>
     <string name="doc">Doc</string>
     <string name="doc_image">Doc image</string>
+    <string name="image">Image</string>
+    <string name="link">Link</string>
 </resources>
