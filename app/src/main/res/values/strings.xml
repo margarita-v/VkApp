@@ -1,15 +1,19 @@
 <resources>
+    <!-- General -->
     <string name="app_name">Vk-App</string>
     <integer name="com_vk_sdk_AppId">6245606</integer>
 
+    <!-- News item -->
     <string name="title_news">News</string>
     <string name="image_repost">Repost</string>
     <string name="reposted_text">Reposted</string>
 
+    <!-- Fonts -->
     <string name="font_heart">&#xE87D;</string>
     <string name="font_comment">&#xE0B9;</string>
     <string name="font_repost">&#xE050;</string>
 
+    <!-- Drawer items -->
     <string name="drawer_logout">Logout</string>
     <string name="drawer_item_news">News</string>
     <string name="drawer_item_my_posts">My Posts</string>
@@ -20,9 +24,18 @@
     <string name="drawer_item_info">Info</string>
     <string name="drawer_item_group_rules">Group Rules</string>
 
+    <!-- Info items -->
     <string name="info_status">Статус</string>
     <string name="info_description">Описание</string>
     <string name="info_site">Веб-сайт</string>
     <string name="info_contacts">Контакты</string>
     <string name="info_links">Ссылки</string>
+
+    <!-- Attachments -->
+    <string name="audio">Audio</string>
+    <string name="video_views_count">просмотров</string>
+    <string name="video">Video</string>
+    <string name="video_icon">Video icon</string>
+    <string name="doc">Doc</string>
+    <string name="doc_image">Doc image</string>
 </resources>
