@@ -5,11 +5,13 @@ import com.google.gson.annotations.SerializedName;
 import com.vk.sdk.api.model.VKAttachments;
 
 import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 public class Video extends RealmObject implements Attachment {
 
     private static final String ICON_FONT = new String(new char[]{0xE02C});
 
+    @PrimaryKey
     @Expose
     private int id;
 

@@ -4,6 +4,7 @@ import com.margarita.vk_app.rest.RestClient;
 import com.margarita.vk_app.rest.api.BoardApi;
 import com.margarita.vk_app.rest.api.GroupsApi;
 import com.margarita.vk_app.rest.api.UsersApi;
+import com.margarita.vk_app.rest.api.VideoApi;
 import com.margarita.vk_app.rest.api.WallApi;
 
 import javax.inject.Singleton;
@@ -48,5 +49,11 @@ public class RestModule {
     @Singleton
     BoardApi provideBoardApi() {
         return restClient.createService(BoardApi.class);
+    }
+
+    @Provides
+    @Singleton
+    public VideoApi provideVideoApi() {
+        return restClient.createService(VideoApi.class);
     }
 }

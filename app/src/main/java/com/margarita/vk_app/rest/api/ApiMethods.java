@@ -13,4 +13,6 @@ class ApiMethods {
     static final String BOARD_GET_TOPICS = "board.getTopics";
 
     static final String GROUPS_GET_BY_ID = "groups.getById";
+
+    static final String VIDEO_GET = "video.get";
 }
