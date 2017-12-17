@@ -143,7 +143,7 @@ public class Utils {
     /**
      * Remove extension from name of file
      * @param name Name of some file with its extension
-     * @return File name without extension
+     * @return Files name without extension
      */
     public static String removeExtFromText(String name) {
         int length = name.length();

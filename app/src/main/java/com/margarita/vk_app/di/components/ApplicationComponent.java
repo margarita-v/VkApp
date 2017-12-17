@@ -15,6 +15,7 @@ import com.margarita.vk_app.ui.fragment.NewsFeedFragment;
 import com.margarita.vk_app.ui.holder.NewsItemBodyHolder;
 import com.margarita.vk_app.ui.holder.NewsItemFooterHolder;
 import com.margarita.vk_app.ui.holder.attachment.ImageAttachmentHolder;
+import com.margarita.vk_app.ui.holder.attachment.VideoAttachmentHolder;
 
 import javax.inject.Singleton;
 
@@ -35,6 +36,7 @@ public interface ApplicationComponent {
     void inject(NewsItemBodyHolder holder);
     void inject(NewsItemFooterHolder holder);
     void inject(ImageAttachmentHolder holder);
+    void inject(VideoAttachmentHolder holder);
 
     // Presenters
     void inject(NewsFeedPresenter presenter);

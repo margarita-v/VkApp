@@ -62,7 +62,7 @@ public class Video extends RealmObject implements Attachment {
     private int canAdd;
 
     @Expose
-    private File files;
+    private Files files;
 
     public int getId() {
         return id;
@@ -120,7 +120,7 @@ public class Video extends RealmObject implements Attachment {
         return player;
     }
 
-    public File getFiles() {
+    public Files getFiles() {
         return files;
     }
 

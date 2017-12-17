@@ -30,15 +30,13 @@ abstract class ProfileHolder<T extends ProfileViewModel> extends BaseViewHolder<
 
     @Override
     public void bindViewHolder(T item) {
-        Glide.with(itemView.getContext())
-                .load(item.getPhoto())
-                .into(civProfileImage);
+        loadImage(item.getPhoto(), civProfileImage);
         tvProfileName.setText(item.getName());
     }
 
     @Override
     public void unbindViewHolder() {
-        civProfileImage.setImageBitmap(null);
+        clearImageView(civProfileImage);
         clearTextView(tvProfileName);
     }
 }

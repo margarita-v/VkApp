@@ -2,7 +2,7 @@ package com.margarita.vk_app.models.attachment.video;
 
 import io.realm.RealmObject;
 
-public class File extends RealmObject {
+public class Files extends RealmObject {
 
     private String external;
 

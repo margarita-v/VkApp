@@ -3,7 +3,6 @@ package com.margarita.vk_app.ui.holder.attachment;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.manager.VkFragmentManager;
@@ -20,7 +19,7 @@ import butterknife.ButterKnife;
 public class ImageAttachmentHolder extends BaseViewHolder<ImageAttachment> {
 
     @BindView(R.id.ivAttachmentImage)
-    ImageView image;
+    ImageView ivAttachmentImage;
 
     @Inject
     VkFragmentManager fragmentManager;
@@ -40,12 +39,13 @@ public class ImageAttachmentHolder extends BaseViewHolder<ImageAttachment> {
                             ImageFragment.newInstance(imageAttachment.getPhotoUrl()),
                             R.id.container));
         }
-        Glide.with(itemView.getContext()).load(imageAttachment.getPhotoUrl()).into(image);
+
+        loadImage(imageAttachment.getPhotoUrl(), ivAttachmentImage);
     }
 
     @Override
     public void unbindViewHolder() {
         itemView.setOnClickListener(null);
-        image.setImageBitmap(null);
+        clearImageView(ivAttachmentImage);
     }
 }

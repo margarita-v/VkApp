@@ -7,6 +7,7 @@ import com.margarita.vk_app.models.LayoutTypes;
 import com.margarita.vk_app.models.attachment.video.Video;
 import com.margarita.vk_app.models.view.base.BaseViewModel;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
+import com.margarita.vk_app.ui.holder.attachment.VideoAttachmentHolder;
 
 public class VideoAttachment extends BaseViewModel {
 
@@ -39,7 +40,7 @@ public class VideoAttachment extends BaseViewModel {
 
     @Override
     protected BaseViewHolder onCreateViewHolder(View view) {
-        return null;
+        return new VideoAttachmentHolder(view);
     }
 
     public int getOwnerId() {
