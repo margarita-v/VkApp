@@ -1,7 +1,8 @@
-package com.margarita.vk_app.models.attachment;
+package com.margarita.vk_app.models.attachment.doc;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+import com.margarita.vk_app.models.attachment.Attachment;
 import com.vk.sdk.api.model.VKAttachments;
 
 import io.realm.RealmObject;
@@ -40,6 +41,9 @@ public class VkDocument extends RealmObject implements Attachment {
     @Expose
     private String accessKey;
 
+    @Expose
+    private Preview preview;
+
     public int getId() {
         return id;
     }
@@ -74,6 +78,10 @@ public class VkDocument extends RealmObject implements Attachment {
 
     public String getAccessKey() {
         return accessKey;
+    }
+
+    public Preview getPreview() {
+        return preview;
     }
 
     @Override

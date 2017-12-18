@@ -1,6 +1,7 @@
 package com.margarita.vk_app.models.attachment;
 
 import com.google.gson.annotations.Expose;
+import com.margarita.vk_app.models.attachment.doc.VkDocument;
 import com.margarita.vk_app.models.attachment.video.Video;
 import com.vk.sdk.api.model.VKAttachments;
 

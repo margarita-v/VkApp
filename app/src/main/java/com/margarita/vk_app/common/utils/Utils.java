@@ -7,7 +7,7 @@ import android.support.annotation.NonNull;
 
 import com.margarita.vk_app.models.attachment.ApiAttachment;
 import com.margarita.vk_app.models.attachment.Attachment;
-import com.margarita.vk_app.models.attachment.VkDocument;
+import com.margarita.vk_app.models.attachment.doc.VkDocument;
 import com.vk.sdk.api.model.VKAttachments;
 
 import java.text.DecimalFormat;
