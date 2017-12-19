@@ -11,6 +11,10 @@ public abstract class BaseAttachment extends BaseViewModel {
     protected String title;
     protected String url;
 
+    BaseAttachment(String title) {
+        this.title = title;
+    }
+
     public BaseAttachment(String title, String url) {
         this.title = title;
         this.url = url;
