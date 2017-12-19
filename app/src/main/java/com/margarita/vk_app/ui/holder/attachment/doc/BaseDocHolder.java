@@ -16,7 +16,6 @@ import butterknife.ButterKnife;
  */
 abstract class BaseDocHolder<T extends BaseDocAttachment> extends BaseViewHolder<T> {
 
-
     @BindView(R.id.tvAttachmentTitle)
     private TextView tvTitle;
 
