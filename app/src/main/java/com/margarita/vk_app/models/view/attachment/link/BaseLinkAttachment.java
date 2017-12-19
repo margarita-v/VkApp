@@ -11,11 +11,6 @@ public abstract class BaseLinkAttachment extends BaseAttachment {
     private static final String LINK_TITLE = "Link";
 
     BaseLinkAttachment(Link link) {
-        super(link);
-    }
-
-    @Override
-    protected String getDefaultTitle() {
-        return LINK_TITLE;
+        super(LINK_TITLE, link);
     }
 }

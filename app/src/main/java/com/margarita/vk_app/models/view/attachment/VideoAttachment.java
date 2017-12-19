@@ -18,8 +18,12 @@ public class VideoAttachment extends BaseAttachment {
 
     private static final String VIDEO_TITLE = "Video";
 
+    private VideoAttachment(String title, String url) {
+        super(title.isEmpty() ? VIDEO_TITLE : title, url);
+    }
+
     public VideoAttachment(Video video) {
-        super(video);
+        this(video.getTitle(), video.getPhoto320());
         this.id = video.getId();
         this.ownerId = video.getOwnerId();
 
@@ -35,11 +39,6 @@ public class VideoAttachment extends BaseAttachment {
     @Override
     protected BaseViewHolder onCreateViewHolder(View view) {
         return new VideoAttachmentHolder(view);
-    }
-
-    @Override
-    protected String getDefaultTitle() {
-        return VIDEO_TITLE;
     }
 
     public int getOwnerId() {

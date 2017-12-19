@@ -15,26 +15,19 @@ public abstract class BaseDocAttachment extends BaseAttachment {
     private static final String DOC_TITLE = "Document";
     private static final String DOT = ".";
 
-    private BaseDocAttachment(String title, long size, String ext) {
-        super(title.isEmpty() ? DOC_TITLE : Utils.removeExtFromText(title));
+    private BaseDocAttachment(String title, String url, long size, String ext) {
+        super(title.isEmpty() ? DOC_TITLE : Utils.removeExtFromText(title), url);
         this.size = Utils.formatSize(size);
         this.ext = DOT + ext;
     }
 
     BaseDocAttachment(String fileName, long size) {
         // We should get file extension from the full filename to use a private constructor
-        this(fileName, size, fileName.substring(fileName.lastIndexOf(DOT + 1)));
+        this(fileName, null, size, fileName.substring(fileName.lastIndexOf(DOT + 1)));
     }
 
     BaseDocAttachment(VkDocument document) {
-        super(document);
-        this.size = Utils.formatSize(document.getSize());
-        this.ext = DOT + document.getExt();
-    }
-
-    @Override
-    protected String getDefaultTitle() {
-        return DOC_TITLE;
+        this(document.getTitle(), document.getUrl(), document.getSize(), document.getExt());
     }
 
     public String getSize() {

@@ -14,12 +14,12 @@ public class ImageAttachment extends BaseAttachment {
     private static final String IMAGE_TITLE = "Image";
 
     public ImageAttachment(String url) {
-        super(url);
+        super(null, url);
         this.needClick = false;
     }
 
     public ImageAttachment(Photo photo) {
-        super(photo.getPhoto604());
+        super(null, photo.getPhoto604());
     }
 
     @Override
@@ -30,11 +30,6 @@ public class ImageAttachment extends BaseAttachment {
     @Override
     protected BaseViewHolder onCreateViewHolder(View view) {
         return new ImageAttachmentHolder(view);
-    }
-
-    @Override
-    protected String getDefaultTitle() {
-        return IMAGE_TITLE;
     }
 
     public boolean isNeedClick() {
