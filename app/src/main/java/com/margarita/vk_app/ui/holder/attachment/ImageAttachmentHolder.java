@@ -9,14 +9,13 @@ import com.margarita.vk_app.common.manager.VkFragmentManager;
 import com.margarita.vk_app.models.view.attachment.ImageAttachment;
 import com.margarita.vk_app.ui.activity.BaseActivity;
 import com.margarita.vk_app.ui.fragment.attachment.ImageFragment;
-import com.margarita.vk_app.ui.holder.BaseViewHolder;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class ImageAttachmentHolder extends BaseViewHolder<ImageAttachment> {
+public class ImageAttachmentHolder extends BaseAttachmentHolder<ImageAttachment> {
 
     @BindView(R.id.ivAttachmentImage)
     ImageView ivAttachmentImage;
@@ -36,16 +35,16 @@ public class ImageAttachmentHolder extends BaseViewHolder<ImageAttachment> {
             itemView.setOnClickListener(view ->
                     fragmentManager.addFragment(
                             (BaseActivity) itemView.getContext(),
-                            ImageFragment.newInstance(imageAttachment.getPhotoUrl()),
+                            ImageFragment.newInstance(imageAttachment.getUrl()),
                             R.id.container));
         }
 
-        loadImage(imageAttachment.getPhotoUrl(), ivAttachmentImage);
+        loadImage(imageAttachment.getUrl(), ivAttachmentImage);
     }
 
     @Override
     public void unbindViewHolder() {
-        itemView.setOnClickListener(null);
+        super.unbindViewHolder();
         clearImageView(ivAttachmentImage);
     }
 }

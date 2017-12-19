@@ -11,7 +11,6 @@ import com.margarita.vk_app.models.attachment.video.Files;
 import com.margarita.vk_app.models.view.attachment.VideoAttachment;
 import com.margarita.vk_app.rest.api.VideoApi;
 import com.margarita.vk_app.rest.model.request.VideoGetRequest;
-import com.margarita.vk_app.ui.holder.BaseViewHolder;
 
 import javax.inject.Inject;
 
@@ -21,7 +20,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
-public class VideoAttachmentHolder extends BaseViewHolder<VideoAttachment> {
+public class VideoAttachmentHolder extends BaseAttachmentHolder<VideoAttachment> {
 
     @BindView(R.id.tvAttachmentVideoTitle)
     TextView tvTitle;
@@ -66,12 +65,12 @@ public class VideoAttachmentHolder extends BaseViewHolder<VideoAttachment> {
         tvViewsCount.setText(videoAttachment.getViewCount());
         tvDuration.setText(videoAttachment.getDuration());
 
-        loadImage(videoAttachment.getImageUrl(), ivVideoPicture);
+        loadImage(videoAttachment.getUrl(), ivVideoPicture);
     }
 
     @Override
     public void unbindViewHolder() {
-        itemView.setOnClickListener(null);
+        super.unbindViewHolder();
         clearTextView(tvTitle);
         clearTextView(tvDuration);
         clearImageView(ivVideoPicture);
