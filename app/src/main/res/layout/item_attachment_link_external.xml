@@ -26,7 +26,7 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/iv_attachment_picture"
+                android:id="@+id/ivAttachmentImage"
                 android:layout_width="match_parent"
                 android:layout_height="152dp"
                 android:layout_below="@+id/rvLinkImage"

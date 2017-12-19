@@ -6,7 +6,7 @@ import com.margarita.vk_app.models.LayoutTypes;
 import com.margarita.vk_app.models.attachment.doc.Size;
 import com.margarita.vk_app.models.attachment.doc.VkDocument;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
-import com.margarita.vk_app.ui.holder.attachment.doc.DocImageAttachmentHolder;
+import com.margarita.vk_app.ui.holder.attachment.doc.DocImageHolder;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ public class DocImageAttachment extends BaseDocAttachment {
 
     @Override
     protected BaseViewHolder onCreateViewHolder(View view) {
-        return new DocImageAttachmentHolder(view);
+        return new DocImageHolder(view);
     }
 
     @Override

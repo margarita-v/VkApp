@@ -9,12 +9,12 @@ import com.margarita.vk_app.models.view.attachment.doc.DocImageAttachment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class DocImageAttachmentHolder extends BaseDocHolder<DocImageAttachment> {
+public class DocImageHolder extends BaseDocHolder<DocImageAttachment> {
 
     @BindView(R.id.ivAttachmentImage)
-    private ImageView ivAttachmentImage;
+    ImageView ivAttachmentImage;
 
-    public DocImageAttachmentHolder(View itemView) {
+    public DocImageHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
     }

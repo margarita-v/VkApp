@@ -28,9 +28,9 @@ public class VideoAttachment extends BaseViewModel {
         String videoTitle = video.getTitle();
         this.title = videoTitle.isEmpty() ? VIDEO_TITLE : videoTitle;
 
-        viewCount = Utils.formatViewsCount(video.getViews());
-        duration = Utils.parseDuration(video.getDuration());
-        imageUrl = video.getPhoto320();
+        this.viewCount = Utils.formatViewsCount(video.getViews());
+        this.duration = Utils.parseDuration(video.getDuration());
+        this.imageUrl = video.getPhoto320();
     }
 
     @Override

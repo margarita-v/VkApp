@@ -14,12 +14,12 @@ public class ImageAttachment extends BaseViewModel {
     private boolean needClick = true;
 
     public ImageAttachment(String url) {
-        mPhotoUrl = url;
-        needClick = false;
+        this.mPhotoUrl = url;
+        this.needClick = false;
     }
 
     public ImageAttachment(Photo photo) {
-        mPhotoUrl = photo.getPhoto604();
+        this.mPhotoUrl = photo.getPhoto604();
     }
 
     @Override

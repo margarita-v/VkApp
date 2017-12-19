@@ -18,7 +18,7 @@ public class ImageFragment extends BaseFragment {
     /**
      * Key for bundle
      */
-    private static final String URL_KEY = "url";
+    private static final String URL_KEY = "tvUrl";
 
     public static ImageFragment newInstance(String url) {
         Bundle args = new Bundle();

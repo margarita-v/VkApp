@@ -17,13 +17,13 @@ import butterknife.ButterKnife;
 abstract class BaseDocHolder<T extends BaseDocAttachment> extends BaseViewHolder<T> {
 
     @BindView(R.id.tvAttachmentTitle)
-    private TextView tvTitle;
+    TextView tvTitle;
 
     @BindView(R.id.tvAttachmentExt)
-    private TextView tvExt;
+    TextView tvExt;
 
     @BindView(R.id.tvAttachmentSize)
-    private TextView tvSize;
+    TextView tvSize;
 
     BaseDocHolder(View itemView) {
         super(itemView);
@@ -31,10 +31,10 @@ abstract class BaseDocHolder<T extends BaseDocAttachment> extends BaseViewHolder
     }
 
     @Override
-    public void bindViewHolder(T baseDocAttachment) {
-        tvTitle.setText(baseDocAttachment.getTitle());
-        tvSize.setText(baseDocAttachment.getSize());
-        tvExt.setText(baseDocAttachment.getExt());
+    public void bindViewHolder(T attachment) {
+        tvTitle.setText(attachment.getTitle());
+        tvSize.setText(attachment.getSize());
+        tvExt.setText(attachment.getExt());
     }
 
     @Override
@@ -47,10 +47,10 @@ abstract class BaseDocHolder<T extends BaseDocAttachment> extends BaseViewHolder
 
     /**
      * Method for setting on click listener to itemView
-     * @param baseDocAttachment Doc attachment
+     * @param attachment Doc attachment
      */
-    void setOnClickListener(BaseDocAttachment baseDocAttachment) {
+    void setOnClickListener(T attachment) {
         itemView.setOnClickListener(view ->
-                Utils.openUrlInActionView(baseDocAttachment.getUrl(), view.getContext()));
+                Utils.openUrlInActionView(attachment.getUrl(), view.getContext()));
     }
 }

@@ -2,7 +2,6 @@ package com.margarita.vk_app.ui.holder.attachment.doc;
 
 import android.view.View;
 
-import com.margarita.vk_app.models.view.attachment.doc.BaseDocAttachment;
 import com.margarita.vk_app.models.view.attachment.doc.DocAttachment;
 
 public class DocAttachmentHolder extends BaseDocHolder<DocAttachment> {
