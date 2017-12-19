@@ -4,22 +4,22 @@ import android.view.View;
 
 import com.margarita.vk_app.models.LayoutTypes;
 import com.margarita.vk_app.models.attachment.Photo;
-import com.margarita.vk_app.models.view.base.BaseViewModel;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
 import com.margarita.vk_app.ui.holder.attachment.ImageAttachmentHolder;
 
-public class ImageAttachment extends BaseViewModel {
+public class ImageAttachment extends BaseAttachment {
 
-    private String mPhotoUrl;
     private boolean needClick = true;
 
+    private static final String IMAGE_TITLE = "Image";
+
     public ImageAttachment(String url) {
-        this.mPhotoUrl = url;
+        super(url);
         this.needClick = false;
     }
 
     public ImageAttachment(Photo photo) {
-        this.mPhotoUrl = photo.getPhoto604();
+        super(photo.getPhoto604());
     }
 
     @Override
@@ -32,8 +32,9 @@ public class ImageAttachment extends BaseViewModel {
         return new ImageAttachmentHolder(view);
     }
 
-    public String getPhotoUrl() {
-        return mPhotoUrl;
+    @Override
+    protected String getDefaultTitle() {
+        return IMAGE_TITLE;
     }
 
     public boolean isNeedClick() {

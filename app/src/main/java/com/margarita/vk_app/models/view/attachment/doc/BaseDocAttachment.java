@@ -2,23 +2,21 @@ package com.margarita.vk_app.models.view.attachment.doc;
 
 import com.margarita.vk_app.common.utils.Utils;
 import com.margarita.vk_app.models.attachment.doc.VkDocument;
-import com.margarita.vk_app.models.view.base.BaseViewModel;
+import com.margarita.vk_app.models.view.attachment.BaseAttachment;
 
 /**
  * Base class for doc attachments
  */
-public abstract class BaseDocAttachment extends BaseViewModel {
+public abstract class BaseDocAttachment extends BaseAttachment {
 
-    private String title;
     private String size;
     private String ext;
-    private String url;
 
     private static final String DOC_TITLE = "Document";
     private static final String DOT = ".";
 
     private BaseDocAttachment(String title, long size, String ext) {
-        this.title = title.isEmpty() ? DOC_TITLE : Utils.removeExtFromText(title);
+        super(title.isEmpty() ? DOC_TITLE : Utils.removeExtFromText(title));
         this.size = Utils.formatSize(size);
         this.ext = DOT + ext;
     }
@@ -29,12 +27,14 @@ public abstract class BaseDocAttachment extends BaseViewModel {
     }
 
     BaseDocAttachment(VkDocument document) {
-        this(document.getTitle(), document.getSize(), document.getExt());
-        this.url = document.getUrl();
+        super(document);
+        this.size = Utils.formatSize(document.getSize());
+        this.ext = DOT + document.getExt();
     }
 
-    public String getTitle() {
-        return title;
+    @Override
+    protected String getDefaultTitle() {
+        return DOC_TITLE;
     }
 
     public String getSize() {
@@ -43,9 +43,5 @@ public abstract class BaseDocAttachment extends BaseViewModel {
 
     public String getExt() {
         return ext;
-    }
-
-    public String getUrl() {
-        return url;
     }
 }

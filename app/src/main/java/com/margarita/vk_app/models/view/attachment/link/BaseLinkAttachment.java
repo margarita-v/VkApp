@@ -1,33 +1,21 @@
 package com.margarita.vk_app.models.view.attachment.link;
 
 import com.margarita.vk_app.models.attachment.Link;
-import com.margarita.vk_app.models.view.base.BaseViewModel;
+import com.margarita.vk_app.models.view.attachment.BaseAttachment;
 
 /**
  * Base class for link attachments
  */
-public abstract class BaseLinkAttachment extends BaseViewModel {
-
-    private String title;
-    private String url;
+public abstract class BaseLinkAttachment extends BaseAttachment {
 
     private static final String LINK_TITLE = "Link";
 
     BaseLinkAttachment(Link link) {
-        this.url = link.getUrl();
-        String linkTitle = link.getTitle();
-        if (linkTitle == null || linkTitle.isEmpty()) {
-            String linkName = link.getName();
-            this.title = linkName != null ? linkName : LINK_TITLE;
-        } else
-            this.title = linkTitle;
+        super(link);
     }
 
-    public String getTitle() {
-        return title;
-    }
-
-    public String getUrl() {
-        return url;
+    @Override
+    protected String getDefaultTitle() {
+        return LINK_TITLE;
     }
 }
