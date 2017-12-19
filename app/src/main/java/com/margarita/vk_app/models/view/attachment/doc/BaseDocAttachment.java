@@ -1,4 +1,4 @@
-package com.margarita.vk_app.models.view.attachment;
+package com.margarita.vk_app.models.view.attachment.doc;
 
 import com.margarita.vk_app.common.utils.Utils;
 import com.margarita.vk_app.models.attachment.doc.VkDocument;
@@ -7,7 +7,7 @@ import com.margarita.vk_app.models.view.base.BaseViewModel;
 /**
  * Base class for doc attachments
  */
-abstract class BaseDocAttachment extends BaseViewModel {
+public abstract class BaseDocAttachment extends BaseViewModel {
 
     private String title;
     private String size;

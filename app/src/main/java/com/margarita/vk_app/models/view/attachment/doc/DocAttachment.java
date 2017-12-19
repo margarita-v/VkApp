@@ -1,11 +1,11 @@
-package com.margarita.vk_app.models.view.attachment;
+package com.margarita.vk_app.models.view.attachment.doc;
 
 import android.view.View;
 
 import com.margarita.vk_app.models.LayoutTypes;
 import com.margarita.vk_app.models.attachment.doc.VkDocument;
-import com.margarita.vk_app.models.attachment.video.Files;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
+import com.margarita.vk_app.ui.holder.attachment.doc.DocAttachmentHolder;
 
 import java.io.File;
 
@@ -27,7 +27,7 @@ public class DocAttachment extends BaseDocAttachment {
 
     @Override
     protected BaseViewHolder onCreateViewHolder(View view) {
-        return null;
+        return new DocAttachmentHolder(view);
     }
 
     @Override
@@ -37,5 +37,9 @@ public class DocAttachment extends BaseDocAttachment {
 
     public File getFile() {
         return file;
+    }
+
+    public boolean isNeedClick() {
+        return needClick;
     }
 }

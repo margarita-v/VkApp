@@ -1,4 +1,4 @@
-package com.margarita.vk_app.models.view.attachment;
+package com.margarita.vk_app.models.view.attachment.doc;
 
 import android.view.View;
 
@@ -6,7 +6,7 @@ import com.margarita.vk_app.models.LayoutTypes;
 import com.margarita.vk_app.models.attachment.doc.Size;
 import com.margarita.vk_app.models.attachment.doc.VkDocument;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
-import com.margarita.vk_app.ui.holder.attachment.DocImageAttachmentHolder;
+import com.margarita.vk_app.ui.holder.attachment.doc.DocImageAttachmentHolder;
 
 import java.util.List;
 
