@@ -13,7 +13,7 @@
     <string name="font_comment">&#xE0B9;</string>
     <string name="font_repost">&#xE050;</string>
 
-    <!-- Drawer items -->
+    <!-- Drawer items and screen names -->
     <string name="drawer_logout">Logout</string>
     <string name="drawer_item_news">News</string>
     <string name="drawer_item_my_posts">My Posts</string>
@@ -23,6 +23,7 @@
     <string name="drawer_item_topics">Topics</string>
     <string name="drawer_item_info">Info</string>
     <string name="drawer_item_group_rules">Group Rules</string>
+    <string name="screen_name_opened_post">Post</string>
 
     <!-- Info items -->
     <string name="info_status">Статус</string>
