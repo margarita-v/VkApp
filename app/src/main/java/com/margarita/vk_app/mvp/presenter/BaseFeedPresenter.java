@@ -94,7 +94,7 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
         return () -> {
             Realm realm = Realm.getDefaultInstance();
             // Perform the query which depends on item's type
-            RealmResults<T> results = performQuery(realm)
+            RealmResults<T> results = getListItems(realm)
                     .findAllSorted(getSortField(), sort);
             return getQueryResult(realm, results);
         };
@@ -108,8 +108,7 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
     Callable<T> getItemFromRealmCallable(Integer value) {
         return () -> {
             Realm realm = Realm.getDefaultInstance();
-            T result = performQuery(realm)
-                    .equalTo(getFieldName(), value)
+            T result = getSingleItem(realm, value)
                     .findFirst();
             return getQueryResult(realm, result);
         };
@@ -119,11 +118,31 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
     //region Methods for the database queries
 
     /**
-     * Perform query to the database
+     * Perform common query to the database
      * @param realm Realm instance for access to the database
      * @return Set of query result
      */
     protected abstract RealmQuery<T> performQuery(Realm realm);
+
+    /**
+     * Get a list of items as a subquery
+     * @param realm Realm instance for access to the database
+     * @return List of realm query items
+     */
+    RealmQuery<T> getListItems(Realm realm) {
+        return performQuery(realm);
+    }
+
+    /**
+     * Get items as a subquery with "where" condition
+     * @param realm Realm instance for access to the database
+     * @param value Value for "where" condition in query
+     * @return Query result for "where" condition
+     */
+    RealmQuery<T> getSingleItem(Realm realm, Integer value) {
+        return performQuery(realm)
+                .equalTo(getFieldName(), value);
+    }
 
     /**
      * Get a list of items as a query result

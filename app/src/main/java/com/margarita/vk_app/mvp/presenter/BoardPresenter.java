@@ -58,8 +58,16 @@ public class BoardPresenter extends BaseFeedPresenter<BaseFeedView, Topic> {
 
     @Override
     protected RealmQuery<Topic> performQuery(Realm realm) {
-        return realm.where(Topic.class)
-                .equalTo(getFieldName(), ApiConstants.GROUP_ID);
+        return realm.where(Topic.class);
+    }
+
+    /*
+        Override subquery method for getList method
+        because we need all board items for concrete group ID
+     */
+    @Override
+    protected RealmQuery<Topic> getListItems(Realm realm) {
+        return getSingleItem(realm, ApiConstants.GROUP_ID);
     }
 
     @Override
