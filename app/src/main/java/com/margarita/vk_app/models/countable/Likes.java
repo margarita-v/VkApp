@@ -1,12 +1,14 @@
 
-package com.margarita.vk_app.models.common;
+package com.margarita.vk_app.models.countable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
-public class Likes extends RealmObject {
+public class Likes extends RealmObject implements Countable {
+
+    private static final int USER_LIKES_VALUE = 1;
 
     @Expose
     private Integer count;
@@ -23,7 +25,8 @@ public class Likes extends RealmObject {
     @Expose
     private Integer canPublish;
 
-    public Integer getCount() {
+    @Override
+    public int getCount() {
         return count;
     }
 
@@ -37,5 +40,9 @@ public class Likes extends RealmObject {
 
     public Integer getCanPublish() {
         return canPublish;
+    }
+
+    public boolean isUserLikes() {
+        return userLikes == USER_LIKES_VALUE;
     }
 }

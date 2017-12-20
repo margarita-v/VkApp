@@ -1,12 +1,12 @@
 
-package com.margarita.vk_app.models.common;
+package com.margarita.vk_app.models.countable;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
-public class Comments extends RealmObject {
+public class Comments extends RealmObject implements Countable {
 
     @Expose
     private Integer count;
@@ -15,7 +15,8 @@ public class Comments extends RealmObject {
     @Expose
     private Integer canPost;
 
-    public Integer getCount() {
+    @Override
+    public int getCount() {
         return count;
     }
 

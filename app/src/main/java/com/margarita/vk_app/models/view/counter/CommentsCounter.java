@@ -1,6 +1,6 @@
 package com.margarita.vk_app.models.view.counter;
 
-import com.margarita.vk_app.models.common.Comments;
+import com.margarita.vk_app.models.countable.Comments;
 
 public class CommentsCounter extends CounterViewModel {
 

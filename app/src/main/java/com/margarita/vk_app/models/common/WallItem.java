@@ -4,6 +4,10 @@ package com.margarita.vk_app.models.common;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 import com.margarita.vk_app.models.attachment.ApiAttachment;
+import com.margarita.vk_app.models.countable.Comments;
+import com.margarita.vk_app.models.countable.Likes;
+import com.margarita.vk_app.models.countable.Reposts;
+import com.margarita.vk_app.models.countable.Views;
 
 import io.realm.RealmList;
 import io.realm.RealmObject;

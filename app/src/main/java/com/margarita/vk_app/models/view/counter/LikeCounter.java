@@ -1,7 +1,7 @@
 package com.margarita.vk_app.models.view.counter;
 
 import com.margarita.vk_app.R;
-import com.margarita.vk_app.models.common.Likes;
+import com.margarita.vk_app.models.countable.Likes;
 
 public class LikeCounter extends CounterViewModel {
 
