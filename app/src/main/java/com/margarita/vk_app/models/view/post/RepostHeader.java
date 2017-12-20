@@ -5,6 +5,7 @@ import android.view.View;
 import com.margarita.vk_app.models.LayoutTypes;
 import com.margarita.vk_app.models.common.WallItem;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
+import com.margarita.vk_app.ui.holder.post.RepostHeaderHolder;
 
 public class RepostHeader extends BaseOpenedPost {
 
@@ -17,7 +18,7 @@ public class RepostHeader extends BaseOpenedPost {
 
     @Override
     protected BaseViewHolder onCreateViewHolder(View view) {
-        return null;
+        return new RepostHeaderHolder(view);
     }
 
     @Override
