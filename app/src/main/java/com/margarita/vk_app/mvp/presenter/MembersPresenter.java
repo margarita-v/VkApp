@@ -45,7 +45,7 @@ public class MembersPresenter extends BaseFeedPresenter<BaseFeedView, Member> {
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
         return Observable.fromCallable(
-                getListFromRealmCallable(getSortField(), Sort.ASCENDING))
+                getListFromRealmCallable(Sort.ASCENDING))
                 .flatMap(Observable::fromIterable)
                 .map(MemberViewModel::new);
     }

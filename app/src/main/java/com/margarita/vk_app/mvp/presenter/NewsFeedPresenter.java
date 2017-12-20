@@ -67,7 +67,7 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView, WallItem>
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
         return Observable.fromCallable(
-                getListFromRealmCallable(getSortField(), Sort.DESCENDING))
+                getListFromRealmCallable(Sort.DESCENDING))
                 .flatMap(Observable::fromIterable)
                 .compose(applyFilter())
                 .flatMap(wallItem -> Observable.fromIterable(parseItemToList(wallItem)));

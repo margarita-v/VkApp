@@ -49,7 +49,7 @@ public class InfoPresenter extends BaseFeedPresenter<BaseFeedView, Group>
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
         return Observable.fromCallable(
-                getItemFromRealmCallable(FIELD_NAME, Math.abs(ApiConstants.GROUP_ID)))
+                getItemFromRealmCallable(Math.abs(ApiConstants.GROUP_ID)))
                 .flatMap(group -> Observable.fromIterable(parseItemToList(group)));
     }
 
@@ -75,5 +75,10 @@ public class InfoPresenter extends BaseFeedPresenter<BaseFeedView, Group>
         items.add(new InfoContactsViewModel());
         items.add(new InfoLinksViewModel());
         return items;
+    }
+
+    @Override
+    public String getFieldName() {
+        return FIELD_NAME;
     }
 }

@@ -51,7 +51,7 @@ public class BoardPresenter extends BaseFeedPresenter<BaseFeedView, Topic> {
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
         return Observable.fromCallable(
-                getListFromRealmCallable(getSortField(), Sort.DESCENDING))
+                getListFromRealmCallable(Sort.DESCENDING))
                 .flatMap(Observable::fromIterable)
                 .map(TopicViewModel::new);
     }
@@ -59,7 +59,7 @@ public class BoardPresenter extends BaseFeedPresenter<BaseFeedView, Topic> {
     @Override
     protected RealmQuery<Topic> performQuery(Realm realm) {
         return realm.where(Topic.class)
-                .equalTo(FIELD_NAME, ApiConstants.GROUP_ID);
+                .equalTo(getFieldName(), ApiConstants.GROUP_ID);
     }
 
     @Override
@@ -70,5 +70,10 @@ public class BoardPresenter extends BaseFeedPresenter<BaseFeedView, Topic> {
     @Override
     protected Topic getQueryResult(Realm realm, Topic result) {
         return realm.copyFromRealm(result);
+    }
+
+    @Override
+    public String getFieldName() {
+        return FIELD_NAME;
     }
 }

@@ -33,9 +33,10 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
     private static final int NEXT_PAGE_SIZE = 15;
 
     /**
-     * Sort field for query to the database
+     * Fields for query to the database
      */
     private static final String SORT_FIELD = "id";
+    private static final String FIELD_NAME = "id";
 
     private boolean isLoading;
 
@@ -86,31 +87,29 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
 
     /**
      * Get list of items from local database as Callable
-     * @param sortField Sort field for query to the database
      * @param sort Sort order for result items
      * @return List of items as Callable
      */
-    Callable<List<T>> getListFromRealmCallable(String sortField, Sort sort) {
+    Callable<List<T>> getListFromRealmCallable(Sort sort) {
         return () -> {
             Realm realm = Realm.getDefaultInstance();
             // Perform the query which depends on item's type
             RealmResults<T> results = performQuery(realm)
-                    .findAllSorted(sortField, sort);
+                    .findAllSorted(getSortField(), sort);
             return getQueryResult(realm, results);
         };
     }
 
     /**
      * Get single item from local database as Callable
-     * @param fieldName Field's name for query to the database
      * @param value Value for "where" condition in query
      * @return Single item as Callable
      */
-    Callable<T> getItemFromRealmCallable(String fieldName, Integer value) {
+    Callable<T> getItemFromRealmCallable(Integer value) {
         return () -> {
             Realm realm = Realm.getDefaultInstance();
             T result = performQuery(realm)
-                    .equalTo(fieldName, value)
+                    .equalTo(getFieldName(), value)
                     .findFirst();
             return getQueryResult(realm, result);
         };
@@ -150,6 +149,13 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
         return SORT_FIELD;
     }
 
+    /**
+     * Function which returns a name of field for "where" condition
+     * @return Field name for "where" condition
+     */
+    String getFieldName() {
+        return FIELD_NAME;
+    }
     //endregion
 
     /**
