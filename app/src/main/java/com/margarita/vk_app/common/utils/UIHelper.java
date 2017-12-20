@@ -21,7 +21,7 @@ public class UIHelper {
      * @param textView TextView widget
      * @param text Text for TextView
      */
-    public void setUpTextView(TextView textView, String text) {
+    public static void setUpTextView(TextView textView, String text) {
         textView.setText(text);
         textView.setVisibility(text.isEmpty() ? View.GONE : View.VISIBLE);
     }
