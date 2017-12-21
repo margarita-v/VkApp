@@ -4,6 +4,7 @@ import com.margarita.vk_app.models.Owner;
 import com.margarita.vk_app.models.attachment.ApiAttachment;
 import com.margarita.vk_app.models.attachment.Link;
 import com.margarita.vk_app.models.attachment.doc.VkDocument;
+import com.margarita.vk_app.models.common.CommentItem;
 import com.margarita.vk_app.models.common.WallItem;
 import com.margarita.vk_app.models.view.attachment.AudioAttachment;
 import com.margarita.vk_app.models.view.attachment.BaseAttachment;
@@ -92,6 +93,27 @@ public class VkListHelper {
                     throw new NoSuchElementException("Attachment type " +
                             attachment.getType() + " is not supported.");
             }
+        }
+        return result;
+    }
+
+    /**
+     * Get comments list from response
+     * @param response Response for getting comments list
+     * @param isFromTopic Flag for every comment item in the comments list
+     * @return List of comments
+     */
+    public static List<CommentItem> getComments(
+            ItemWithSendersResponse<CommentItem> response, boolean isFromTopic) {
+
+        List<CommentItem> result = response.getItems();
+        for (CommentItem item: result) {
+            Owner sender = response.getSender(item.getSenderId());
+            item.setSenderName(sender.getFullName());
+            item.setSenderPhoto(sender.getPhoto());
+            item.setFromTopic(isFromTopic);
+            item.setAttachmentsString(
+                    Utils.convertAttachmentsToFontIcons(item.getAttachments()));
         }
         return result;
     }
