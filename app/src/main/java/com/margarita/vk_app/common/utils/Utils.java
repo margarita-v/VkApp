@@ -7,8 +7,6 @@ import android.support.annotation.NonNull;
 
 import com.margarita.vk_app.models.attachment.ApiAttachment;
 import com.margarita.vk_app.models.attachment.Attachment;
-import com.margarita.vk_app.models.attachment.doc.VkDocument;
-import com.vk.sdk.api.model.VKAttachments;
 
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -79,8 +77,6 @@ public class Utils {
             Attachment attachment = apiAttachment.getAttachment();
             if (attachment != null)
                 result.append(attachment.getIconFont()).append(" ");
-            else if (apiAttachment.getType().equals(VKAttachments.TYPE_DOC))
-                result.append(VkDocument.ICON_FONT).append(" ");
         }
         return result.toString();
     }

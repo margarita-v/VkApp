@@ -45,6 +45,7 @@ public class OpenedPostFragment extends BaseFeedFragment implements OpenedPostVi
         super.onCreate(savedInstanceState);
         VkApplication.getApplicationComponent().inject(this);
 
+        setHasEndlessList(false);
         Bundle args = getArguments();
         if (args != null) {
             this.id = args.getInt(ID_KEY);
@@ -76,6 +77,7 @@ public class OpenedPostFragment extends BaseFeedFragment implements OpenedPostVi
     @Override
     public void setUpFooter(NewsItemFooter footerViewModel) {
         viewFooter.setVisibility(View.VISIBLE);
+        // For correct display of opened post's footer fonts
         new NewsItemFooterHolder(viewFooter).bindViewHolder(footerViewModel);
     }
 }

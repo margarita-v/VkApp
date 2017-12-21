@@ -30,7 +30,7 @@
             android:layout_toEndOf="@+id/civProfileImage"
             android:lines="1"
             android:singleLine="true"
-            android:textColor="@color/colorAccent"
+            android:textColor="@color/vk_black"
             android:textSize="16sp"
             android:textStyle="bold" />
     </RelativeLayout>

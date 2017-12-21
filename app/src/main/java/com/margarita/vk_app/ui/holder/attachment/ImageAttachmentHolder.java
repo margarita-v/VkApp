@@ -31,6 +31,7 @@ public class ImageAttachmentHolder extends BaseAttachmentHolder<ImageAttachment>
     @Override
     public void bindViewHolder(ImageAttachment imageAttachment) {
         if (imageAttachment.isNeedClick()) {
+            // Load image in web view with zoom functions
             addFragmentOnClick(fragmentManager,
                     ImageFragment.newInstance(imageAttachment.getUrl()));
         }

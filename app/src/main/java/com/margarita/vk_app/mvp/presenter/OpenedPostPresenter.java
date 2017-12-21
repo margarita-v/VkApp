@@ -101,22 +101,19 @@ public class OpenedPostPresenter extends BaseFeedPresenter<OpenedPostView, WallI
      * Function for flatMap method in Rx sequence
      * for getting a list of view models as Observable
      */
-    private Function<WallItem, ObservableSource<BaseViewModel>> getPostInfo = new Function<WallItem, ObservableSource<BaseViewModel>>() {
-        @Override
-        public ObservableSource<BaseViewModel> apply(WallItem wallItem) throws Exception {
-            List<BaseViewModel> list = new ArrayList<>();
-            List<BaseViewModel> forwardedList = new ArrayList<>();
+    private Function<WallItem, ObservableSource<BaseViewModel>> getPostInfo = wallItem -> {
+        List<BaseViewModel> list = new ArrayList<>();
+        List<BaseViewModel> forwardedList = new ArrayList<>();
 
-            list.add(new PostHeader(wallItem));
-            addAll(list, wallItem);
+        list.add(new PostHeader(wallItem));
+        addAll(list, wallItem);
 
-            if (wallItem.hasSharedRepost()) {
-                WallItem repost = wallItem.getSharedRepost();
-                forwardedList.add(new RepostHeader(repost));
-                addAll(forwardedList, repost);
-            }
-            return Observable.fromIterable(list)
-                    .concatWith(Observable.fromIterable(forwardedList));
+        if (wallItem.hasSharedRepost()) {
+            WallItem repost = wallItem.getSharedRepost();
+            forwardedList.add(new RepostHeader(repost));
+            addAll(forwardedList, repost);
         }
+        return Observable.fromIterable(list)
+                .concatWith(Observable.fromIterable(forwardedList));
     };
 }

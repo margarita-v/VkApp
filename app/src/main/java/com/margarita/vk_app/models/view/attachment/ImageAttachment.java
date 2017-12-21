@@ -11,8 +11,6 @@ public class ImageAttachment extends BaseAttachment {
 
     private boolean needClick = true;
 
-    private static final String IMAGE_TITLE = "Image";
-
     public ImageAttachment(String url) {
         super(null, url);
         this.needClick = false;
