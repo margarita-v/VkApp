@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.margarita.vk_app.R;
-import com.margarita.vk_app.common.utils.UIHelper;
 import com.margarita.vk_app.models.view.post.PostHeader;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
 
@@ -32,7 +31,7 @@ public class PostHeaderHolder extends BaseViewHolder<PostHeader> {
     public void bindViewHolder(PostHeader postHeader) {
         loadImage(postHeader.getProfilePhoto(), civProfilePhoto);
         tvProfileName.setText(postHeader.getProfileName());
-        UIHelper.setUpTextView(tvText, postHeader.getText());
+        setUpTextView(tvText, postHeader.getText());
     }
 
     @Override

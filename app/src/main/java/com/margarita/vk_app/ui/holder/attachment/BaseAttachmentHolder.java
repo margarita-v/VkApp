@@ -17,7 +17,7 @@ public abstract class BaseAttachmentHolder<T extends BaseAttachment> extends Bas
 
     @Override
     public void unbindViewHolder() {
-        itemView.setOnClickListener(null);
+        clearOnClickListener();
     }
 
     /**

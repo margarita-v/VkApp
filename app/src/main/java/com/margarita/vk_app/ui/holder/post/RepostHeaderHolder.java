@@ -4,7 +4,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.margarita.vk_app.R;
-import com.margarita.vk_app.common.utils.UIHelper;
 import com.margarita.vk_app.common.utils.Utils;
 import com.margarita.vk_app.models.view.post.RepostHeader;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
@@ -36,7 +35,7 @@ public class RepostHeaderHolder extends BaseViewHolder<RepostHeader> {
     public void bindViewHolder(RepostHeader repostHeader) {
         loadImage(repostHeader.getProfilePhoto(), civProfileImage);
         tvProfileName.setText(repostHeader.getProfileName());
-        UIHelper.setUpTextView(tvRepostText, repostHeader.getText());
+        setUpTextView(tvRepostText, repostHeader.getText());
         tvRepostDate.setText(Utils.parseDate(repostHeader.getDate()));
     }
 

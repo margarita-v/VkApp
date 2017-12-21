@@ -6,7 +6,9 @@ import android.widget.TextView;
 
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
+import com.margarita.vk_app.common.manager.VkFragmentManager;
 import com.margarita.vk_app.models.view.NewsItemBody;
+import com.margarita.vk_app.ui.fragment.OpenedPostFragment;
 
 import javax.inject.Inject;
 
@@ -24,6 +26,9 @@ public class NewsItemBodyHolder extends BaseViewHolder<NewsItemBody> {
     @Inject
     Typeface googleFont;
 
+    @Inject
+    VkFragmentManager fragmentManager;
+
     public NewsItemBodyHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
@@ -39,10 +44,17 @@ public class NewsItemBodyHolder extends BaseViewHolder<NewsItemBody> {
             tvAttachments.setText(attachmentsString);
         else
             tvAttachments.setVisibility(View.GONE);
+
+        addFragmentOnClick(fragmentManager,
+                OpenedPostFragment.newInstance(newsFeedItemBody.getId()));
+
+        setUpTextView(tvText, newsFeedItemBody.getText());
+        setUpTextView(tvAttachments, newsFeedItemBody.getAttachmentsString());
     }
 
     @Override
     public void unbindViewHolder() {
+        clearOnClickListener();
         clearTextView(tvText);
         clearTextView(tvAttachments);
     }

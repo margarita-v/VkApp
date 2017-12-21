@@ -7,7 +7,6 @@ import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.manager.VkFragmentManager;
 import com.margarita.vk_app.models.view.attachment.ImageAttachment;
-import com.margarita.vk_app.ui.activity.BaseActivity;
 import com.margarita.vk_app.ui.fragment.attachment.ImageFragment;
 
 import javax.inject.Inject;
@@ -32,13 +31,9 @@ public class ImageAttachmentHolder extends BaseAttachmentHolder<ImageAttachment>
     @Override
     public void bindViewHolder(ImageAttachment imageAttachment) {
         if (imageAttachment.isNeedClick()) {
-            itemView.setOnClickListener(view ->
-                    fragmentManager.addFragment(
-                            (BaseActivity) itemView.getContext(),
-                            ImageFragment.newInstance(imageAttachment.getUrl()),
-                            R.id.container));
+            addFragmentOnClick(fragmentManager,
+                    ImageFragment.newInstance(imageAttachment.getUrl()));
         }
-
         loadImage(imageAttachment.getUrl(), ivAttachmentImage);
     }
 

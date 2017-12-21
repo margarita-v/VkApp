@@ -5,6 +5,7 @@ import android.content.res.Resources;
 import android.view.View;
 import android.widget.TextView;
 
+//TODO Remove this class
 public class UIHelper {
 
     private UIHelper ourInstance;

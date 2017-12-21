@@ -6,7 +6,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.margarita.vk_app.R;
+import com.margarita.vk_app.common.manager.VkFragmentManager;
 import com.margarita.vk_app.models.view.base.BaseViewModel;
+import com.margarita.vk_app.ui.activity.BaseActivity;
+import com.margarita.vk_app.ui.fragment.base.BaseFragment;
 
 public abstract class BaseViewHolder<Item extends BaseViewModel>
         extends RecyclerView.ViewHolder {
@@ -36,6 +40,13 @@ public abstract class BaseViewHolder<Item extends BaseViewModel>
     }
 
     /**
+     * Clear on click listener for the itemview
+     */
+    protected void clearOnClickListener() {
+        itemView.setOnClickListener(null);
+    }
+
+    /**
      * Show picture
      * @param imagePath Path for loading picture
      * @param imageView Component which will show the picture
@@ -44,5 +55,29 @@ public abstract class BaseViewHolder<Item extends BaseViewModel>
         Glide.with(itemView.getContext())
                 .load(imagePath)
                 .into(imageView);
+    }
+
+    /**
+     * Set up text view with text and visibility
+     * @param textView TextView which text will be set
+     * @param text Text for TextView
+     */
+    protected void setUpTextView(TextView textView, String text) {
+        textView.setText(text);
+        textView.setVisibility(text.isEmpty() ? View.GONE : View.VISIBLE);
+        //UIHelper.setUpTextView(textView, text);
+    }
+
+    /**
+     * Add new fragment to fragment manager when user clicks to the itemview
+     * @param fragmentManager Fragment manager for all fragments
+     * @param fragment Fragment which will be added
+     */
+    protected void addFragmentOnClick(VkFragmentManager fragmentManager,
+                                      BaseFragment fragment) {
+        itemView.setOnClickListener(view ->
+                fragmentManager.addFragment(
+                        (BaseActivity) view.getContext(), fragment, R.id.container)
+        );
     }
 }
