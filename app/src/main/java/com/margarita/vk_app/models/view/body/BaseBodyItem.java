@@ -1,21 +1,25 @@
-package com.margarita.vk_app.models.view;
+package com.margarita.vk_app.models.view.body;
 
-import android.view.View;
-
-import com.margarita.vk_app.models.LayoutTypes;
+import com.margarita.vk_app.models.common.CommentItem;
 import com.margarita.vk_app.models.common.WallItem;
 import com.margarita.vk_app.models.view.base.BaseIdModel;
-import com.margarita.vk_app.ui.holder.BaseViewHolder;
-import com.margarita.vk_app.ui.holder.NewsItemBodyHolder;
 
-public class NewsItemBody extends BaseIdModel {
+/**
+ * Base class for items which represent some item's body
+ */
+public abstract class BaseBodyItem extends BaseIdModel {
 
     private String text;
     private String attachmentsString;
 
-    public NewsItemBody(WallItem wallItem) {
-        super(wallItem.getId());
+    BaseBodyItem(CommentItem commentItem) {
+        super(commentItem.getId());
+        this.text = commentItem.getDisplayText();
+        this.attachmentsString = commentItem.getDisplayAttachmentsString();
+    }
 
+    BaseBodyItem(WallItem wallItem) {
+        super(wallItem.getId());
         if (wallItem.hasSharedRepost()) {
             this.text = wallItem.getSharedRepost().getText();
             this.attachmentsString = wallItem.getSharedRepost().getAttachmentsString();
@@ -23,16 +27,6 @@ public class NewsItemBody extends BaseIdModel {
             this.text = wallItem.getText();
             this.attachmentsString = wallItem.getAttachmentsString();
         }
-    }
-
-    @Override
-    protected BaseViewHolder onCreateViewHolder(View view) {
-        return new NewsItemBodyHolder(view);
-    }
-
-    @Override
-    public LayoutTypes getType() {
-        return LayoutTypes.NewsFeedItemBody;
     }
 
     public String getText() {

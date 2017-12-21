@@ -39,7 +39,7 @@ public class UIHelper {
      * @param textView TextView widget
      * @param message Repost message
      */
-    public void setUpReposts(TextView textView, String message) {
+    public static void setUpReposts(TextView textView, String message) {
         int color;
         if (!message.isEmpty()) {
             textView.setVisibility(View.VISIBLE);
