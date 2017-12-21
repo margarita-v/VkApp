@@ -8,8 +8,8 @@ import com.margarita.vk_app.models.view.NewsItemFooter;
 public interface OpenedPostView extends BaseFeedView {
 
     /**
-     * Set up footer for opened post
-     * @param footer Post's footer
+     * Set up footer view model for opened post
+     * @param footerViewModel Footer's view model
      */
-    void setUpFooter(NewsItemFooter footer);
+    void setUpFooter(NewsItemFooter footerViewModel);
 }

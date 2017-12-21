@@ -1,7 +1,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/rlRoot"
+    android:id="@+id/rvRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorDefaultWhite"
@@ -38,7 +38,7 @@
     </android.support.v4.widget.SwipeRefreshLayout>
 
     <RelativeLayout
-        android:id="@+id/rlFooter"
+        android:id="@+id/rvFooter"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_alignParentBottom="true"
@@ -49,7 +49,7 @@
         <!-- android:elevation="8dp" -->
 
         <RelativeLayout
-            android:id="@+id/rlDate"
+            android:id="@+id/rvDate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -73,7 +73,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rlComments"
+            android:id="@+id/rvComments"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
@@ -115,12 +115,12 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rlReposts"
+            android:id="@+id/rvReposts"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/rlComments"
-            android:layout_toEndOf="@+id/rlComments"
+            android:layout_toRightOf="@+id/rvComments"
+            android:layout_toEndOf="@+id/rvComments"
             android:layout_marginBottom="6dp"
             android:paddingLeft="16dp"
             android:paddingRight="16dp">
@@ -154,7 +154,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rlLikes"
+            android:id="@+id/rvLinks"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:background="?android:attr/selectableItemBackground"
@@ -165,8 +165,8 @@
             android:paddingRight="16dp"
             android:layout_marginBottom="6dp"
             android:layout_centerVertical="true"
-            android:layout_toRightOf="@id/rlReposts"
-            android:layout_toEndOf="@id/rlReposts">
+            android:layout_toRightOf="@id/rvReposts"
+            android:layout_toEndOf="@id/rvReposts">
 
             <TextView
                 android:id="@+id/tvLikesIcon"
