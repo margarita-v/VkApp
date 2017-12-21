@@ -1,6 +1,7 @@
 package com.margarita.vk_app.rest.api;
 
 import com.margarita.vk_app.rest.model.response.sender.WallGetByIdResponse;
+import com.margarita.vk_app.rest.model.response.sender.WallGetCommentsResponse;
 import com.margarita.vk_app.rest.model.response.sender.WallGetResponse;
 
 import java.util.Map;
@@ -16,4 +17,7 @@ public interface WallApi {
 
     @GET(ApiMethods.WALL_GET_BY_ID)
     Observable<WallGetByIdResponse> getById(@QueryMap Map<String, String> map);
+
+    @GET(ApiMethods.WALL_GET_COMMENTS)
+    Observable<WallGetCommentsResponse> getComments(@QueryMap Map<String, String> map);
 }

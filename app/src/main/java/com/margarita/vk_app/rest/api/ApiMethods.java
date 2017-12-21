@@ -6,6 +6,8 @@ class ApiMethods {
 
     static final String WALL_GET_BY_ID = "wall.getById";
 
+    static final String WALL_GET_COMMENTS = "wall.getComments";
+
     static final String USERS_GET = "users.get";
 
     static final String GROUPS_GET_MEMBERS = "groups.getMembers";
