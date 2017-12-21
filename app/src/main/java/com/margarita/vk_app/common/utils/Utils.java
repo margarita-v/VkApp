@@ -38,6 +38,10 @@ public class Utils {
      */
     private static final String SIZE_PATTERN = "%.1f %sB";
 
+    /*
+     * Pattern for IDs parsing
+    private static final String ID_PATTERN = "[^-?0-9]+";
+     */
     //endregion
 
     /**
@@ -61,7 +65,8 @@ public class Utils {
     private static final String SIZE_UNITS_NAMES = "kMGTPE";
 
     private static final String BYTE_UNIT_NAME = " B", DIVIDER = "_";
-    private static final char SPACE = ' ', DOT = '.';
+    private static final String SPACE = " ", UNDERSCORE = "_";
+    private static final char DOT = '.';
 
     /**
      * Convert attachments to string of a font icons
@@ -103,6 +108,11 @@ public class Utils {
         return sdf.format(date);
     }
 
+    /**
+     * Parse duration of audio of video to String
+     * @param initialDuration Duration in milliseconds
+     * @return Duration in a string format
+     */
     public static String parseDuration(long initialDuration) {
         Locale locale = Locale.getDefault();
         Date date = new Date(initialDuration * TIME_UNIT);
@@ -110,11 +120,16 @@ public class Utils {
         return sdf.format(date);
     }
 
+    /**
+     * Format video's count of view
+     * @param viewsCount Count of view's of video
+     * @return Views count in the concrete format
+     */
     public static String formatViewsCount(int viewsCount) {
         DecimalFormat formatter = (DecimalFormat) NumberFormat.getInstance(Locale.US);
         DecimalFormatSymbols symbols = formatter.getDecimalFormatSymbols();
 
-        symbols.setGroupingSeparator(SPACE);
+        symbols.setGroupingSeparator(' ');
         formatter.setDecimalFormatSymbols(symbols);
 
         return formatter.format(viewsCount);
@@ -169,6 +184,16 @@ public class Utils {
                 context.startActivity(intent);
             }
         }
+    }
+
+    /**
+     * Function for splitting string value which contains
+     * two IDs divided by underscore
+     * @param ids String which contains IDs divided by underscore
+     * @return String array of IDs
+     */
+    public static String[] splitIds(String ids) {
+        return ids.replaceAll(UNDERSCORE, SPACE).trim().split(SPACE);
     }
 
     //region Functions for joining owner id and owner's item id
