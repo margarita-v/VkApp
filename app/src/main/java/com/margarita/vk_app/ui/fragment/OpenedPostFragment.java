@@ -12,7 +12,7 @@ import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
 import com.margarita.vk_app.mvp.presenter.OpenedPostPresenter;
 import com.margarita.vk_app.mvp.view.OpenedPostView;
 import com.margarita.vk_app.ui.fragment.base.BaseFeedFragment;
-import com.margarita.vk_app.ui.holder.NewsItemFooterHolder;
+import com.margarita.vk_app.ui.holder.item.footer.NewsItemFooterHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

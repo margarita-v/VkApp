@@ -7,7 +7,7 @@ import com.margarita.vk_app.models.common.WallItem;
 import com.margarita.vk_app.models.view.counter.CommentsCounter;
 import com.margarita.vk_app.models.view.counter.RepostCounter;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
-import com.margarita.vk_app.ui.holder.NewsItemFooterHolder;
+import com.margarita.vk_app.ui.holder.item.footer.NewsItemFooterHolder;
 
 public class NewsItemFooter extends BaseFooterItem {
 

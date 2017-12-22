@@ -14,11 +14,12 @@ import com.margarita.vk_app.ui.activity.BaseActivity;
 import com.margarita.vk_app.ui.activity.MainActivity;
 import com.margarita.vk_app.ui.fragment.NewsFeedFragment;
 import com.margarita.vk_app.ui.fragment.OpenedPostFragment;
-import com.margarita.vk_app.ui.holder.NewsItemFooterHolder;
+import com.margarita.vk_app.ui.holder.item.footer.CommentFooterHolder;
+import com.margarita.vk_app.ui.holder.item.footer.NewsItemFooterHolder;
 import com.margarita.vk_app.ui.holder.attachment.ImageAttachmentHolder;
 import com.margarita.vk_app.ui.holder.attachment.VideoAttachmentHolder;
-import com.margarita.vk_app.ui.holder.body.CommentBodyHolder;
-import com.margarita.vk_app.ui.holder.body.NewsItemBodyHolder;
+import com.margarita.vk_app.ui.holder.item.body.CommentBodyHolder;
+import com.margarita.vk_app.ui.holder.item.body.NewsItemBodyHolder;
 
 import javax.inject.Singleton;
 
@@ -37,12 +38,14 @@ public interface ApplicationComponent {
     void inject(OpenedPostFragment fragment);
 
     // View holders
-    void inject(NewsItemFooterHolder holder);
     void inject(ImageAttachmentHolder holder);
     void inject(VideoAttachmentHolder holder);
     // body view holders
     void inject(NewsItemBodyHolder holder);
     void inject(CommentBodyHolder holder);
+    // footer view holders
+    void inject(NewsItemFooterHolder holder);
+    void inject(CommentFooterHolder holder);
 
     // Presenters
     void inject(NewsFeedPresenter presenter);

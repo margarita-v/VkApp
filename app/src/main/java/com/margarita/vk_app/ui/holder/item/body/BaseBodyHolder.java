@@ -1,4 +1,4 @@
-package com.margarita.vk_app.ui.holder.body;
+package com.margarita.vk_app.ui.holder.item.body;
 
 import android.graphics.Typeface;
 import android.view.View;
@@ -34,7 +34,6 @@ public abstract class BaseBodyHolder<T extends BaseBodyItem> extends BaseViewHol
     BaseBodyHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);
-        tvAttachments.setTypeface(googleFont);
     }
 
     @Override

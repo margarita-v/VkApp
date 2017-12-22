@@ -1,4 +1,4 @@
-package com.margarita.vk_app.ui.holder.body;
+package com.margarita.vk_app.ui.holder.item.body;
 
 import android.view.View;
 
@@ -11,6 +11,7 @@ public class NewsItemBodyHolder extends BaseBodyHolder<NewsItemBody> {
     public NewsItemBodyHolder(View itemView) {
         super(itemView);
         VkApplication.getApplicationComponent().inject(this);
+        tvAttachments.setTypeface(googleFont);
     }
 
     @Override
