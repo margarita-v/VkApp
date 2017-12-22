@@ -1,39 +1,16 @@
-package com.margarita.vk_app.ui.holder;
+package com.margarita.vk_app.ui.holder.body;
 
-import android.graphics.Typeface;
 import android.view.View;
-import android.widget.TextView;
 
-import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
-import com.margarita.vk_app.common.manager.VkFragmentManager;
 import com.margarita.vk_app.models.view.body.NewsItemBody;
 import com.margarita.vk_app.ui.fragment.OpenedPostFragment;
 
-import javax.inject.Inject;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
-
-public class NewsItemBodyHolder extends BaseViewHolder<NewsItemBody> {
-
-    @BindView(R.id.tvText)
-    TextView tvText;
-
-    @BindView(R.id.tvAttachments)
-    TextView tvAttachments;
-
-    @Inject
-    Typeface googleFont;
-
-    @Inject
-    VkFragmentManager fragmentManager;
+public class NewsItemBodyHolder extends BaseBodyHolder<NewsItemBody> {
 
     public NewsItemBodyHolder(View itemView) {
         super(itemView);
-        ButterKnife.bind(this, itemView);
         VkApplication.getApplicationComponent().inject(this);
-        tvAttachments.setTypeface(googleFont);
     }
 
     @Override
@@ -54,8 +31,7 @@ public class NewsItemBodyHolder extends BaseViewHolder<NewsItemBody> {
 
     @Override
     public void unbindViewHolder() {
+        super.unbindViewHolder();
         clearOnClickListener();
-        clearTextView(tvText);
-        clearTextView(tvAttachments);
     }
 }

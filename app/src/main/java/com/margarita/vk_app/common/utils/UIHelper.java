@@ -29,17 +29,17 @@ public class UIHelper {
      * @param textView TextView widget
      * @param text Text for TextView
      */
-    public static void setUpTextView(TextView textView, String text) {
+    public static void setUpTextViewVisible(TextView textView, String text) {
         textView.setText(text);
         textView.setVisibility(text.isEmpty() ? View.GONE : View.VISIBLE);
     }
 
     /**
-     * Set up text view for display the message for reposts
+     * Set up text view for display the message
      * @param textView TextView widget
-     * @param message Repost message
+     * @param message Message text
      */
-    public static void setUpReposts(TextView textView, String message) {
+    public static void setUpTextViewMessage(TextView textView, String message) {
         int color;
         if (!message.isEmpty()) {
             textView.setVisibility(View.VISIBLE);

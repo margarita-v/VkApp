@@ -5,7 +5,7 @@ import android.view.View;
 import com.margarita.vk_app.models.LayoutTypes;
 import com.margarita.vk_app.models.common.WallItem;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
-import com.margarita.vk_app.ui.holder.NewsItemBodyHolder;
+import com.margarita.vk_app.ui.holder.body.NewsItemBodyHolder;
 
 public class NewsItemBody extends BaseBodyItem {
 

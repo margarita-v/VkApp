@@ -5,6 +5,7 @@ import android.view.View;
 import com.margarita.vk_app.models.LayoutTypes;
 import com.margarita.vk_app.models.common.CommentItem;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
+import com.margarita.vk_app.ui.holder.body.CommentBodyHolder;
 
 public class CommentBody extends BaseBodyItem {
 
@@ -14,7 +15,7 @@ public class CommentBody extends BaseBodyItem {
 
     @Override
     protected BaseViewHolder onCreateViewHolder(View view) {
-        return null;
+        return new CommentBodyHolder(view);
     }
 
     @Override

@@ -3,7 +3,6 @@ package com.margarita.vk_app.ui.holder.profile;
 import android.view.View;
 import android.widget.TextView;
 
-import com.bumptech.glide.Glide;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.models.view.profile.ProfileViewModel;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
