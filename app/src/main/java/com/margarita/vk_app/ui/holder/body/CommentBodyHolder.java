@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.utils.UIHelper;
-import com.margarita.vk_app.models.view.body.CommentBody;
+import com.margarita.vk_app.models.view.item.body.CommentBody;
 
 public class CommentBodyHolder extends BaseBodyHolder<CommentBody> {
 

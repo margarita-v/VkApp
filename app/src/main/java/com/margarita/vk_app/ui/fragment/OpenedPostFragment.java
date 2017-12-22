@@ -7,7 +7,7 @@ import android.view.View;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
-import com.margarita.vk_app.models.view.NewsItemFooter;
+import com.margarita.vk_app.models.view.item.footer.NewsItemFooter;
 import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
 import com.margarita.vk_app.mvp.presenter.OpenedPostPresenter;
 import com.margarita.vk_app.mvp.view.OpenedPostView;

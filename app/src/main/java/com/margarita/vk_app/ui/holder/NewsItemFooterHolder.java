@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.utils.Utils;
-import com.margarita.vk_app.models.view.NewsItemFooter;
+import com.margarita.vk_app.models.view.item.footer.NewsItemFooter;
 import com.margarita.vk_app.models.view.counter.CounterViewModel;
 
 import javax.inject.Inject;

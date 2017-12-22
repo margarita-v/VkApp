@@ -5,7 +5,7 @@ import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.utils.VkListHelper;
 import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.models.common.WallItem;
-import com.margarita.vk_app.models.view.NewsItemFooter;
+import com.margarita.vk_app.models.view.item.footer.NewsItemFooter;
 import com.margarita.vk_app.models.view.base.BaseViewModel;
 import com.margarita.vk_app.models.view.post.PostHeader;
 import com.margarita.vk_app.models.view.post.RepostHeader;

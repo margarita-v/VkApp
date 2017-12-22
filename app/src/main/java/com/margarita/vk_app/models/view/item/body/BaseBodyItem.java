@@ -1,4 +1,4 @@
-package com.margarita.vk_app.models.view.body;
+package com.margarita.vk_app.models.view.item.body;
 
 import com.margarita.vk_app.models.common.CommentItem;
 import com.margarita.vk_app.models.common.WallItem;

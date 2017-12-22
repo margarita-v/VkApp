@@ -1,6 +1,6 @@
 package com.margarita.vk_app.mvp.view;
 
-import com.margarita.vk_app.models.view.NewsItemFooter;
+import com.margarita.vk_app.models.view.item.footer.NewsItemFooter;
 
 /**
  * Interface for showing opened post

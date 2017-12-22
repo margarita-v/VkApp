@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.common.manager.VkFragmentManager;
-import com.margarita.vk_app.models.view.body.BaseBodyItem;
+import com.margarita.vk_app.models.view.item.body.BaseBodyItem;
 import com.margarita.vk_app.ui.holder.BaseViewHolder;
 
 import javax.inject.Inject;

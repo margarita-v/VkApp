@@ -1,4 +1,4 @@
-package com.margarita.vk_app.models.view.body;
+package com.margarita.vk_app.models.view.item.body;
 
 import android.view.View;
 
