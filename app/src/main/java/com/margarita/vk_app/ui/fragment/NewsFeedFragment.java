@@ -6,7 +6,7 @@ import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
-import com.margarita.vk_app.mvp.presenter.NewsFeedPresenter;
+import com.margarita.vk_app.mvp.presenter.complex.NewsFeedPresenter;
 import com.margarita.vk_app.rest.api.WallApi;
 import com.margarita.vk_app.ui.fragment.base.BaseFeedFragment;
 

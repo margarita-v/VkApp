@@ -1,4 +1,4 @@
-package com.margarita.vk_app.mvp.presenter;
+package com.margarita.vk_app.mvp.presenter.complex;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.margarita.vk_app.VkApplication;
@@ -8,6 +8,7 @@ import com.margarita.vk_app.models.view.base.BaseViewModel;
 import com.margarita.vk_app.models.view.info.InfoContactsViewModel;
 import com.margarita.vk_app.models.view.info.InfoLinksViewModel;
 import com.margarita.vk_app.models.view.info.InfoStatusViewModel;
+import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
 import com.margarita.vk_app.mvp.view.BaseFeedView;
 import com.margarita.vk_app.rest.api.GroupsApi;
 import com.margarita.vk_app.rest.model.request.GroupsGetByIdRequest;

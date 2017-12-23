@@ -90,7 +90,7 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
      * @param sort Sort order for result items
      * @return List of items as Callable
      */
-    Callable<List<T>> getListFromRealmCallable(Sort sort) {
+    protected Callable<List<T>> getListFromRealmCallable(Sort sort) {
         return () -> {
             Realm realm = Realm.getDefaultInstance();
             // Perform the query which depends on item's type
@@ -105,7 +105,7 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
      * @param value Value for "where" condition in query
      * @return Single item as Callable
      */
-    Callable<T> getItemFromRealmCallable(Integer value) {
+    protected Callable<T> getItemFromRealmCallable(Integer value) {
         return () -> {
             Realm realm = Realm.getDefaultInstance();
             T result = getSingleItem(realm, value)
@@ -129,7 +129,7 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
      * @param realm Realm instance for access to the database
      * @return List of realm query items
      */
-    RealmQuery<T> getListItems(Realm realm) {
+    protected RealmQuery<T> getListItems(Realm realm) {
         return performQuery(realm);
     }
 
@@ -164,7 +164,7 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
      * Function which returns a name of sort field
      * @return Sort field's name
      */
-    String getSortField() {
+    protected String getSortField() {
         return SORT_FIELD;
     }
 
@@ -172,7 +172,7 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
      * Function which returns a name of field for "where" condition
      * @return Field name for "where" condition
      */
-    String getFieldName() {
+    protected String getFieldName() {
         return FIELD_NAME;
     }
     //endregion
@@ -257,7 +257,7 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
      * Save item to the database
      * @param item Item which will be added or updated
      */
-    void saveToDatabase(RealmObject item) {
+    protected void saveToDatabase(RealmObject item) {
         Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(realm1 -> realm1.copyToRealmOrUpdate(item));
     }

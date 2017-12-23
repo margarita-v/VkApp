@@ -5,11 +5,12 @@ import com.margarita.vk_app.di.module.ApplicationModule;
 import com.margarita.vk_app.di.module.ManagerModule;
 import com.margarita.vk_app.di.module.RestModule;
 import com.margarita.vk_app.mvp.presenter.BoardPresenter;
-import com.margarita.vk_app.mvp.presenter.InfoPresenter;
+import com.margarita.vk_app.mvp.presenter.complex.CommentsPresenter;
+import com.margarita.vk_app.mvp.presenter.complex.InfoPresenter;
 import com.margarita.vk_app.mvp.presenter.OpenedPostPresenter;
 import com.margarita.vk_app.mvp.presenter.main.MainPresenter;
 import com.margarita.vk_app.mvp.presenter.MembersPresenter;
-import com.margarita.vk_app.mvp.presenter.NewsFeedPresenter;
+import com.margarita.vk_app.mvp.presenter.complex.NewsFeedPresenter;
 import com.margarita.vk_app.ui.activity.BaseActivity;
 import com.margarita.vk_app.ui.activity.MainActivity;
 import com.margarita.vk_app.ui.fragment.NewsFeedFragment;
@@ -54,6 +55,7 @@ public interface ApplicationComponent {
     void inject(BoardPresenter presenter);
     void inject(InfoPresenter presenter);
     void inject(OpenedPostPresenter presenter);
+    void inject(CommentsPresenter presenter);
 
     // Managers
     void inject(NetworkManager manager);

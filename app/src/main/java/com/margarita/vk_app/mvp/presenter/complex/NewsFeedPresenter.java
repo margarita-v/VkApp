@@ -1,4 +1,4 @@
-package com.margarita.vk_app.mvp.presenter;
+package com.margarita.vk_app.mvp.presenter.complex;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.margarita.vk_app.CurrentUser;
@@ -10,6 +10,7 @@ import com.margarita.vk_app.models.view.base.BaseViewModel;
 import com.margarita.vk_app.models.view.item.body.NewsItemBody;
 import com.margarita.vk_app.models.view.item.footer.NewsItemFooter;
 import com.margarita.vk_app.models.view.profile.NewsItemHeader;
+import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
 import com.margarita.vk_app.mvp.view.BaseFeedView;
 import com.margarita.vk_app.rest.api.WallApi;
 import com.margarita.vk_app.rest.model.request.WallGetRequest;
