@@ -1,4 +1,4 @@
-package com.margarita.vk_app.ui.fragment;
+package com.margarita.vk_app.ui.fragment.open;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -11,26 +11,18 @@ import com.margarita.vk_app.models.view.item.footer.NewsItemFooter;
 import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
 import com.margarita.vk_app.mvp.presenter.OpenedPostPresenter;
 import com.margarita.vk_app.mvp.view.OpenedPostView;
-import com.margarita.vk_app.ui.fragment.base.BaseFeedFragment;
 import com.margarita.vk_app.ui.holder.item.footer.NewsItemFooterHolder;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class OpenedPostFragment extends BaseFeedFragment implements OpenedPostView {
+public class OpenedPostFragment extends BaseOpenedFragment implements OpenedPostView {
 
     @BindView(R.id.rvFooter)
     View viewFooter;
 
     @InjectPresenter
     OpenedPostPresenter presenter;
-
-    private int id;
-
-    /**
-     * Key for bundle
-     */
-    private static final String ID_KEY = "id";
 
     public static OpenedPostFragment newInstance(int id) {
         Bundle args = new Bundle();
@@ -44,12 +36,6 @@ public class OpenedPostFragment extends BaseFeedFragment implements OpenedPostVi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         VkApplication.getApplicationComponent().inject(this);
-
-        setHasEndlessList(false);
-        Bundle args = getArguments();
-        if (args != null) {
-            this.id = args.getInt(ID_KEY);
-        }
     }
 
     @Override

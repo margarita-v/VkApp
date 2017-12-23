@@ -4,7 +4,7 @@ import android.view.View;
 
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.models.view.item.body.NewsItemBody;
-import com.margarita.vk_app.ui.fragment.OpenedPostFragment;
+import com.margarita.vk_app.ui.fragment.open.OpenedPostFragment;
 
 public class NewsItemBodyHolder extends BaseBodyHolder<NewsItemBody> {
 
