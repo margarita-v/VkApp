@@ -70,7 +70,7 @@ public abstract class BaseFooterHolder<T extends BaseFooterItem> extends BaseVie
      * @param counter Counter for an item
      */
     void bindFooterItem(TextView tvCount, TextView tvIcon, CounterViewModel counter) {
-        tvCount.setText(String.valueOf(counter.getCount()));
+        tvCount.setText(parseIntToString(counter.getCount()));
         setColor(tvCount, counter.getTextColor());
         setColor(tvIcon, counter.getIconColor());
     }

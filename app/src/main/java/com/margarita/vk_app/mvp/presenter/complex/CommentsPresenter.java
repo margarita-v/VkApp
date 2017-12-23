@@ -1,5 +1,6 @@
 package com.margarita.vk_app.mvp.presenter.complex;
 
+import com.arellomobile.mvp.InjectViewState;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.utils.VkListHelper;
 import com.margarita.vk_app.models.common.CommentItem;
@@ -24,6 +25,7 @@ import io.realm.RealmQuery;
 import io.realm.RealmResults;
 import io.realm.Sort;
 
+@InjectViewState
 public class CommentsPresenter extends BaseFeedPresenter<BaseFeedView, CommentItem>
         implements BaseFeedPresenter.ParsingInterface<CommentItem> {
 

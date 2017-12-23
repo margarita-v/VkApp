@@ -80,4 +80,13 @@ public abstract class BaseViewHolder<Item extends BaseViewModel>
                         (BaseActivity) view.getContext(), fragment, R.id.container)
         );
     }
+
+    /**
+     * Function for parsing int value to String
+     * @param value int value which will be parsed
+     * @return String representation of value
+     */
+    protected String parseIntToString(int value) {
+        return String.valueOf(value);
+    }
 }
