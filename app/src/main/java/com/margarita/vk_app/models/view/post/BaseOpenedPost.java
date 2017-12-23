@@ -23,7 +23,7 @@ public abstract class BaseOpenedPost extends BaseViewModel {
 
     BaseOpenedPost(CommentItem commentItem) {
         this.id = commentItem.getId();
-        this.profilePhoto = commentItem.getSenderName();
+        this.profileName = commentItem.getSenderName();
         this.profilePhoto = commentItem.getSenderPhoto();
         this.text = commentItem.getDisplayText();
     }

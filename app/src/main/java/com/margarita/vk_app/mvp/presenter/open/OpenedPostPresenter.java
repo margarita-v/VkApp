@@ -1,4 +1,4 @@
-package com.margarita.vk_app.mvp.presenter;
+package com.margarita.vk_app.mvp.presenter.open;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.margarita.vk_app.VkApplication;
@@ -9,6 +9,7 @@ import com.margarita.vk_app.models.view.item.footer.NewsItemFooter;
 import com.margarita.vk_app.models.view.base.BaseViewModel;
 import com.margarita.vk_app.models.view.post.PostHeader;
 import com.margarita.vk_app.models.view.post.RepostHeader;
+import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
 import com.margarita.vk_app.mvp.view.OpenedPostView;
 import com.margarita.vk_app.rest.api.WallApi;
 import com.margarita.vk_app.rest.model.request.WallGetByIdRequest;

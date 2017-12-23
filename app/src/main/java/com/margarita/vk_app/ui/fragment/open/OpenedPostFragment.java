@@ -9,7 +9,7 @@ import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.models.view.item.footer.NewsItemFooter;
 import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
-import com.margarita.vk_app.mvp.presenter.OpenedPostPresenter;
+import com.margarita.vk_app.mvp.presenter.open.OpenedPostPresenter;
 import com.margarita.vk_app.mvp.view.OpenedPostView;
 import com.margarita.vk_app.ui.holder.item.footer.NewsItemFooterHolder;
 
@@ -42,11 +42,6 @@ public class OpenedPostFragment extends BaseOpenedFragment implements OpenedPost
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-    }
-
-    @Override
-    protected int getMainContentLayout() {
-        return R.layout.fragment_opened_wallitem;
     }
 
     @Override

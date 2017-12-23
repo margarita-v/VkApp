@@ -1,7 +1,5 @@
 package com.margarita.vk_app.common.utils;
 
-import android.content.Context;
-import android.content.res.Resources;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,19 +8,10 @@ import com.margarita.vk_app.R;
 //TODO Remove this class
 public class UIHelper {
 
-    private UIHelper ourInstance;
-
-    private Resources resources;
-    private Context context;
-
     /**
      * Message for reposts
      */
     private static final String REPOST_MESSAGE = "Поделился";
-
-    public UIHelper getInstance() {
-        return ourInstance != null ? ourInstance : new UIHelper();
-    }
 
     /**
      * Set up text view with its text and visibility

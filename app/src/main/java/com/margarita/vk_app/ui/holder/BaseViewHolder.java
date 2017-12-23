@@ -65,7 +65,6 @@ public abstract class BaseViewHolder<Item extends BaseViewModel>
     protected void setUpTextView(TextView textView, String text) {
         textView.setText(text);
         textView.setVisibility(text.isEmpty() ? View.GONE : View.VISIBLE);
-        //UIHelper.setUpTextView(textView, text);
     }
 
     /**

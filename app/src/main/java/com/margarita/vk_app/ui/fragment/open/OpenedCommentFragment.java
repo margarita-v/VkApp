@@ -1,16 +1,17 @@
 package com.margarita.vk_app.ui.fragment.open;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.View;
 
+import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
-
-import butterknife.ButterKnife;
+import com.margarita.vk_app.mvp.presenter.open.OpenedCommentPresenter;
 
 public class OpenedCommentFragment extends BaseOpenedFragment {
+
+    @InjectPresenter
+    OpenedCommentPresenter presenter;
 
     public static OpenedCommentFragment newInstance(int id) {
         Bundle args = new Bundle();
@@ -27,19 +28,9 @@ public class OpenedCommentFragment extends BaseOpenedFragment {
     }
 
     @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        ButterKnife.bind(this, view);
-    }
-
-    @Override
-    protected int getMainContentLayout() {
-        return R.layout.fragment_opened_wallitem;
-    }
-
-    @Override
     protected BaseFeedPresenter onCreateFeedPresenter() {
-        return null;
+        presenter.setId(id);
+        return presenter;
     }
 
     @Override

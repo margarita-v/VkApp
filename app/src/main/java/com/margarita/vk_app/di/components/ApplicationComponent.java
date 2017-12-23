@@ -7,7 +7,8 @@ import com.margarita.vk_app.di.module.RestModule;
 import com.margarita.vk_app.mvp.presenter.BoardPresenter;
 import com.margarita.vk_app.mvp.presenter.complex.CommentsPresenter;
 import com.margarita.vk_app.mvp.presenter.complex.InfoPresenter;
-import com.margarita.vk_app.mvp.presenter.OpenedPostPresenter;
+import com.margarita.vk_app.mvp.presenter.open.OpenedCommentPresenter;
+import com.margarita.vk_app.mvp.presenter.open.OpenedPostPresenter;
 import com.margarita.vk_app.mvp.presenter.main.MainPresenter;
 import com.margarita.vk_app.mvp.presenter.MembersPresenter;
 import com.margarita.vk_app.mvp.presenter.complex.NewsFeedPresenter;
@@ -60,6 +61,7 @@ public interface ApplicationComponent {
     void inject(InfoPresenter presenter);
     void inject(OpenedPostPresenter presenter);
     void inject(CommentsPresenter presenter);
+    void inject(OpenedCommentPresenter presenter);
 
     // Managers
     void inject(NetworkManager manager);

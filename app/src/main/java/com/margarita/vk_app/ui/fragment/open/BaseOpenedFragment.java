@@ -2,6 +2,7 @@ package com.margarita.vk_app.ui.fragment.open;
 
 import android.os.Bundle;
 
+import com.margarita.vk_app.R;
 import com.margarita.vk_app.ui.fragment.base.BaseFeedFragment;
 
 /**
@@ -21,5 +22,10 @@ abstract class BaseOpenedFragment extends BaseFeedFragment {
         if (args != null) {
             this.id = args.getInt(ID_KEY);
         }
+    }
+
+    @Override
+    protected int getMainContentLayout() {
+        return R.layout.fragment_opened_wallitem;
     }
 }

@@ -20,7 +20,6 @@ import com.vk.sdk.api.model.VKAttachments;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
 
 public class VkListHelper {
 
@@ -92,9 +91,6 @@ public class VkListHelper {
                 case VKAttachments.TYPE_WIKI_PAGE:
                     result.add(new PageAttachment(attachment.getPage()));
                     break;
-                default:
-                    throw new NoSuchElementException("Attachment type " +
-                            attachment.getType() + " is not supported.");
             }
         }
         return result;

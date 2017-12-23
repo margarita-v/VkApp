@@ -26,12 +26,6 @@ public class CommentFooterHolder extends BaseFooterHolder<CommentFooter>
     }
 
     @Override
-    public void unbindViewHolder() {
-        super.unbindViewHolder();
-        viewLikes.setOnClickListener(null);
-    }
-
-    @Override
     public void showLikes(LikeCounter likes) {
 
     }

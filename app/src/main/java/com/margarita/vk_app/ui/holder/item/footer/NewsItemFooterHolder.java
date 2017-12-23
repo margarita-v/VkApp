@@ -62,6 +62,7 @@ public class NewsItemFooterHolder extends BaseFooterHolder<NewsItemFooter> {
     @Override
     public void unbindViewHolder() {
         super.unbindViewHolder();
+        viewComments.setOnClickListener(null);
         clearTextView(tvCommentsCount);
         clearTextView(tvRepostCount);
     }
