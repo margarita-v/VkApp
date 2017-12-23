@@ -5,8 +5,6 @@ import com.margarita.vk_app.models.attachment.doc.VkDocument;
 import com.margarita.vk_app.models.attachment.video.Video;
 import com.vk.sdk.api.model.VKAttachments;
 
-import java.util.NoSuchElementException;
-
 import io.realm.RealmObject;
 
 public class ApiAttachment extends RealmObject {
@@ -47,8 +45,7 @@ public class ApiAttachment extends RealmObject {
             case VKAttachments.TYPE_WIKI_PAGE:
                 return page;
             default:
-                throw new NoSuchElementException(
-                        "Attachment type " + type + " is not supported");
+                return null;
         }
     }
 

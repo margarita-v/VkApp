@@ -76,9 +76,12 @@ public class VkListHelper {
                     break;
                 case VKAttachments.TYPE_DOC:
                     VkDocument document = attachment.getDocument();
-                    result.add(document.getPreview() != null
-                            ? new DocImageAttachment(document)
-                            : new DocAttachment(document));
+                    //TODO Hot fix!
+                    if (document != null) {
+                        result.add(document.getPreview() != null
+                                ? new DocImageAttachment(document)
+                                : new DocAttachment(document));
+                    }
                     break;
                 case VKAttachments.TYPE_LINK:
                     Link link = attachment.getLink();
