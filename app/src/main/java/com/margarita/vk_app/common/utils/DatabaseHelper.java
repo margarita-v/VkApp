@@ -51,7 +51,8 @@ public abstract class DatabaseHelper<T extends RealmObject> {
      * @return Single item as Callable
      */
     public Callable<T> getItemFromRealmCallable(Integer value) {
-        return () -> getItemFromRealm(value);
+        T result = getItemFromRealm(value);
+        return result != null ? () -> result : null;
     }
 
     /**
@@ -63,7 +64,7 @@ public abstract class DatabaseHelper<T extends RealmObject> {
         Realm realm = Realm.getDefaultInstance();
         T result = getSingleItem(realm, value)
                 .findFirst();
-        return realm.copyFromRealm(result);
+        return result != null ? realm.copyFromRealm(result) : null;
     }
 
     /**

@@ -12,6 +12,8 @@ import com.margarita.vk_app.rest.model.request.owner.WallGetCommentsRequest;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 @InjectViewState
 public class CommentsPresenter extends BaseCommentsPresenter {
@@ -34,8 +36,12 @@ public class CommentsPresenter extends BaseCommentsPresenter {
                         .toMap())
                 .flatMap(full -> Observable.fromIterable(
                         VkListHelper.getComments(full.getResponse(), false)))
-                .doOnNext(commentItem -> commentItem.setPlace(place))
-                .doOnNext(DatabaseHelper::saveToDatabase)
+                .subscribeOn(Schedulers.io())
+                .doOnNext(commentItem -> {
+                    commentItem.setPlace(place);
+                    DatabaseHelper.saveToDatabase(commentItem);
+                })
+                .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(commentItem -> Observable.fromIterable(parseItemToList(commentItem)));
     }
 

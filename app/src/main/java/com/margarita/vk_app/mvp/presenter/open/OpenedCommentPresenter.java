@@ -13,6 +13,7 @@ import com.margarita.vk_app.mvp.view.BaseFeedView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Callable;
 
 import io.reactivex.Observable;
 import io.realm.Realm;
@@ -23,11 +24,6 @@ public class OpenedCommentPresenter extends BaseFeedPresenter<BaseFeedView, Comm
         implements BaseFeedPresenter.ParsingInterface<CommentItem> {
 
     private int id;
-
-    /**
-     * Count of retry for getting a concrete comment
-     */
-    private static final int RETRY_COUNT = 4;
 
     public OpenedCommentPresenter() {
         VkApplication.getApplicationComponent().inject(this);
@@ -64,9 +60,12 @@ public class OpenedCommentPresenter extends BaseFeedPresenter<BaseFeedView, Comm
     }
 
     private Observable<BaseViewModel> getCommentsObservable() {
-        return Observable.fromCallable(databaseHelper.getItemFromRealmCallable(id))
-                .retry(RETRY_COUNT)
+        Callable<CommentItem> itemCallable = databaseHelper.getItemFromRealmCallable(id);
+        return itemCallable != null
+                ? Observable.fromCallable(itemCallable)
                 .flatMap(commentItem ->
-                        Observable.fromIterable(parseItemToList(commentItem)));
+                        Observable.fromIterable(parseItemToList(commentItem)))
+                : Observable.empty();
+        //TODO Create an empty view if comments have not loaded
     }
 }
