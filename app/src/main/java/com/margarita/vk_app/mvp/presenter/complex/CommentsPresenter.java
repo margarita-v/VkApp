@@ -41,6 +41,12 @@ public class CommentsPresenter extends BaseFeedPresenter<BaseFeedView, CommentIt
 
     public CommentsPresenter() {
         VkApplication.getApplicationComponent().inject(this);
+        databaseHelper = new DatabaseHelper<CommentItem>() {
+            @Override
+            public RealmQuery<CommentItem> performQuery(Realm realm) {
+                return realm.where(CommentItem.class);
+            }
+        };
     }
 
     @Override
@@ -60,27 +66,13 @@ public class CommentsPresenter extends BaseFeedPresenter<BaseFeedView, CommentIt
 
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
-        return Observable.fromCallable(getListFromRealmCallable(Sort.ASCENDING))
+        return Observable.fromCallable(
+                databaseHelper.getListFromRealmCallable(Sort.ASCENDING))
                 .flatMap(Observable::fromIterable)
                 .filter(commentItem -> commentItem.getPlace().equals(this.place) &&
                         !commentItem.isFromTopic())
                 .flatMap(commentItem ->
                         Observable.fromIterable(parseItemToList(commentItem)));
-    }
-
-    @Override
-    protected RealmQuery<CommentItem> performQuery(Realm realm) {
-        return realm.where(CommentItem.class);
-    }
-
-    @Override
-    protected List<CommentItem> getQueryResult(Realm realm, RealmResults<CommentItem> results) {
-        return realm.copyFromRealm(results);
-    }
-
-    @Override
-    protected CommentItem getQueryResult(Realm realm, CommentItem result) {
-        return realm.copyFromRealm(result);
     }
 
     @Override

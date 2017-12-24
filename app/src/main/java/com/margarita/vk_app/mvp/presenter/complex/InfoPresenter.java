@@ -22,7 +22,6 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.realm.Realm;
 import io.realm.RealmQuery;
-import io.realm.RealmResults;
 
 @InjectViewState
 public class InfoPresenter extends BaseFeedPresenter<BaseFeedView, Group>
@@ -31,13 +30,14 @@ public class InfoPresenter extends BaseFeedPresenter<BaseFeedView, Group>
     @Inject
     GroupsApi groupsApi;
 
-    /**
-     * Field name for query to the database
-     */
-    private static final String FIELD_NAME = "id";
-
     public InfoPresenter() {
         VkApplication.getApplicationComponent().inject(this);
+        databaseHelper = new DatabaseHelper<Group>() {
+            @Override
+            public RealmQuery<Group> performQuery(Realm realm) {
+                return realm.where(Group.class);
+            }
+        };
     }
 
     @Override
@@ -51,23 +51,8 @@ public class InfoPresenter extends BaseFeedPresenter<BaseFeedView, Group>
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
         return Observable.fromCallable(
-                getItemFromRealmCallable(Math.abs(ApiConstants.GROUP_ID)))
+                databaseHelper.getItemFromRealmCallable(Math.abs(ApiConstants.GROUP_ID)))
                 .flatMap(group -> Observable.fromIterable(parseItemToList(group)));
-    }
-
-    @Override
-    protected RealmQuery<Group> performQuery(Realm realm) {
-        return realm.where(Group.class);
-    }
-
-    @Override
-    protected List<Group> getQueryResult(Realm realm, RealmResults<Group> results) {
-        return realm.copyFromRealm(results);
-    }
-
-    @Override
-    protected Group getQueryResult(Realm realm, Group result) {
-        return realm.copyFromRealm(result);
     }
 
     @Override
@@ -77,10 +62,5 @@ public class InfoPresenter extends BaseFeedPresenter<BaseFeedView, Group>
         items.add(new InfoContactsViewModel());
         items.add(new InfoLinksViewModel());
         return items;
-    }
-
-    @Override
-    public String getFieldName() {
-        return FIELD_NAME;
     }
 }

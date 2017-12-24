@@ -25,7 +25,6 @@ import io.reactivex.Observable;
 import io.reactivex.ObservableTransformer;
 import io.realm.Realm;
 import io.realm.RealmQuery;
-import io.realm.RealmResults;
 import io.realm.Sort;
 
 @InjectViewState
@@ -47,6 +46,17 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView, WallItem>
 
     public NewsFeedPresenter() {
         VkApplication.getApplicationComponent().inject(this);
+        databaseHelper = new DatabaseHelper<WallItem>() {
+            @Override
+            public RealmQuery<WallItem> performQuery(Realm realm) {
+                return realm.where(WallItem.class);
+            }
+
+            @Override
+            protected String getSortField() {
+                return SORT_FIELD;
+            }
+        };
     }
 
     public void setIdFilterEnabled(boolean enabled) {
@@ -69,30 +79,10 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView, WallItem>
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
         return Observable.fromCallable(
-                getListFromRealmCallable(Sort.DESCENDING))
+                databaseHelper.getListFromRealmCallable(Sort.DESCENDING))
                 .flatMap(Observable::fromIterable)
                 .compose(applyFilter())
                 .flatMap(wallItem -> Observable.fromIterable(parseItemToList(wallItem)));
-    }
-
-    @Override
-    protected RealmQuery<WallItem> performQuery(Realm realm) {
-        return realm.where(WallItem.class);
-    }
-
-    @Override
-    protected List<WallItem> getQueryResult(Realm realm, RealmResults<WallItem> results) {
-        return realm.copyFromRealm(results);
-    }
-
-    @Override
-    protected WallItem getQueryResult(Realm realm, WallItem result) {
-        return realm.copyFromRealm(result);
-    }
-
-    @Override
-    protected String getSortField() {
-        return SORT_FIELD;
     }
 
     /**

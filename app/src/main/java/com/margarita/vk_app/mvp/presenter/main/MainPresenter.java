@@ -48,11 +48,6 @@ public class MainPresenter extends MvpPresenter<MainView> {
 
     private DatabaseHelper<Profile> databaseHelper;
 
-    /**
-     * Field name for query to the database
-     */
-    private static final String FIELD_NAME = "id";
-
     public MainPresenter() {
         VkApplication.getApplicationComponent().inject(this);
         databaseHelper = new DatabaseHelper<Profile>() {
@@ -117,8 +112,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
      */
     private Observable<Profile> getProfileFromDatabase() {
         return Observable.fromCallable(databaseHelper
-                .getItemFromRealmCallable(FIELD_NAME,
-                        Utils.parseStringToInt(CurrentUser.getId())));
+                .getItemFromRealmCallable(Utils.parseStringToInt(CurrentUser.getId())));
     }
 
     /**

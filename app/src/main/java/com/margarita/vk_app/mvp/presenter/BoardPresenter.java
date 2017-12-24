@@ -11,14 +11,11 @@ import com.margarita.vk_app.mvp.view.BaseFeedView;
 import com.margarita.vk_app.rest.api.BoardApi;
 import com.margarita.vk_app.rest.model.request.BoardGetTopicsRequest;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.realm.Realm;
 import io.realm.RealmQuery;
-import io.realm.RealmResults;
 import io.realm.Sort;
 
 @InjectViewState
@@ -34,6 +31,26 @@ public class BoardPresenter extends BaseFeedPresenter<BaseFeedView, Topic> {
 
     public BoardPresenter() {
         VkApplication.getApplicationComponent().inject(this);
+        databaseHelper = new DatabaseHelper<Topic>() {
+            @Override
+            public RealmQuery<Topic> performQuery(Realm realm) {
+                return realm.where(Topic.class);
+            }
+
+            @Override
+            protected String getFieldName() {
+                return FIELD_NAME;
+            }
+
+            /*
+                Override subquery method for getList method
+                because we need all board items for a concrete group ID
+            */
+            @Override
+            public RealmQuery<Topic> getListItems(Realm realm) {
+                return getSingleItem(realm, ApiConstants.GROUP_ID);
+            }
+        };
     }
 
     @Override
@@ -52,37 +69,8 @@ public class BoardPresenter extends BaseFeedPresenter<BaseFeedView, Topic> {
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
         return Observable.fromCallable(
-                getListFromRealmCallable(Sort.DESCENDING))
+                databaseHelper.getListFromRealmCallable(Sort.DESCENDING))
                 .flatMap(Observable::fromIterable)
                 .map(TopicViewModel::new);
-    }
-
-    @Override
-    protected RealmQuery<Topic> performQuery(Realm realm) {
-        return realm.where(Topic.class);
-    }
-
-    /*
-        Override subquery method for getList method
-        because we need all board items for concrete group ID
-     */
-    @Override
-    protected RealmQuery<Topic> getListItems(Realm realm) {
-        return getSingleItem(realm, ApiConstants.GROUP_ID);
-    }
-
-    @Override
-    protected List<Topic> getQueryResult(Realm realm, RealmResults<Topic> results) {
-        return realm.copyFromRealm(results);
-    }
-
-    @Override
-    protected Topic getQueryResult(Realm realm, Topic result) {
-        return realm.copyFromRealm(result);
-    }
-
-    @Override
-    public String getFieldName() {
-        return FIELD_NAME;
     }
 }

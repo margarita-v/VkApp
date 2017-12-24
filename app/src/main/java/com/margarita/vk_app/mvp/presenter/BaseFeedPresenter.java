@@ -2,28 +2,26 @@ package com.margarita.vk_app.mvp.presenter;
 
 import com.arellomobile.mvp.MvpPresenter;
 import com.margarita.vk_app.common.manager.NetworkManager;
+import com.margarita.vk_app.common.utils.DatabaseHelper;
 import com.margarita.vk_app.models.view.base.BaseViewModel;
 import com.margarita.vk_app.mvp.view.BaseFeedView;
 
 import java.util.List;
-import java.util.concurrent.Callable;
 
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import io.realm.Realm;
-import io.realm.RealmQuery;
-import io.realm.RealmResults;
-import io.realm.Sort;
+import io.realm.RealmObject;
 
 /**
  * Base presenter for all presenters which are used in fragments
  * @param <V> Base class for View
  * @param <T> Base class for items which will be loaded and shown
  */
-public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPresenter<V> {
+public abstract class BaseFeedPresenter<V extends BaseFeedView, T extends RealmObject>
+        extends MvpPresenter<V> {
 
     /**
      * Pages sizes
@@ -31,16 +29,12 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
     private static final int START_PAGE_SIZE = 15;
     private static final int NEXT_PAGE_SIZE = 15;
 
-    /**
-     * Fields for query to the database
-     */
-    private static final String SORT_FIELD = "id";
-    private static final String FIELD_NAME = "id";
-
     private boolean isLoading;
 
     @Inject
     NetworkManager networkManager;
+
+    protected DatabaseHelper<T> databaseHelper;
 
     private void loadData(ProgressType progressType, int offset, int count) {
         if (!isLoading) {
@@ -80,100 +74,6 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
      */
     public abstract Observable<BaseViewModel> onRestoreDataObservable();
 
-    //endregion
-
-    //region Methods for getting items from the local database as Callable
-
-    /**
-     * Get list of items from local database as Callable
-     * @param sort Sort order for result items
-     * @return List of items as Callable
-     */
-    protected Callable<List<T>> getListFromRealmCallable(Sort sort) {
-        return () -> {
-            Realm realm = Realm.getDefaultInstance();
-            // Perform the query which depends on item's type
-            RealmResults<T> results = getListItems(realm)
-                    .findAllSorted(getSortField(), sort);
-            return getQueryResult(realm, results);
-        };
-    }
-
-    /**
-     * Get single item from local database as Callable
-     * @param value Value for "where" condition in query
-     * @return Single item as Callable
-     */
-    protected Callable<T> getItemFromRealmCallable(Integer value) {
-        return () -> {
-            Realm realm = Realm.getDefaultInstance();
-            T result = getSingleItem(realm, value)
-                    .findFirst();
-            return getQueryResult(realm, result);
-        };
-    }
-    //endregion
-
-    //region Methods for the database queries
-
-    /**
-     * Perform common query to the database
-     * @param realm Realm instance for access to the database
-     * @return Set of query result
-     */
-    protected abstract RealmQuery<T> performQuery(Realm realm);
-
-    /**
-     * Get a list of items as a subquery
-     * @param realm Realm instance for access to the database
-     * @return List of realm query items
-     */
-    protected RealmQuery<T> getListItems(Realm realm) {
-        return performQuery(realm);
-    }
-
-    /**
-     * Get items as a subquery with "where" condition
-     * @param realm Realm instance for access to the database
-     * @param value Value for "where" condition in query
-     * @return Query result for "where" condition
-     */
-    RealmQuery<T> getSingleItem(Realm realm, Integer value) {
-        return performQuery(realm)
-                .equalTo(getFieldName(), value);
-    }
-
-    /**
-     * Get a list of items as a query result
-     * @param realm Realm instance for access to the database
-     * @param results Set of query result
-     * @return List of items
-     */
-    protected abstract List<T> getQueryResult(Realm realm, RealmResults<T> results);
-
-    /**
-     * Get a single item as a query result
-     * @param realm Realm instance for access to the database
-     * @param result Query result
-     * @return Single item
-     */
-    protected abstract T getQueryResult(Realm realm, T result);
-
-    /**
-     * Function which returns a name of sort field
-     * @return Sort field's name
-     */
-    protected String getSortField() {
-        return SORT_FIELD;
-    }
-
-    /**
-     * Function which returns a name of field for "where" condition
-     * @return Field name for "where" condition
-     */
-    protected String getFieldName() {
-        return FIELD_NAME;
-    }
     //endregion
 
     /**

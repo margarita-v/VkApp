@@ -28,7 +28,6 @@ import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import io.realm.Realm;
 import io.realm.RealmQuery;
-import io.realm.RealmResults;
 
 @InjectViewState
 public class OpenedPostPresenter extends BaseFeedPresenter<OpenedPostView, WallItem> {
@@ -40,6 +39,12 @@ public class OpenedPostPresenter extends BaseFeedPresenter<OpenedPostView, WallI
 
     public OpenedPostPresenter() {
         VkApplication.getApplicationComponent().inject(this);
+        databaseHelper = new DatabaseHelper<WallItem>() {
+            @Override
+            public RealmQuery<WallItem> performQuery(Realm realm) {
+                return realm.where(WallItem.class);
+            }
+        };
     }
 
     @Override
@@ -56,26 +61,11 @@ public class OpenedPostPresenter extends BaseFeedPresenter<OpenedPostView, WallI
 
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
-        return Observable.fromCallable(getItemFromRealmCallable(id))
+        return Observable.fromCallable(databaseHelper.getItemFromRealmCallable(id))
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(setUpFooterConsumer)
                 .observeOn(Schedulers.io())
                 .flatMap(getPostInfo);
-    }
-
-    @Override
-    protected RealmQuery<WallItem> performQuery(Realm realm) {
-        return realm.where(WallItem.class);
-    }
-
-    @Override
-    protected List<WallItem> getQueryResult(Realm realm, RealmResults<WallItem> results) {
-        return realm.copyFromRealm(results);
-    }
-
-    @Override
-    protected WallItem getQueryResult(Realm realm, WallItem result) {
-        return realm.copyFromRealm(result);
     }
 
     /**

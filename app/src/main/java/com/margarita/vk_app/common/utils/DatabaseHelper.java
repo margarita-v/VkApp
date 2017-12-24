@@ -15,11 +15,11 @@ import io.realm.Sort;
  */
 public abstract class DatabaseHelper<T extends RealmObject> {
 
-    private Realm realm;
-
-    protected DatabaseHelper() {
-        realm = Realm.getDefaultInstance();
-    }
+    /**
+     * Fields for query to the database
+     */
+    private static final String SORT_FIELD = "id";
+    private static final String FIELD_NAME = "id";
 
     /**
      * Function for saving some object to the local database
@@ -32,28 +32,28 @@ public abstract class DatabaseHelper<T extends RealmObject> {
 
     /**
      * Get list of items from local database as Callable
-     * @param sortField Name of sort field
      * @param sort Sort order for result items
      * @return List of items as Callable
      */
-    public Callable<List<T>> getListFromRealmCallable(String sortField, Sort sort) {
+    public Callable<List<T>> getListFromRealmCallable(Sort sort) {
         return () -> {
+            Realm realm = Realm.getDefaultInstance();
             // Perform the query which depends on item's type
             RealmResults<T> results = getListItems(realm)
-                    .findAllSorted(sortField, sort);
+                    .findAllSorted(getSortField(), sort);
             return realm.copyFromRealm(results);
         };
     }
 
     /**
      * Get single item from local database as Callable
-     * @param fieldName Name of field int the database
      * @param value Value for "where" condition in query
      * @return Single item as Callable
      */
-    public Callable<T> getItemFromRealmCallable(String fieldName, Integer value) {
+    public Callable<T> getItemFromRealmCallable(Integer value) {
         return () -> {
-            T result = getSingleItem(realm, fieldName, value)
+            Realm realm = Realm.getDefaultInstance();
+            T result = getSingleItem(realm, value)
                     .findFirst();
             return realm.copyFromRealm(result);
         };
@@ -78,12 +78,28 @@ public abstract class DatabaseHelper<T extends RealmObject> {
     /**
      * Get items as a subquery with "where" condition
      * @param realm Realm instance for access to the database
-     * @param fieldName Name of field in database
      * @param value Value for "where" condition in query
      * @return Query result for "where" condition
      */
-    public RealmQuery<T> getSingleItem(Realm realm, String fieldName, Integer value) {
+    protected RealmQuery<T> getSingleItem(Realm realm, Integer value) {
         return performQuery(realm)
-                .equalTo(fieldName, value);
+                .equalTo(getFieldName(), value);
+    }
+
+
+    /**
+     * Function which returns a name of sort field
+     * @return Sort field's name
+     */
+    protected String getSortField() {
+        return SORT_FIELD;
+    }
+
+    /**
+     * Function which returns a name of field for "where" condition
+     * @return Field name for "where" condition
+     */
+    protected String getFieldName() {
+        return FIELD_NAME;
     }
 }

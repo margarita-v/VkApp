@@ -44,6 +44,8 @@ public class Utils {
      */
     //endregion
 
+    //region Constant values
+
     /**
      * Constant value for parsing milliseconds to seconds
      */
@@ -67,6 +69,7 @@ public class Utils {
     private static final String BYTE_UNIT_NAME = " B", DIVIDER = "_";
     private static final String SPACE = " ", UNDERSCORE = "_";
     private static final char DOT = '.';
+    //endregion
 
     /**
      * Convert attachments to string of a font icons
@@ -160,7 +163,7 @@ public class Utils {
         int length = name.length();
         int removedIndex = length;
 
-        // Find index of last dot symbol
+        // Find index of the last dot symbol
         for (int i = length - 1; i >= 0; i--) {
             if (name.charAt(i) == DOT) {
                 removedIndex = i;
