@@ -1,4 +1,4 @@
-package com.margarita.vk_app.rest.model.request;
+package com.margarita.vk_app.rest.model.request.base;
 
 import com.google.gson.annotations.SerializedName;
 import com.margarita.vk_app.CurrentUser;
@@ -40,7 +40,7 @@ public abstract class BaseRequest {
     /**
      * Method for putting to map int values which will be converted to String
      */
-    void putToMap(Map<String, String> map, String key, int value) {
+    protected void putToMap(Map<String, String> map, String key, int value) {
         map.put(key, String.valueOf(value));
     }
 }

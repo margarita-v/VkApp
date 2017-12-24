@@ -2,6 +2,7 @@ package com.margarita.vk_app.rest.model.request;
 
 import com.google.gson.annotations.SerializedName;
 import com.margarita.vk_app.consts.ApiConstants;
+import com.margarita.vk_app.rest.model.request.base.BaseRequest;
 
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public class WallGetCommentsRequest extends BaseRequest {
     @SerializedName(ApiConstants.NEED_LIKES)
     private int needLikes = 1;
 
-    public WallGetCommentsRequest(int ownerId, int postId) {
+    private WallGetCommentsRequest(int ownerId, int postId) {
         this.ownerId = ownerId;
         this.postId = postId;
     }

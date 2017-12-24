@@ -2,6 +2,7 @@ package com.margarita.vk_app.rest.model.request;
 
 import com.google.gson.annotations.SerializedName;
 import com.margarita.vk_app.consts.ApiConstants;
+import com.margarita.vk_app.rest.model.request.base.BaseRequest;
 import com.vk.sdk.api.VKApiConst;
 
 import java.util.Map;
