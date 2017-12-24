@@ -9,7 +9,7 @@ import com.margarita.vk_app.models.view.base.BaseViewModel;
 import com.margarita.vk_app.models.view.TopicViewModel;
 import com.margarita.vk_app.mvp.view.BaseFeedView;
 import com.margarita.vk_app.rest.api.BoardApi;
-import com.margarita.vk_app.rest.model.request.BoardGetTopicsRequest;
+import com.margarita.vk_app.rest.model.request.group.BoardGetTopicsRequest;
 
 import javax.inject.Inject;
 

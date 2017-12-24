@@ -11,7 +11,7 @@ import com.margarita.vk_app.common.utils.Utils;
 import com.margarita.vk_app.models.common.Profile;
 import com.margarita.vk_app.mvp.view.MainView;
 import com.margarita.vk_app.rest.api.UsersApi;
-import com.margarita.vk_app.rest.model.request.UserGetRequest;
+import com.margarita.vk_app.rest.model.request.fields.UserGetRequest;
 import com.margarita.vk_app.ui.activity.drawer.DrawerItemType;
 import com.margarita.vk_app.ui.fragment.InfoFragment;
 import com.margarita.vk_app.ui.fragment.base.BaseFragment;

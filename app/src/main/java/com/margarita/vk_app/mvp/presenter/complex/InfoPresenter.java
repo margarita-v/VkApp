@@ -12,7 +12,7 @@ import com.margarita.vk_app.models.view.info.InfoStatusViewModel;
 import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
 import com.margarita.vk_app.mvp.view.BaseFeedView;
 import com.margarita.vk_app.rest.api.GroupsApi;
-import com.margarita.vk_app.rest.model.request.GroupsGetByIdRequest;
+import com.margarita.vk_app.rest.model.request.fields.GroupsGetByIdRequest;
 
 import java.util.ArrayList;
 import java.util.List;

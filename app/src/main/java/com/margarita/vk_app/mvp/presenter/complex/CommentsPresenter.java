@@ -14,7 +14,7 @@ import com.margarita.vk_app.models.view.profile.CommentHeader;
 import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
 import com.margarita.vk_app.mvp.view.BaseFeedView;
 import com.margarita.vk_app.rest.api.WallApi;
-import com.margarita.vk_app.rest.model.request.WallGetCommentsRequest;
+import com.margarita.vk_app.rest.model.request.owner.WallGetCommentsRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,6 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.realm.Realm;
 import io.realm.RealmQuery;
-import io.realm.RealmResults;
 import io.realm.Sort;
 
 @InjectViewState
@@ -54,8 +53,8 @@ public class CommentsPresenter extends BaseFeedPresenter<BaseFeedView, CommentIt
         return wallApi.getComments(
                 new WallGetCommentsRequest(
                         Utils.parseStringToInt(place.getOwnerId()),
-                        Utils.parseStringToInt(place.getPostId()),
-                        offset)
+                        offset,
+                        Utils.parseStringToInt(place.getPostId()))
                         .toMap())
                 .flatMap(full -> Observable.fromIterable(
                         VkListHelper.getComments(full.getResponse(), false)))

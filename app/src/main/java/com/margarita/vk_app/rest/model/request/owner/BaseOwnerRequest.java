@@ -1,7 +1,7 @@
 package com.margarita.vk_app.rest.model.request.owner;
 
 import com.google.gson.annotations.SerializedName;
-import com.margarita.vk_app.rest.model.request.countable.BaseCountableRequest;
+import com.margarita.vk_app.rest.model.request.base.BaseCountableRequest;
 import com.vk.sdk.api.VKApiConst;
 
 import java.util.Map;
@@ -17,8 +17,13 @@ public class BaseOwnerRequest extends BaseCountableRequest {
     @SerializedName(VKApiConst.OWNER_ID)
     private int ownerId;
 
-    protected BaseOwnerRequest(int ownerId, int count, int offset) {
+    BaseOwnerRequest(int ownerId, int count, int offset) {
         super(count, offset);
+        this.ownerId = ownerId;
+    }
+
+    BaseOwnerRequest(int ownerId, int offset) {
+        super(offset);
         this.ownerId = ownerId;
     }
 

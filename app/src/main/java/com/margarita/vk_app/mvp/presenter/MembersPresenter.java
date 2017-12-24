@@ -9,7 +9,7 @@ import com.margarita.vk_app.models.view.base.BaseViewModel;
 import com.margarita.vk_app.models.view.profile.MemberViewModel;
 import com.margarita.vk_app.mvp.view.BaseFeedView;
 import com.margarita.vk_app.rest.api.GroupsApi;
-import com.margarita.vk_app.rest.model.request.GroupsGetMembersRequest;
+import com.margarita.vk_app.rest.model.request.group.GroupsGetMembersRequest;
 
 import javax.inject.Inject;
 

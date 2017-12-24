@@ -15,8 +15,6 @@ public class WallGetByIdRequest extends BaseRequest {
     @SerializedName(ApiConstants.EXTENDED)
     private int extended = 1;
 
-    private static final String DIVIDER = "_";
-
     public WallGetByIdRequest(int ownerId, int postId) {
         this.posts = Utils.concatIds(ownerId, postId);
     }

@@ -1,7 +1,7 @@
 package com.margarita.vk_app.rest.model.request.group;
 
 import com.google.gson.annotations.SerializedName;
-import com.margarita.vk_app.rest.model.request.countable.BaseCountableRequest;
+import com.margarita.vk_app.rest.model.request.base.BaseCountableRequest;
 import com.vk.sdk.api.VKApiConst;
 
 import java.util.Map;
@@ -11,8 +11,17 @@ public class BaseGroupRequest extends BaseCountableRequest {
     @SerializedName(VKApiConst.GROUP_ID)
     private int groupId;
 
-    protected BaseGroupRequest(int groupId, int count, int offset) {
+    BaseGroupRequest(int groupId, int count, int offset) {
         super(count, offset);
+        this.groupId = getGroupId(groupId);
+    }
+
+    BaseGroupRequest(int groupId, int offset) {
+        super(offset);
+        this.groupId = getGroupId(groupId);
+    }
+
+    BaseGroupRequest(int groupId) {
         this.groupId = getGroupId(groupId);
     }
 

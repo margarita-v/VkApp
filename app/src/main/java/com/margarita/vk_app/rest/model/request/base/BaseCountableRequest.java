@@ -1,8 +1,7 @@
-package com.margarita.vk_app.rest.model.request.countable;
+package com.margarita.vk_app.rest.model.request.base;
 
 import com.google.gson.annotations.SerializedName;
 import com.margarita.vk_app.consts.ApiConstants;
-import com.margarita.vk_app.rest.model.request.base.BaseRequest;
 import com.vk.sdk.api.VKApiConst;
 
 import java.util.Map;
@@ -15,8 +14,16 @@ public class BaseCountableRequest extends BaseRequest {
     @SerializedName(VKApiConst.OFFSET)
     private int offset = 0;
 
+    protected BaseCountableRequest() {
+
+    }
+
     protected BaseCountableRequest(int count, int offset) {
         this.count = count;
+        this.offset = offset;
+    }
+
+    protected BaseCountableRequest(int offset) {
         this.offset = offset;
     }
 
