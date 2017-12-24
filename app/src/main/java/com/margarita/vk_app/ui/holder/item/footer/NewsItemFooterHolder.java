@@ -17,7 +17,7 @@ import com.margarita.vk_app.rest.api.LikeEventOnSubscribe;
 import com.margarita.vk_app.rest.api.WallApi;
 import com.margarita.vk_app.rest.model.request.WallGetByIdRequest;
 import com.margarita.vk_app.ui.activity.BaseActivity;
-import com.margarita.vk_app.ui.fragment.CommentsFragment;
+import com.margarita.vk_app.ui.fragment.comments.CommentsFragment;
 
 import javax.inject.Inject;
 
