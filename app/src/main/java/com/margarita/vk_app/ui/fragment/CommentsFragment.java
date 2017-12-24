@@ -7,7 +7,7 @@ import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.models.common.Place;
 import com.margarita.vk_app.mvp.presenter.BaseFeedPresenter;
-import com.margarita.vk_app.mvp.presenter.complex.CommentsPresenter;
+import com.margarita.vk_app.mvp.presenter.complex.comments.CommentsPresenter;
 import com.margarita.vk_app.ui.fragment.base.BaseFeedFragment;
 
 public class CommentsFragment extends BaseFeedFragment {
