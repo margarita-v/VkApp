@@ -1,6 +1,7 @@
 package com.margarita.vk_app.rest.model.request.fields;
 
 import com.google.gson.annotations.SerializedName;
+import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.rest.model.request.group.BaseGroupRequest;
 import com.vk.sdk.api.VKApiConst;
 
@@ -12,6 +13,7 @@ public class GroupsGetByIdRequest extends BaseFieldsRequest {
     private int groupId;
 
     public GroupsGetByIdRequest(int groupId) {
+        super(ApiConstants.DEFAULT_GROUP_FIELDS);
         this.groupId = BaseGroupRequest.getGroupId(groupId);
     }
 

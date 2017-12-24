@@ -10,7 +10,11 @@ import java.util.Map;
 public class BaseFieldsRequest extends BaseRequest {
 
     @SerializedName(VKApiConst.FIELDS)
-    private String fields = ApiConstants.DEFAULT_GROUP_FIELDS;
+    protected String fields;
+
+    BaseFieldsRequest(String defaultFields) {
+        this.fields = defaultFields;
+    }
 
     @Override
     public void onMapCreate(Map<String, String> map) {

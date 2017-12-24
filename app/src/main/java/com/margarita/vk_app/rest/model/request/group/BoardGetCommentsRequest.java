@@ -2,6 +2,7 @@ package com.margarita.vk_app.rest.model.request.group;
 
 import com.google.gson.annotations.SerializedName;
 import com.margarita.vk_app.consts.ApiConstants;
+import com.vk.sdk.api.VKApiConst;
 
 import java.util.Map;
 
@@ -10,7 +11,7 @@ public class BoardGetCommentsRequest extends BaseGroupRequest {
     @SerializedName(ApiConstants.TOPIC_ID)
     private int topicId;
 
-    @SerializedName(ApiConstants.EXTENDED)
+    @SerializedName(VKApiConst.EXTENDED)
     private int extended = 1;
 
     @SerializedName(ApiConstants.NEED_LIKES)

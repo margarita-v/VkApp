@@ -2,12 +2,13 @@ package com.margarita.vk_app.rest.model.request.owner;
 
 import com.google.gson.annotations.SerializedName;
 import com.margarita.vk_app.consts.ApiConstants;
+import com.vk.sdk.api.VKApiConst;
 
 import java.util.Map;
 
 public class WallGetCommentsRequest extends BaseOwnerRequest {
 
-    @SerializedName(ApiConstants.POST_ID)
+    @SerializedName(VKApiConst.POST_ID)
     private int postId;
 
     @SerializedName(ApiConstants.NEED_LIKES)

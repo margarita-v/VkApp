@@ -4,15 +4,16 @@ import com.google.gson.annotations.SerializedName;
 import com.margarita.vk_app.common.utils.Utils;
 import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.rest.model.request.base.BaseRequest;
+import com.vk.sdk.api.VKApiConst;
 
 import java.util.Map;
 
 public class WallGetByIdRequest extends BaseRequest {
 
-    @SerializedName(ApiConstants.POSTS)
+    @SerializedName(VKApiConst.POSTS)
     private String posts;
 
-    @SerializedName(ApiConstants.EXTENDED)
+    @SerializedName(VKApiConst.EXTENDED)
     private int extended = 1;
 
     public WallGetByIdRequest(int ownerId, int postId) {
