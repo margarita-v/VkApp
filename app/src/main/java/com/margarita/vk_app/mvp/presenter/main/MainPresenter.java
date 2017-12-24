@@ -6,6 +6,7 @@ import com.margarita.vk_app.CurrentUser;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.manager.NetworkManager;
 import com.margarita.vk_app.common.manager.VkFragmentManager;
+import com.margarita.vk_app.common.utils.Utils;
 import com.margarita.vk_app.models.common.Profile;
 import com.margarita.vk_app.mvp.view.MainView;
 import com.margarita.vk_app.rest.api.UsersApi;
@@ -26,7 +27,6 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.realm.Realm;
-import io.realm.RealmObject;
 
 /**
  * Main presenter which used in MainActivity
@@ -100,7 +100,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
     private Observable<Profile> getProfileFromServer() {
         return usersApi.get(new UserGetRequest(CurrentUser.getId()).toMap())
                 .flatMap(listFull -> Observable.fromIterable(listFull.getResponse()))
-                .doOnNext(this::saveToDb);
+                .doOnNext(Utils::saveToDatabase);
     }
 
     /**
@@ -123,15 +123,6 @@ public class MainPresenter extends MvpPresenter<MainView> {
                     .findFirst();
             return realm.copyFromRealm(realmResults);
         };
-    }
-
-    /**
-     * Save item to local database
-     * @param item Item which will be saved
-     */
-    private void saveToDb(RealmObject item) {
-        Realm realm = Realm.getDefaultInstance();
-        realm.executeTransaction(realm1 -> realm1.copyToRealmOrUpdate(item));
     }
 
     /**

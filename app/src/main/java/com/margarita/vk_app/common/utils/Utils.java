@@ -17,6 +17,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import io.realm.Realm;
+import io.realm.RealmObject;
+
 public class Utils {
 
     //region String patterns
@@ -205,4 +208,13 @@ public class Utils {
         return ownerId + DIVIDER + itemId;
     }
     //endregion
+
+    /**
+     * Function for saving some object to the local database
+     * @param realmObject Object which will be saved to the database
+     */
+    public static void saveToDatabase(RealmObject realmObject) {
+        Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> realm1.copyToRealmOrUpdate(realmObject));
+    }
 }

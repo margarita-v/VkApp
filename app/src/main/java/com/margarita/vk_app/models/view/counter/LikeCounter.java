@@ -11,7 +11,7 @@ public class LikeCounter extends CounterViewModel {
         super(likes.getCount());
         this.likes = likes;
 
-        if (this.likes.getUserLikes() == 1)
+        if (this.likes.isUserLikes())
             setColor(R.color.colorAccent);
     }
 

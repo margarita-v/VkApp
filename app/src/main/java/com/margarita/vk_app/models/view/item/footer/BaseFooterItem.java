@@ -27,6 +27,10 @@ public abstract class BaseFooterItem extends BaseIdModel {
         return likeCounter;
     }
 
+    public void setLikeCounter(LikeCounter likeCounter) {
+        this.likeCounter = likeCounter;
+    }
+
     @Override
     public boolean isItemDecorator() {
         return true;

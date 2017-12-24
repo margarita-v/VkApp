@@ -2,6 +2,7 @@ package com.margarita.vk_app.mvp.presenter.complex;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.margarita.vk_app.VkApplication;
+import com.margarita.vk_app.common.utils.Utils;
 import com.margarita.vk_app.common.utils.VkListHelper;
 import com.margarita.vk_app.models.common.CommentItem;
 import com.margarita.vk_app.models.common.Place;
@@ -52,7 +53,7 @@ public class CommentsPresenter extends BaseFeedPresenter<BaseFeedView, CommentIt
                 .flatMap(full -> Observable.fromIterable(
                         VkListHelper.getComments(full.getResponse(), false)))
                 .doOnNext(commentItem -> commentItem.setPlace(place))
-                .doOnNext(this::saveToDatabase)
+                .doOnNext(Utils::saveToDatabase)
                 .flatMap(commentItem -> Observable.fromIterable(parseItemToList(commentItem)));
     }
 

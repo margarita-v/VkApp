@@ -31,6 +31,9 @@ public abstract class BaseFooterHolder<T extends BaseFooterItem> extends BaseVie
     @BindView(R.id.tvLikesCount)
     TextView tvLikesCount;
 
+    @BindView(R.id.likes)
+    View viewLikes;
+
     @Inject
     Typeface googleFont;
 

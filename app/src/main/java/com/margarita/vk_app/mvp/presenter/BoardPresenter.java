@@ -2,6 +2,7 @@ package com.margarita.vk_app.mvp.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.margarita.vk_app.VkApplication;
+import com.margarita.vk_app.common.utils.Utils;
 import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.models.common.Topic;
 import com.margarita.vk_app.models.view.base.BaseViewModel;
@@ -43,7 +44,7 @@ public class BoardPresenter extends BaseFeedPresenter<BaseFeedView, Topic> {
                 // Convert Observable data from TopicGetResponse to Topic
                 .flatMap(full -> Observable.fromIterable(full.getResponse().getItems()))
                 .doOnNext(topic -> topic.setGroupId(ApiConstants.GROUP_ID))
-                .doOnNext(this::saveToDatabase)
+                .doOnNext(Utils::saveToDatabase)
                 // Create TopicViewModel for every Topic object
                 .map(TopicViewModel::new);
     }

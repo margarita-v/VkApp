@@ -130,6 +130,10 @@ public class WallItem extends RealmObject {
         return likes;
     }
 
+    public void setLikes(Likes likes) {
+        this.likes = likes;
+    }
+
     public Reposts getReposts() {
         return reposts;
     }

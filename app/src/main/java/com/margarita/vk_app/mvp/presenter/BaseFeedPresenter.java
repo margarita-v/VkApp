@@ -254,15 +254,6 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView, T> extends MvpPr
     //endregion
 
     /**
-     * Save item to the database
-     * @param item Item which will be added or updated
-     */
-    protected void saveToDatabase(RealmObject item) {
-        Realm realm = Realm.getDefaultInstance();
-        realm.executeTransaction(realm1 -> realm1.copyToRealmOrUpdate(item));
-    }
-
-    /**
      * Progress types for different loading states
      */
     public enum ProgressType {

@@ -15,9 +15,6 @@ import butterknife.ButterKnife;
 public class CommentFooterHolder extends BaseFooterHolder<CommentFooter>
         implements PostFooterView {
 
-    @BindView(R.id.rvLikes)
-    View viewLikes;
-
     public CommentFooterHolder(View itemView) {
         super(itemView);
         ButterKnife.bind(this, itemView);

@@ -2,6 +2,7 @@ package com.margarita.vk_app.mvp.presenter.open;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.margarita.vk_app.VkApplication;
+import com.margarita.vk_app.common.utils.Utils;
 import com.margarita.vk_app.common.utils.VkListHelper;
 import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.models.common.WallItem;
@@ -49,7 +50,7 @@ public class OpenedPostPresenter extends BaseFeedPresenter<OpenedPostView, WallI
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnNext(setUpFooterConsumer)
                 .observeOn(Schedulers.io())
-                .doOnNext(this::saveToDatabase)
+                .doOnNext(Utils::saveToDatabase)
                 .flatMap(getPostInfo);
     }
 
