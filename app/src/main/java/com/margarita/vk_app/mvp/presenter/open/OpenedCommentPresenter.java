@@ -24,6 +24,11 @@ public class OpenedCommentPresenter extends BaseFeedPresenter<BaseFeedView, Comm
 
     private int id;
 
+    /**
+     * Count of retry for getting a concrete comment
+     */
+    private static final int RETRY_COUNT = 4;
+
     public OpenedCommentPresenter() {
         VkApplication.getApplicationComponent().inject(this);
         databaseHelper = new DatabaseHelper<CommentItem>() {
@@ -60,7 +65,7 @@ public class OpenedCommentPresenter extends BaseFeedPresenter<BaseFeedView, Comm
 
     private Observable<BaseViewModel> getCommentsObservable() {
         return Observable.fromCallable(databaseHelper.getItemFromRealmCallable(id))
-                //.retry(2)
+                .retry(RETRY_COUNT)
                 .flatMap(commentItem ->
                         Observable.fromIterable(parseItemToList(commentItem)));
     }

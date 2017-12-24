@@ -31,7 +31,7 @@ public abstract class DatabaseHelper<T extends RealmObject> {
     }
 
     /**
-     * Get list of items from local database as Callable
+     * Get list of items from the local database as Callable
      * @param sort Sort order for result items
      * @return List of items as Callable
      */
@@ -46,17 +46,24 @@ public abstract class DatabaseHelper<T extends RealmObject> {
     }
 
     /**
-     * Get single item from local database as Callable
+     * Get single item from the local database as Callable
      * @param value Value for "where" condition in query
      * @return Single item as Callable
      */
     public Callable<T> getItemFromRealmCallable(Integer value) {
-        return () -> {
-            Realm realm = Realm.getDefaultInstance();
-            T result = getSingleItem(realm, value)
-                    .findFirst();
-            return realm.copyFromRealm(result);
-        };
+        return () -> getItemFromRealm(value);
+    }
+
+    /**
+     * Get single item from the local database
+     * @param value Value for "where" condition in query
+     * @return Single item
+     */
+    public T getItemFromRealm(Integer value) {
+        Realm realm = Realm.getDefaultInstance();
+        T result = getSingleItem(realm, value)
+                .findFirst();
+        return realm.copyFromRealm(result);
     }
 
     /**

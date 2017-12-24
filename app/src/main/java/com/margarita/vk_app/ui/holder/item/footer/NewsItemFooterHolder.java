@@ -27,6 +27,7 @@ import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.realm.Realm;
+import io.realm.RealmQuery;
 
 public class NewsItemFooterHolder extends BaseFooterHolder<NewsItemFooter> {
 
@@ -51,8 +52,9 @@ public class NewsItemFooterHolder extends BaseFooterHolder<NewsItemFooter> {
     @Inject
     VkFragmentManager fragmentManager;
 
+    private DatabaseHelper<WallItem> databaseHelper;
+
     private static final String POST = "post";
-    private static final String ID_KEY = "id";
 
     public NewsItemFooterHolder(View itemView) {
         super(itemView);
@@ -61,6 +63,12 @@ public class NewsItemFooterHolder extends BaseFooterHolder<NewsItemFooter> {
         tvLikesIcon.setTypeface(googleFont);
         tvCommentsIcon.setTypeface(googleFont);
         tvRepostIcon.setTypeface(googleFont);
+        databaseHelper = new DatabaseHelper<WallItem>() {
+            @Override
+            public RealmQuery<WallItem> performQuery(Realm realm) {
+                return realm.where(WallItem.class);
+            }
+        };
     }
 
     @Override
@@ -98,7 +106,7 @@ public class NewsItemFooterHolder extends BaseFooterHolder<NewsItemFooter> {
     }
 
     private void like(NewsItemFooter item) {
-        WallItem wallItem = getWallItemFromRealm(item.getId());
+        WallItem wallItem = databaseHelper.getItemFromRealm(item.getId());
         likeObservable(wallItem.getOwnerId(), wallItem.getId(), wallItem.getLikes())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -106,13 +114,5 @@ public class NewsItemFooterHolder extends BaseFooterHolder<NewsItemFooter> {
                     item.setLikeCounter(likeCounter);
                     bindFooterItem(tvLikesCount, tvLikesIcon, likeCounter);
                 }, Throwable::printStackTrace);
-    }
-
-    private WallItem getWallItemFromRealm(int postId) {
-        Realm realm = Realm.getDefaultInstance();
-        WallItem wallItem = realm.where(WallItem.class)
-                .equalTo(ID_KEY, postId)
-                .findFirst();
-        return realm.copyFromRealm(wallItem);
     }
 }
