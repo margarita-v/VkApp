@@ -42,7 +42,7 @@ public class InfoPresenter extends BaseFeedPresenter<BaseFeedView, Group>
 
     @Override
     public Observable<BaseViewModel> onLoadDataObservable(int offset, int count) {
-        return groupsApi.getById(new GroupsGetByIdRequest(ApiConstants.GROUP_ID).toMap())
+        return groupsApi.getById(new GroupsGetByIdRequest(ApiConstants.GROUP_CONTENT_ID).toMap())
                 .flatMap(listFull -> Observable.fromIterable(listFull.getResponse()))
                 .doOnNext(DatabaseHelper::saveToDatabase)
                 .flatMap(group -> Observable.fromIterable(parseItemToList(group)));
@@ -51,7 +51,7 @@ public class InfoPresenter extends BaseFeedPresenter<BaseFeedView, Group>
     @Override
     public Observable<BaseViewModel> onRestoreDataObservable() {
         return Observable.fromCallable(
-                databaseHelper.getItemFromRealmCallable(Math.abs(ApiConstants.GROUP_ID)))
+                databaseHelper.getItemFromRealmCallable(Math.abs(ApiConstants.GROUP_CONTENT_ID)))
                 .flatMap(group -> Observable.fromIterable(parseItemToList(group)));
     }
 

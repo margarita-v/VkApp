@@ -12,9 +12,11 @@ class ApiMethods {
 
     static final String GROUPS_GET_MEMBERS = "groups.getMembers";
 
+    static final String GROUPS_GET_BY_ID = "groups.getById";
+
     static final String BOARD_GET_TOPICS = "board.getTopics";
 
-    static final String GROUPS_GET_BY_ID = "groups.getById";
+    static final String BOARD_GET_COMMENTS = "board.getComments";
 
     static final String VIDEO_GET = "video.get";
 

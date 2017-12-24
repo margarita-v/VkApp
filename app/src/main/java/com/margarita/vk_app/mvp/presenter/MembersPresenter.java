@@ -37,7 +37,7 @@ public class MembersPresenter extends BaseFeedPresenter<BaseFeedView, Member> {
     @Override
     public Observable<BaseViewModel> onLoadDataObservable(int offset, int count) {
         return groupsApi.getMembers(
-                new GroupsGetMembersRequest(ApiConstants.GROUP_ID, count, offset)
+                new GroupsGetMembersRequest(ApiConstants.GROUP_CONTENT_ID, count, offset)
                         .toMap())
                 // Convert Observable data from MemberGetResponse to Member
                 .flatMap(full -> Observable.fromIterable(full.getResponse().getItems()))

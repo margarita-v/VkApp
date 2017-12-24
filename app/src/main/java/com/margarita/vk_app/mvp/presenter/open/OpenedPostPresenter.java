@@ -49,7 +49,7 @@ public class OpenedPostPresenter extends BaseFeedPresenter<OpenedPostView, WallI
 
     @Override
     public Observable<BaseViewModel> onLoadDataObservable(int offset, int count) {
-        return wallApi.getById(new WallGetByIdRequest(ApiConstants.GROUP_ID, id).toMap())
+        return wallApi.getById(new WallGetByIdRequest(ApiConstants.GROUP_CONTENT_ID, id).toMap())
                 .flatMap(full -> Observable.fromIterable(
                         VkListHelper.getWallItemsInfo(full.getResponse())))
                 .observeOn(AndroidSchedulers.mainThread())

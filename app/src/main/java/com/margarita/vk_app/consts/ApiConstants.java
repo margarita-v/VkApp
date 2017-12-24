@@ -24,6 +24,8 @@ public class ApiConstants {
     public static final String COUNT = "count";
     public static final String OFFSET = "offset";
     public static final String NEED_LIKES = "need_likes";
+    public static final String GROUP_ID = "group_id";
+    public static final String TOPIC_ID = "topic_id";
 
     /**
      * To getting a concrete count of items
@@ -33,7 +35,7 @@ public class ApiConstants {
     /**
      * ID of group which data will be loaded
      */
-    public static final int GROUP_ID = -86529522;
+    public static final int GROUP_CONTENT_ID = -86529522;
 
     /**
      * For getting additional user's fields from server

@@ -48,7 +48,7 @@ public class BoardPresenter extends BaseFeedPresenter<BaseFeedView, Topic> {
             */
             @Override
             public RealmQuery<Topic> getListItems(Realm realm) {
-                return getSingleItem(realm, ApiConstants.GROUP_ID);
+                return getSingleItem(realm, ApiConstants.GROUP_CONTENT_ID);
             }
         };
     }
@@ -56,11 +56,11 @@ public class BoardPresenter extends BaseFeedPresenter<BaseFeedView, Topic> {
     @Override
     public Observable<BaseViewModel> onLoadDataObservable(int offset, int count) {
         return boardApi.getTopics(
-                new BoardGetTopicsRequest(ApiConstants.GROUP_ID, count, offset)
+                new BoardGetTopicsRequest(ApiConstants.GROUP_CONTENT_ID, count, offset)
                         .toMap())
                 // Convert Observable data from TopicGetResponse to Topic
                 .flatMap(full -> Observable.fromIterable(full.getResponse().getItems()))
-                .doOnNext(topic -> topic.setGroupId(ApiConstants.GROUP_ID))
+                .doOnNext(topic -> topic.setGroupId(ApiConstants.GROUP_CONTENT_ID))
                 .doOnNext(DatabaseHelper::saveToDatabase)
                 // Create TopicViewModel for every Topic object
                 .map(TopicViewModel::new);

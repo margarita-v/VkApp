@@ -65,7 +65,7 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView, WallItem>
 
     @Override
     public Observable<BaseViewModel> onLoadDataObservable(int offset, int count) {
-        return wallApi.get(new WallGetRequest(ApiConstants.GROUP_ID, count, offset)
+        return wallApi.get(new WallGetRequest(ApiConstants.GROUP_CONTENT_ID, count, offset)
                 .toMap())
                 // Convert Observable data from WallGetResponse to WallItem
                 .flatMap(full -> Observable.fromIterable(
