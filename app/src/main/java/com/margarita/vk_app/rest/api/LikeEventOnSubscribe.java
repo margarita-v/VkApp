@@ -22,7 +22,7 @@ public class LikeEventOnSubscribe implements ObservableOnSubscribe<Integer> {
     private int itemId;
 
     //region Keys for objects fields
-    private static final String RESPONSE_KEY = "reposnse";
+    private static final String RESPONSE_KEY = "response";
     private static final String LIKES_KEY = "likes";
     private static final String TYPE_KEY = "type";
     private static final String ITEM_ID_KEY = "item_id";
