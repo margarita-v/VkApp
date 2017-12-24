@@ -17,9 +17,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import io.realm.Realm;
-import io.realm.RealmObject;
-
 public class Utils {
 
     //region String patterns
@@ -210,11 +207,11 @@ public class Utils {
     //endregion
 
     /**
-     * Function for saving some object to the local database
-     * @param realmObject Object which will be saved to the database
+     * Function for parsing string value to int
+     * @param value String value which will be parsed
+     * @return Int value which was parsed from string
      */
-    public static void saveToDatabase(RealmObject realmObject) {
-        Realm realm = Realm.getDefaultInstance();
-        realm.executeTransaction(realm1 -> realm1.copyToRealmOrUpdate(realmObject));
+    public static int parseStringToInt(String value) {
+        return Integer.parseInt(value);
     }
 }

@@ -3,7 +3,7 @@ package com.margarita.vk_app.mvp.presenter.complex;
 import com.arellomobile.mvp.InjectViewState;
 import com.margarita.vk_app.CurrentUser;
 import com.margarita.vk_app.VkApplication;
-import com.margarita.vk_app.common.utils.Utils;
+import com.margarita.vk_app.common.utils.DatabaseHelper;
 import com.margarita.vk_app.common.utils.VkListHelper;
 import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.models.common.WallItem;
@@ -61,7 +61,7 @@ public class NewsFeedPresenter extends BaseFeedPresenter<BaseFeedView, WallItem>
                 .flatMap(full -> Observable.fromIterable(
                         VkListHelper.getWallItemsInfo(full.getResponse())))
                 .compose(applyFilter())
-                .doOnNext(Utils::saveToDatabase)
+                .doOnNext(DatabaseHelper::saveToDatabase)
                 // Convert Observable data from WallItem to BaseViewModel
                 .flatMap(wallItem -> Observable.fromIterable(parseItemToList(wallItem)));
     }

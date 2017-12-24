@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.margarita.vk_app.R;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.manager.VkFragmentManager;
-import com.margarita.vk_app.common.utils.Utils;
+import com.margarita.vk_app.common.utils.DatabaseHelper;
 import com.margarita.vk_app.common.utils.VkListHelper;
 import com.margarita.vk_app.models.common.Place;
 import com.margarita.vk_app.models.common.WallItem;
@@ -93,7 +93,7 @@ public class NewsItemFooterHolder extends BaseFooterHolder<NewsItemFooter> {
                         wallApi.getById(new WallGetByIdRequest(ownerId, postId).toMap()))
                 .flatMap(full -> Observable.fromIterable(
                         VkListHelper.getWallItemsInfo(full.getResponse())))
-                .doOnNext(Utils::saveToDatabase)
+                .doOnNext(DatabaseHelper::saveToDatabase)
                 .map(wallItem -> new LikeCounter(wallItem.getLikes()));
     }
 

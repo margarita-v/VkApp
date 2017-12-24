@@ -6,6 +6,7 @@ import com.margarita.vk_app.CurrentUser;
 import com.margarita.vk_app.VkApplication;
 import com.margarita.vk_app.common.manager.NetworkManager;
 import com.margarita.vk_app.common.manager.VkFragmentManager;
+import com.margarita.vk_app.common.utils.DatabaseHelper;
 import com.margarita.vk_app.common.utils.Utils;
 import com.margarita.vk_app.models.common.Profile;
 import com.margarita.vk_app.mvp.view.MainView;
@@ -19,14 +20,13 @@ import com.margarita.vk_app.ui.fragment.MembersFragment;
 import com.margarita.vk_app.ui.fragment.MyPostsFragment;
 import com.margarita.vk_app.ui.fragment.NewsFeedFragment;
 
-import java.util.concurrent.Callable;
-
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 import io.realm.Realm;
+import io.realm.RealmQuery;
 
 /**
  * Main presenter which used in MainActivity
@@ -46,6 +46,8 @@ public class MainPresenter extends MvpPresenter<MainView> {
     @Inject
     NetworkManager networkManager;
 
+    private DatabaseHelper<Profile> databaseHelper;
+
     /**
      * Field name for query to the database
      */
@@ -53,6 +55,12 @@ public class MainPresenter extends MvpPresenter<MainView> {
 
     public MainPresenter() {
         VkApplication.getApplicationComponent().inject(this);
+        databaseHelper = new DatabaseHelper<Profile>() {
+            @Override
+            public RealmQuery<Profile> performQuery(Realm realm) {
+                return realm.where(Profile.class);
+            }
+        };
     }
 
     /**
@@ -100,7 +108,7 @@ public class MainPresenter extends MvpPresenter<MainView> {
     private Observable<Profile> getProfileFromServer() {
         return usersApi.get(new UserGetRequest(CurrentUser.getId()).toMap())
                 .flatMap(listFull -> Observable.fromIterable(listFull.getResponse()))
-                .doOnNext(Utils::saveToDatabase);
+                .doOnNext(DatabaseHelper::saveToDatabase);
     }
 
     /**
@@ -108,21 +116,9 @@ public class MainPresenter extends MvpPresenter<MainView> {
      * @return Observable for user's profile
      */
     private Observable<Profile> getProfileFromDatabase() {
-        return Observable.fromCallable(getProfileFromRealmCallable());
-    }
-
-    /**
-     * Get user's profile from local database as Callable
-     * @return Callable for user's profile
-     */
-    private Callable<Profile> getProfileFromRealmCallable() {
-        return () -> {
-            Realm realm = Realm.getDefaultInstance();
-            Profile realmResults = realm.where(Profile.class)
-                    .equalTo(FIELD_NAME, Integer.parseInt(CurrentUser.getId()))
-                    .findFirst();
-            return realm.copyFromRealm(realmResults);
-        };
+        return Observable.fromCallable(databaseHelper
+                .getItemFromRealmCallable(FIELD_NAME,
+                        Utils.parseStringToInt(CurrentUser.getId())));
     }
 
     /**

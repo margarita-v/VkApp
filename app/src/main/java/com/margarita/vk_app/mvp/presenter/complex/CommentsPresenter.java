@@ -2,6 +2,7 @@ package com.margarita.vk_app.mvp.presenter.complex;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.margarita.vk_app.VkApplication;
+import com.margarita.vk_app.common.utils.DatabaseHelper;
 import com.margarita.vk_app.common.utils.Utils;
 import com.margarita.vk_app.common.utils.VkListHelper;
 import com.margarita.vk_app.models.common.CommentItem;
@@ -46,14 +47,14 @@ public class CommentsPresenter extends BaseFeedPresenter<BaseFeedView, CommentIt
     public Observable<BaseViewModel> onLoadDataObservable(int offset, int count) {
         return wallApi.getComments(
                 new WallGetCommentsRequest(
-                        parseStringToInt(place.getOwnerId()),
-                        parseStringToInt(place.getPostId()),
+                        Utils.parseStringToInt(place.getOwnerId()),
+                        Utils.parseStringToInt(place.getPostId()),
                         offset)
                         .toMap())
                 .flatMap(full -> Observable.fromIterable(
                         VkListHelper.getComments(full.getResponse(), false)))
                 .doOnNext(commentItem -> commentItem.setPlace(place))
-                .doOnNext(Utils::saveToDatabase)
+                .doOnNext(DatabaseHelper::saveToDatabase)
                 .flatMap(commentItem -> Observable.fromIterable(parseItemToList(commentItem)));
     }
 
@@ -93,14 +94,5 @@ public class CommentsPresenter extends BaseFeedPresenter<BaseFeedView, CommentIt
 
     public void setPlace(Place place) {
         this.place = place;
-    }
-
-    /**
-     * Function for parsing string value to int
-     * @param value String value which will be parsed
-     * @return Int value which was parsed from string
-     */
-    private int parseStringToInt(String value) {
-        return Integer.parseInt(value);
     }
 }

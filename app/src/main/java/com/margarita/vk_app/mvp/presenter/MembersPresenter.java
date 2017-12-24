@@ -2,7 +2,7 @@ package com.margarita.vk_app.mvp.presenter;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.margarita.vk_app.VkApplication;
-import com.margarita.vk_app.common.utils.Utils;
+import com.margarita.vk_app.common.utils.DatabaseHelper;
 import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.models.common.Member;
 import com.margarita.vk_app.models.view.base.BaseViewModel;
@@ -38,7 +38,7 @@ public class MembersPresenter extends BaseFeedPresenter<BaseFeedView, Member> {
                         .toMap())
                 // Convert Observable data from MemberGetResponse to Member
                 .flatMap(full -> Observable.fromIterable(full.getResponse().getItems()))
-                .doOnNext(Utils::saveToDatabase)
+                .doOnNext(DatabaseHelper::saveToDatabase)
                 // Create MemberViewModel for every Member object
                 .map(MemberViewModel::new);
     }

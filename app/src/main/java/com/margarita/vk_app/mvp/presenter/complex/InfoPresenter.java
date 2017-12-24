@@ -2,7 +2,7 @@ package com.margarita.vk_app.mvp.presenter.complex;
 
 import com.arellomobile.mvp.InjectViewState;
 import com.margarita.vk_app.VkApplication;
-import com.margarita.vk_app.common.utils.Utils;
+import com.margarita.vk_app.common.utils.DatabaseHelper;
 import com.margarita.vk_app.consts.ApiConstants;
 import com.margarita.vk_app.models.common.Group;
 import com.margarita.vk_app.models.view.base.BaseViewModel;
@@ -44,7 +44,7 @@ public class InfoPresenter extends BaseFeedPresenter<BaseFeedView, Group>
     public Observable<BaseViewModel> onLoadDataObservable(int offset, int count) {
         return groupsApi.getById(new GroupsGetByIdRequest(ApiConstants.GROUP_ID).toMap())
                 .flatMap(listFull -> Observable.fromIterable(listFull.getResponse()))
-                .doOnNext(Utils::saveToDatabase)
+                .doOnNext(DatabaseHelper::saveToDatabase)
                 .flatMap(group -> Observable.fromIterable(parseItemToList(group)));
     }
 
