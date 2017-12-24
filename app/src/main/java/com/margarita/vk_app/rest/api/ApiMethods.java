@@ -17,4 +17,8 @@ class ApiMethods {
     static final String GROUPS_GET_BY_ID = "groups.getById";
 
     static final String VIDEO_GET = "video.get";
+
+    static final String ADD_LIKE = "likes.add";
+
+    static final String DELETE_LIKE = "likes.delete";
 }
