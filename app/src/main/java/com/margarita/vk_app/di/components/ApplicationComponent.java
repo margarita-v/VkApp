@@ -20,6 +20,7 @@ import com.margarita.vk_app.ui.fragment.NewsFeedFragment;
 import com.margarita.vk_app.ui.fragment.comments.TopicCommentsFragment;
 import com.margarita.vk_app.ui.fragment.open.OpenedCommentFragment;
 import com.margarita.vk_app.ui.fragment.open.OpenedPostFragment;
+import com.margarita.vk_app.ui.holder.TopicViewHolder;
 import com.margarita.vk_app.ui.holder.item.footer.CommentFooterHolder;
 import com.margarita.vk_app.ui.holder.item.footer.NewsItemFooterHolder;
 import com.margarita.vk_app.ui.holder.attachment.ImageAttachmentHolder;
@@ -49,6 +50,7 @@ public interface ApplicationComponent {
     // View holders
     void inject(ImageAttachmentHolder holder);
     void inject(VideoAttachmentHolder holder);
+    void inject(TopicViewHolder holder);
     // body view holders
     void inject(NewsItemBodyHolder holder);
     void inject(CommentBodyHolder holder);
