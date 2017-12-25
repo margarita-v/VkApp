@@ -45,4 +45,11 @@
     <string name="doc_image">Doc image</string>
     <string name="image">Image</string>
     <string name="link">Link</string>
+
+    <!-- Messages -->
+    <string name="new_message_title">Новая запись</string>
+    <string name="add_message_text">Добавьте текст сообщения</string>
+    <string name="message_not_published">Запись не опубликована. Возможно, у вас нет прав для публикации на стене группы</string>
+    <string name="loading_completed">Загружено</string>
+    <string name="loading_failed">Ошибка загрузки. Убедитесь, что имя файла не содержит пробелы и кириллицу</string>
 </resources>
