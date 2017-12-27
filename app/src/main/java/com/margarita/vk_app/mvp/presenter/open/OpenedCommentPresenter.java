@@ -78,6 +78,5 @@ public class OpenedCommentPresenter extends BaseFeedPresenter<BaseFeedView, Comm
                 .flatMap(commentItem ->
                         Observable.fromIterable(parseItemToList(commentItem)))
                 : Observable.empty();
-        //TODO Create an empty view if comments have not loaded
     }
 }

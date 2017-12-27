@@ -38,10 +38,12 @@ public abstract class DatabaseHelper<T extends RealmObject> {
     public Callable<List<T>> getListFromRealmCallable(Sort sort) {
         return () -> {
             Realm realm = Realm.getDefaultInstance();
+            realm.refresh();
             // Perform the query which depends on item's type
             RealmResults<T> results = getListItems(realm)
                     .findAllSorted(getSortField(), sort);
-            return realm.copyFromRealm(results);
+            realm.close();
+            return results;
         };
     }
 
@@ -62,11 +64,11 @@ public abstract class DatabaseHelper<T extends RealmObject> {
      */
     public T getItemFromRealm(Integer value) {
         Realm realm = Realm.getDefaultInstance();
+        realm.refresh();
         T result = getSingleItem(realm, value)
                 .findFirst();
         realm.close();
         return result;
-        //return result != null ? realm.copyFromRealm(result) : null;
     }
 
     /**
