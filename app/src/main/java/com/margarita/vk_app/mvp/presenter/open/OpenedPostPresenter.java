@@ -74,7 +74,8 @@ public class OpenedPostPresenter extends BaseFeedPresenter<OpenedPostView, WallI
      * @param wallItem Wall item which view models will be added to the list
      */
     private void addAll(List<BaseViewModel> list, WallItem wallItem) {
-        list.addAll(VkListHelper.getAttachmentVkItems(wallItem.getAttachments()));
+        list.addAll(VkListHelper.getAttachmentVkItems(wallItem.getAttachments(),
+                false));
     }
 
     public void setId(int id) {

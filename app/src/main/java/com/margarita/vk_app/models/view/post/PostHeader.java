@@ -25,6 +25,6 @@ public class PostHeader extends BaseOpenedPost {
 
     @Override
     protected BaseViewHolder onCreateViewHolder(View view) {
-        return new PostHeaderHolder(view);
+        return new PostHeaderHolder(view, forOpenedComment);
     }
 }

@@ -8,14 +8,11 @@ import com.margarita.vk_app.models.view.counter.LikeCounter;
 import com.margarita.vk_app.models.view.item.footer.CommentFooter;
 import com.margarita.vk_app.mvp.view.PostFooterView;
 
-import butterknife.ButterKnife;
-
 public class CommentFooterHolder extends BaseFooterHolder<CommentFooter>
         implements PostFooterView {
 
-    public CommentFooterHolder(View itemView) {
-        super(itemView);
-        ButterKnife.bind(this, itemView);
+    public CommentFooterHolder(View itemView, boolean forOpenedComment) {
+        super(itemView, forOpenedComment);
         VkApplication.getApplicationComponent().inject(this);
         tvLikesIcon.setTypeface(googleFont);
     }
@@ -28,5 +25,11 @@ public class CommentFooterHolder extends BaseFooterHolder<CommentFooter>
     @Override
     public void showComments(WallItem wallItem) {
 
+    }
+
+    @Override
+    public void unbindViewHolder() {
+        if (!forOpenedComment)
+            super.unbindViewHolder();
     }
 }

@@ -15,8 +15,15 @@ import com.margarita.vk_app.ui.fragment.base.BaseFragment;
 public abstract class BaseViewHolder<Item extends BaseViewModel>
         extends RecyclerView.ViewHolder {
 
+    protected boolean forOpenedComment = false;
+
     protected BaseViewHolder(View itemView) {
         super(itemView);
+    }
+
+    protected BaseViewHolder(View itemView, boolean forOpenedComment) {
+        super(itemView);
+        this.forOpenedComment = forOpenedComment;
     }
 
     public abstract void bindViewHolder(Item item);

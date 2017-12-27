@@ -22,8 +22,8 @@ public class PostHeaderHolder extends BaseViewHolder<PostHeader> {
     @BindView(R.id.tvText)
     TextView tvText;
 
-    public PostHeaderHolder(View itemView) {
-        super(itemView);
+    public PostHeaderHolder(View itemView, boolean forOpenedComment) {
+        super(itemView, forOpenedComment);
         ButterKnife.bind(this, itemView);
     }
 
@@ -36,8 +36,10 @@ public class PostHeaderHolder extends BaseViewHolder<PostHeader> {
 
     @Override
     public void unbindViewHolder() {
-        clearImageView(civProfilePhoto);
-        clearTextView(tvProfileName);
-        clearTextView(tvText);
+        if (!forOpenedComment) {
+            clearImageView(civProfilePhoto);
+            clearTextView(tvProfileName);
+            clearTextView(tvText);
+        }
     }
 }
