@@ -58,39 +58,45 @@ public class VkListHelper {
      * @param attachments List of attachments
      * @return List of view models for every attachment
      */
-    public static List<BaseAttachment> getAttachmentVkItems(List<ApiAttachment> attachments) {
+    public static List<BaseAttachment> getAttachmentVkItems(
+            List<ApiAttachment> attachments, boolean forOpenedComment) {
 
         List<BaseAttachment> result = new ArrayList<>();
 
         for (ApiAttachment attachment : attachments) {
+            BaseAttachment newAttachment = null;
             switch (attachment.getType()) {
                 case VKAttachments.TYPE_PHOTO:
-                    result.add(new ImageAttachment(attachment.getPhoto()));
+                    newAttachment = new ImageAttachment(attachment.getPhoto());
                     break;
                 case VKAttachments.TYPE_AUDIO:
-                    result.add(new AudioAttachment(attachment.getAudio()));
+                    newAttachment = new AudioAttachment(attachment.getAudio());
                     break;
                 case VKAttachments.TYPE_VIDEO:
-                    result.add(new VideoAttachment(attachment.getVideo()));
+                    newAttachment = new VideoAttachment(attachment.getVideo());
                     break;
                 case VKAttachments.TYPE_DOC:
                     VkDocument document = attachment.getDocument();
                     //TODO Hot fix!
                     if (document != null) {
-                        result.add(document.getPreview() != null
+                        newAttachment = document.getPreview() != null
                                 ? new DocImageAttachment(document)
-                                : new DocAttachment(document));
+                                : new DocAttachment(document);
                     }
                     break;
                 case VKAttachments.TYPE_LINK:
                     Link link = attachment.getLink();
-                    result.add(link.isExternal() == 1
+                    newAttachment = link.isExternal()
                             ? new LinkExternal(link)
-                            : new LinkAttachment(link));
+                            : new LinkAttachment(link);
                     break;
                 case VKAttachments.TYPE_WIKI_PAGE:
-                    result.add(new PageAttachment(attachment.getPage()));
+                    newAttachment = new PageAttachment(attachment.getPage());
                     break;
+            }
+            if (newAttachment != null) {
+                newAttachment.setForOpenedComment(forOpenedComment);
+                result.add(newAttachment);
             }
         }
         return result;
