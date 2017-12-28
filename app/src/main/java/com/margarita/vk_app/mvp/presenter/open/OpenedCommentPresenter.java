@@ -49,21 +49,10 @@ public class OpenedCommentPresenter extends BaseFeedPresenter<BaseFeedView, Comm
     public List<BaseViewModel> parseItemToList(CommentItem item) {
         // There is no view model for an opened comment
         List<BaseViewModel> result = new ArrayList<>();
-        addNewModel(result, new PostHeader(item));
+        result.add(new PostHeader(item));
         result.addAll(VkListHelper.getAttachmentVkItems(item.getAttachments()));
-        addNewModel(result, new CommentFooter(item));
+        result.add(new CommentFooter(item));
         return result;
-    }
-
-    /**
-     * Function for adding a new view model to the list which represents
-     * an opened comment
-     * @param list List of opened comment's view models
-     * @param model New view model which will be added to the list
-     */
-    private void addNewModel(List<BaseViewModel> list, BaseViewModel model) {
-        model.setForOpenedComment(true);
-        list.add(model);
     }
 
     public void setId(int id) {

@@ -12,8 +12,6 @@ import com.margarita.vk_app.ui.holder.BaseViewHolder;
  */
 public abstract class BaseViewModel {
 
-    protected boolean forOpenedComment;
-
     public BaseViewHolder createViewHolder(ViewGroup parent) {
 
         return onCreateViewHolder(LayoutInflater.from(parent.getContext())
@@ -35,9 +33,5 @@ public abstract class BaseViewModel {
      */
     public boolean isItemDecorator() {
         return false;
-    }
-
-    public void setForOpenedComment(boolean forOpenedComment) {
-        this.forOpenedComment = forOpenedComment;
     }
 }

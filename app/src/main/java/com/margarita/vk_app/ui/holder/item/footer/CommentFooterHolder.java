@@ -11,8 +11,8 @@ import com.margarita.vk_app.mvp.view.PostFooterView;
 public class CommentFooterHolder extends BaseFooterHolder<CommentFooter>
         implements PostFooterView {
 
-    public CommentFooterHolder(View itemView, boolean forOpenedComment) {
-        super(itemView, forOpenedComment);
+    public CommentFooterHolder(View itemView) {
+        super(itemView);
         VkApplication.getApplicationComponent().inject(this);
         tvLikesIcon.setTypeface(googleFont);
     }
@@ -29,7 +29,6 @@ public class CommentFooterHolder extends BaseFooterHolder<CommentFooter>
 
     @Override
     public void unbindViewHolder() {
-        if (!forOpenedComment)
-            super.unbindViewHolder();
+        super.unbindViewHolder();
     }
 }

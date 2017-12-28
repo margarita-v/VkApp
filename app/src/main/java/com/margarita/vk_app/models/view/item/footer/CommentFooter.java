@@ -15,7 +15,7 @@ public class CommentFooter extends BaseFooterItem {
 
     @Override
     protected BaseViewHolder onCreateViewHolder(View view) {
-        return new CommentFooterHolder(view, forOpenedComment);
+        return new CommentFooterHolder(view);
     }
 
     @Override

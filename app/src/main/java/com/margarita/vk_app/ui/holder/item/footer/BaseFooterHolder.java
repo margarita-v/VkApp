@@ -45,11 +45,6 @@ public abstract class BaseFooterHolder<T extends BaseFooterItem> extends BaseVie
         context = itemView.getContext();
     }
 
-    BaseFooterHolder(View itemView, boolean forOpenedComment) {
-        this(itemView);
-        this.forOpenedComment = forOpenedComment;
-    }
-
     @Override
     public void bindViewHolder(T item) {
         tvDate.setText(Utils.parseDate(item.getDateLong()));
