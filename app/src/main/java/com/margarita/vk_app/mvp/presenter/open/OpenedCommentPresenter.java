@@ -50,8 +50,7 @@ public class OpenedCommentPresenter extends BaseFeedPresenter<BaseFeedView, Comm
         // There is no view model for an opened comment
         List<BaseViewModel> result = new ArrayList<>();
         addNewModel(result, new PostHeader(item));
-        result.addAll(VkListHelper.getAttachmentVkItems(item.getAttachments(),
-                true));
+        result.addAll(VkListHelper.getAttachmentVkItems(item.getAttachments()));
         addNewModel(result, new CommentFooter(item));
         return result;
     }

@@ -3,6 +3,15 @@ package com.margarita.vk_app.models.attachment;
 import com.google.gson.annotations.Expose;
 import com.margarita.vk_app.models.attachment.doc.VkDocument;
 import com.margarita.vk_app.models.attachment.video.Video;
+import com.margarita.vk_app.models.view.attachment.AudioAttachment;
+import com.margarita.vk_app.models.view.attachment.BaseAttachment;
+import com.margarita.vk_app.models.view.attachment.ImageAttachment;
+import com.margarita.vk_app.models.view.attachment.PageAttachment;
+import com.margarita.vk_app.models.view.attachment.VideoAttachment;
+import com.margarita.vk_app.models.view.attachment.doc.DocAttachment;
+import com.margarita.vk_app.models.view.attachment.doc.DocImageAttachment;
+import com.margarita.vk_app.models.view.attachment.link.LinkAttachment;
+import com.margarita.vk_app.models.view.attachment.link.LinkExternal;
 import com.vk.sdk.api.model.VKAttachments;
 
 import io.realm.RealmObject;
@@ -47,6 +56,38 @@ public class ApiAttachment extends RealmObject {
             default:
                 return null;
         }
+    }
+
+    public BaseAttachment getAttachmentViewModel() {
+        BaseAttachment baseAttachment = null;
+        switch (type) {
+            case VKAttachments.TYPE_PHOTO:
+                baseAttachment = new ImageAttachment(photo);
+                break;
+            case VKAttachments.TYPE_AUDIO:
+                baseAttachment = new AudioAttachment(audio);
+                break;
+            case VKAttachments.TYPE_VIDEO:
+                baseAttachment = new VideoAttachment(video);
+                break;
+            case VKAttachments.TYPE_DOC:
+                //TODO Hot fix!
+                if (document != null) {
+                    baseAttachment = document.getPreview() != null
+                            ? new DocImageAttachment(document)
+                            : new DocAttachment(document);
+                }
+                break;
+            case VKAttachments.TYPE_LINK:
+                baseAttachment = link.isExternal()
+                        ? new LinkExternal(link)
+                        : new LinkAttachment(link);
+                break;
+            case VKAttachments.TYPE_WIKI_PAGE:
+                baseAttachment = new PageAttachment(page);
+                break;
+        }
+        return baseAttachment;
     }
 
     public String getType() {

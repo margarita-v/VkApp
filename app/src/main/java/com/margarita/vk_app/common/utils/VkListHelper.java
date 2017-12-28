@@ -2,21 +2,10 @@ package com.margarita.vk_app.common.utils;
 
 import com.margarita.vk_app.models.Owner;
 import com.margarita.vk_app.models.attachment.ApiAttachment;
-import com.margarita.vk_app.models.attachment.Link;
-import com.margarita.vk_app.models.attachment.doc.VkDocument;
 import com.margarita.vk_app.models.common.CommentItem;
 import com.margarita.vk_app.models.common.WallItem;
-import com.margarita.vk_app.models.view.attachment.AudioAttachment;
 import com.margarita.vk_app.models.view.attachment.BaseAttachment;
-import com.margarita.vk_app.models.view.attachment.ImageAttachment;
-import com.margarita.vk_app.models.view.attachment.PageAttachment;
-import com.margarita.vk_app.models.view.attachment.VideoAttachment;
-import com.margarita.vk_app.models.view.attachment.doc.DocAttachment;
-import com.margarita.vk_app.models.view.attachment.doc.DocImageAttachment;
-import com.margarita.vk_app.models.view.attachment.link.LinkAttachment;
-import com.margarita.vk_app.models.view.attachment.link.LinkExternal;
 import com.margarita.vk_app.rest.model.response.base.ItemWithSendersResponse;
-import com.vk.sdk.api.model.VKAttachments;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,46 +47,12 @@ public class VkListHelper {
      * @param attachments List of attachments
      * @return List of view models for every attachment
      */
-    public static List<BaseAttachment> getAttachmentVkItems(
-            List<ApiAttachment> attachments, boolean forOpenedComment) {
-
+    public static List<BaseAttachment> getAttachmentVkItems(List<ApiAttachment> attachments) {
         List<BaseAttachment> result = new ArrayList<>();
-
         for (ApiAttachment attachment : attachments) {
-            BaseAttachment newAttachment = null;
-            switch (attachment.getType()) {
-                case VKAttachments.TYPE_PHOTO:
-                    newAttachment = new ImageAttachment(attachment.getPhoto());
-                    break;
-                case VKAttachments.TYPE_AUDIO:
-                    newAttachment = new AudioAttachment(attachment.getAudio());
-                    break;
-                case VKAttachments.TYPE_VIDEO:
-                    newAttachment = new VideoAttachment(attachment.getVideo());
-                    break;
-                case VKAttachments.TYPE_DOC:
-                    VkDocument document = attachment.getDocument();
-                    //TODO Hot fix!
-                    if (document != null) {
-                        newAttachment = document.getPreview() != null
-                                ? new DocImageAttachment(document)
-                                : new DocAttachment(document);
-                    }
-                    break;
-                case VKAttachments.TYPE_LINK:
-                    Link link = attachment.getLink();
-                    newAttachment = link.isExternal()
-                            ? new LinkExternal(link)
-                            : new LinkAttachment(link);
-                    break;
-                case VKAttachments.TYPE_WIKI_PAGE:
-                    newAttachment = new PageAttachment(attachment.getPage());
-                    break;
-            }
-            if (newAttachment != null) {
-                newAttachment.setForOpenedComment(forOpenedComment);
-                result.add(newAttachment);
-            }
+            BaseAttachment baseAttachment = attachment.getAttachmentViewModel();
+            if (baseAttachment != null)
+                result.add(baseAttachment);
         }
         return result;
     }
