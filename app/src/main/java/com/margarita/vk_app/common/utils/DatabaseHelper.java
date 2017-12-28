@@ -42,8 +42,7 @@ public abstract class DatabaseHelper<T extends RealmObject> {
             // Perform the query which depends on item's type
             RealmResults<T> results = getListItems(realm)
                     .findAllSorted(getSortField(), sort);
-            realm.close();
-            return results;
+            return realm.copyFromRealm(results);
         };
     }
 
@@ -67,8 +66,7 @@ public abstract class DatabaseHelper<T extends RealmObject> {
         realm.refresh();
         T result = getSingleItem(realm, value)
                 .findFirst();
-        realm.close();
-        return result;
+        return realm.copyFromRealm(result);
     }
 
     /**
