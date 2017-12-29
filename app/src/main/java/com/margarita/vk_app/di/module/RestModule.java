@@ -53,7 +53,7 @@ public class RestModule {
 
     @Provides
     @Singleton
-    public VideoApi provideVideoApi() {
+    VideoApi provideVideoApi() {
         return restClient.createService(VideoApi.class);
     }
 }

@@ -5,6 +5,7 @@ import com.margarita.vk_app.di.module.ApplicationModule;
 import com.margarita.vk_app.di.module.ManagerModule;
 import com.margarita.vk_app.di.module.RestModule;
 import com.margarita.vk_app.mvp.presenter.BoardPresenter;
+import com.margarita.vk_app.mvp.presenter.LikePresenter;
 import com.margarita.vk_app.mvp.presenter.complex.comments.CommentsPresenter;
 import com.margarita.vk_app.mvp.presenter.complex.InfoPresenter;
 import com.margarita.vk_app.mvp.presenter.complex.comments.TopicCommentsPresenter;
@@ -68,6 +69,7 @@ public interface ApplicationComponent {
     void inject(CommentsPresenter presenter);
     void inject(OpenedCommentPresenter presenter);
     void inject(TopicCommentsPresenter presenter);
+    void inject(LikePresenter presenter);
 
     // Managers
     void inject(NetworkManager manager);
