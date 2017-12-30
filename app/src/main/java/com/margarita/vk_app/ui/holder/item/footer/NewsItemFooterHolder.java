@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
 public class NewsItemFooterHolder extends BaseFooterHolder<NewsItemFooter>
         implements LikeFooterView {
 
-    LikePresenter presenter;
+    private LikePresenter presenter;
 
     @BindView(R.id.tvCommentsIcon)
     TextView tvCommentsIcon;

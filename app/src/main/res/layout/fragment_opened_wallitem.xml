@@ -38,31 +38,25 @@
             android:clickable="true"
             android:focusable="true"
             android:visibility="invisible">
-            <!-- android:elevation="8dp" -->
 
-            <RelativeLayout
-                android:id="@+id/rvDate"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/tvDate"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/likes"
+                android:layout_toEndOf="@id/likes"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true">
-
-                <TextView
-                    android:id="@+id/tvDate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="16dp"
-                    android:layout_marginRight="16dp"
-                    android:lines="1"
-                    android:textColor="#909090"
-                    android:textSize="13sp"
-                    android:textStyle="bold"
-                    tools:text="Date" />
-            </RelativeLayout>
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:lines="1"
+                android:textColor="#909090"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textAlignment="viewEnd"
+                android:gravity="end"
+                tools:text="Date" />
 
             <RelativeLayout
                 android:id="@+id/comments"
