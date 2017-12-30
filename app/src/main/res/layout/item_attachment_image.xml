@@ -6,14 +6,10 @@
     android:background="@color/colorDefaultWhite"
     android:clipToPadding="false">
 
-    <RelativeLayout
-        android:id="@+id/attachment_photo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/cardView"
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="224dp"
         android:layout_marginBottom="4dp"
@@ -22,25 +18,13 @@
         android:layout_gravity="center"
         card_view:cardCornerRadius="0dp">
 
-        <RelativeLayout
+        <ImageView
+            android:id="@+id/ivAttachmentImage"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="top"
-            android:background="#ffffff">
+            android:scaleType="centerCrop"
+            android:src="@color/colorAccent"
+            android:contentDescription="@string/image" />
 
-            <ImageView
-                android:id="@+id/ivAttachmentImage"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:scaleType="centerCrop"
-                android:src="@color/colorAccent"
-                android:contentDescription="@string/image" />
-
-            <!-- <at.grabner.circleprogress.CircleProgressView
-                 android:id="@+id/progress"
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent"
-                 android:layout_centerInParent="true"/>-->
-        </RelativeLayout>
     </android.support.v7.widget.CardView>
 </RelativeLayout>

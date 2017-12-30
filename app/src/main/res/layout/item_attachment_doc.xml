@@ -6,11 +6,6 @@
     android:clipToPadding="false"
     android:id="@+id/rvDoc">
 
-    <RelativeLayout
-        android:id="@+id/rvAttachmentDoc"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/cardView"
@@ -25,9 +20,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="bottom"
-            android:background="#ffffff">
+            android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/ivAttachmentImageIcon"
