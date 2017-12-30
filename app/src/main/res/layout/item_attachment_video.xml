@@ -4,14 +4,10 @@
     android:layout_height="wrap_content"
     android:background="@color/colorDefaultWhite">
 
-    <RelativeLayout
-        android:id="@+id/rvAttachmentVideo"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <android.support.v7.widget.CardView
         xmlns:card_view="http://schemas.android.com/apk/res-auto"
         android:id="@+id/cardView"
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="224dp"
         android:layout_gravity="center"
@@ -25,33 +21,10 @@
             android:layout_height="match_parent">
 
             <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="152dp"
-                android:layout_below="@+id/rvVideo">
-
-                <ImageView
-                    android:id="@+id/ivAttachmentVideoPicture"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    android:src="@color/colorAccent"
-                    android:contentDescription="@string/video" />
-
-                <ImageView
-                    android:background="@color/colorDivider"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/ic_play_circle_outline_white_48dp"
-                    android:scaleType="center"
-                    android:contentDescription="@string/video_icon" />
-            </RelativeLayout>
-
-            <RelativeLayout
                 android:id="@+id/rvVideo"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
-                android:layout_gravity="top"
-                android:background="#ffffff">
+                android:layout_gravity="top">
 
                 <ImageView
                     android:id="@+id/ivAttachmentImageIcon"
@@ -64,27 +37,31 @@
                     android:tint="@color/colorAccent"
                     android:contentDescription="@string/video" />
 
-                <RelativeLayout
+                <TextView
+                    android:id="@+id/tvAttachmentVideoTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginLeft="16dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginRight="16dp"
+                    android:layout_marginEnd="16dp"
                     android:layout_toRightOf="@id/ivAttachmentImageIcon"
-                    android:layout_toEndOf="@id/ivAttachmentImageIcon">
-
-                    <TextView
-                        android:id="@+id/tvAttachmentVideoTitle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentLeft="true"
-                        android:layout_alignParentStart="true"
-                        android:layout_centerVertical="true"
-                        android:maxLines="2"
-                        android:textColor="@android:color/primary_text_light"
-                        android:textSize="12sp" />
-                </RelativeLayout>
+                    android:layout_toEndOf="@id/ivAttachmentImageIcon"
+                    android:maxLines="2"
+                    android:textColor="@android:color/primary_text_light"
+                    android:textSize="12sp" />
             </RelativeLayout>
+
+            <ImageView
+                android:id="@+id/ivAttachmentVideoPicture"
+                android:layout_width="match_parent"
+                android:layout_height="152dp"
+                android:layout_below="@id/rvVideo"
+                android:background="@color/colorAccent"
+                android:scaleType="center"
+                android:src="@drawable/ic_play_circle_outline_white_48dp"
+                android:contentDescription="@string/video_icon" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -92,8 +69,7 @@
                 android:layout_alignParentBottom="true"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
-                android:layout_gravity="bottom"
-                android:background="#ffffff">
+                android:layout_gravity="bottom">
 
                 <TextView
                     android:id="@+id/tvViewsCount"
