@@ -12,7 +12,6 @@ import com.margarita.vk_app.models.view.item.footer.BaseFooterItem;
 import com.margarita.vk_app.models.view.item.footer.NewsItemFooter;
 import com.margarita.vk_app.mvp.presenter.LikePresenter;
 import com.margarita.vk_app.mvp.view.LikeFooterView;
-import com.margarita.vk_app.rest.api.WallApi;
 import com.margarita.vk_app.ui.activity.BaseActivity;
 import com.margarita.vk_app.ui.fragment.comments.CommentsFragment;
 
@@ -40,9 +39,6 @@ public class NewsItemFooterHolder extends BaseFooterHolder<NewsItemFooter>
 
     @BindView(R.id.comments)
     View viewComments;
-
-    @Inject
-    WallApi wallApi;
 
     @Inject
     VkFragmentManager fragmentManager;
