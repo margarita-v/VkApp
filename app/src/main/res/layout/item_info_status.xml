@@ -51,11 +51,8 @@
                     android:textSize="16sp" />
             </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/rvStatus"
-                android:background="@color/colorDivider" />
+            <View android:layout_below="@id/rvStatus"
+                style="@style/Divider" />
 
             <RelativeLayout
                 android:id="@+id/rvDescription"
@@ -92,11 +89,8 @@
 
             </RelativeLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_below="@id/rvDescription"
-                android:background="@color/colorDivider" />
+            <View android:layout_below="@id/rvDescription"
+                style="@style/Divider" />
 
             <RelativeLayout
                 android:layout_width="match_parent"

@@ -60,9 +60,7 @@
             android:textSize="15sp"/>
     </RelativeLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:layout_alignParentTop="true"
-        android:background="@color/colorDivider"/>
+    <View android:layout_alignParentTop="true"
+        style="@style/Divider" />
+
 </RelativeLayout>
