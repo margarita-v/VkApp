@@ -66,7 +66,7 @@ public class LikeEventOnSubscribe implements ObservableOnSubscribe<Integer> {
 
         if (likes.canLike())
             performLikeAction(vkRequestListener, ApiMethods.ADD_LIKE);
-        else if (likes.isUserLikes())
+        else if (likes.isUserPerformed())
             performLikeAction(vkRequestListener, ApiMethods.DELETE_LIKE);
         else
             emitter.onComplete();

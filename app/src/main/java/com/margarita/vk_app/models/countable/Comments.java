@@ -6,7 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
-public class Comments extends RealmObject implements Countable {
+public class Comments extends RealmObject implements BaseAction {
 
     @Expose
     private Integer count;
@@ -20,7 +20,7 @@ public class Comments extends RealmObject implements Countable {
         return count;
     }
 
-    public Integer getCanPost() {
-        return canPost;
+    public boolean canPost() {
+        return checkAction(canPost);
     }
 }

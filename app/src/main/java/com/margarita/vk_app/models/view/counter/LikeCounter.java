@@ -7,9 +7,8 @@ public class LikeCounter extends CounterViewModel {
     private Likes likes;
 
     public LikeCounter(Likes likes) {
-        super(likes);
+        super(likes, true);
         this.likes = likes;
-        setAccentColor(this.likes != null && this.likes.isUserLikes());
     }
 
     public Likes getLikes() {

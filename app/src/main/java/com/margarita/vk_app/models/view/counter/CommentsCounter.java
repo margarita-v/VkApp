@@ -7,7 +7,7 @@ public class CommentsCounter extends CounterViewModel {
     private Comments comments;
 
     public CommentsCounter(Comments comments) {
-        super(comments);
+        super(comments, false);
         this.comments = comments;
     }
 

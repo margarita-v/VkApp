@@ -5,7 +5,7 @@ import com.google.gson.annotations.Expose;
 
 import io.realm.RealmObject;
 
-public class Views extends RealmObject implements Countable{
+public class Views extends RealmObject implements BaseAction {
 
     @Expose
     private Integer count;

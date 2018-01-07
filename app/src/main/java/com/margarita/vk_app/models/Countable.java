@@ -1,7 +1,7 @@
-package com.margarita.vk_app.models.countable;
+package com.margarita.vk_app.models;
 
 /**
- * Interface for all countable objects
+ * Base interface for all countable objects
  */
 public interface Countable {
 

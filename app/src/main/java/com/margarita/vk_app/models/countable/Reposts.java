@@ -6,12 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
-public class Reposts extends RealmObject implements Countable {
-
-    /**
-     * Flag which shows if the current user had reposted some post
-     */
-    private static final int USER_REPOSTED_VALUE = 1;
+public class Reposts extends RealmObject implements BaseAction {
 
     @Expose
     private Integer count;
@@ -25,7 +20,8 @@ public class Reposts extends RealmObject implements Countable {
         return count;
     }
 
-    public boolean isUserReposted() {
-        return userReposted == USER_REPOSTED_VALUE;
+    @Override
+    public boolean isUserPerformed() {
+        return checkAction(userReposted);
     }
 }

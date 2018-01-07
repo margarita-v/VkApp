@@ -1,7 +1,8 @@
 package com.margarita.vk_app.models.view.counter;
 
 import com.margarita.vk_app.R;
-import com.margarita.vk_app.models.countable.Countable;
+import com.margarita.vk_app.models.Countable;
+import com.margarita.vk_app.models.countable.BaseAction;
 
 public class CounterViewModel implements Countable {
 
@@ -9,9 +10,14 @@ public class CounterViewModel implements Countable {
 
     private int iconColor, textColor;
 
-    CounterViewModel(Countable countable) {
-        this.count = countable != null ? countable.getCount() : 0;
-        setColor(this.count > 0 ? R.color.colorIcon : R.color.colorIconDisabled);
+    CounterViewModel(BaseAction countable, boolean checkForAction) {
+        boolean isNotNullable = countable != null;
+        this.count = isNotNullable ? countable.getCount() : 0;
+
+        if (checkForAction && isNotNullable && countable.isUserPerformed())
+            setColor(R.color.colorAccent);
+        else
+            setColor(isNotNullable ? R.color.colorIcon : R.color.colorIconDisabled);
     }
 
     @Override
@@ -26,15 +32,6 @@ public class CounterViewModel implements Countable {
     protected void setColor(int colorRes) {
         iconColor = colorRes;
         textColor = colorRes;
-    }
-
-    /**
-     * Function for setting an accent color to the view model if some condition returns True
-     * @param condition Condition for setting an accent color
-     */
-    void setAccentColor(boolean condition) {
-        if (condition)
-            setColor(R.color.colorAccent);
     }
 
     public int getIconColor() {

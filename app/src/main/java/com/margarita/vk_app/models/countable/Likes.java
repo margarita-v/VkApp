@@ -6,12 +6,7 @@ import com.google.gson.annotations.SerializedName;
 
 import io.realm.RealmObject;
 
-public class Likes extends RealmObject implements Countable {
-
-    /**
-     * Flag for a user's ability to do some activities
-     */
-    private static final int USER_LIKES_VALUE = 1;
+public class Likes extends RealmObject implements BaseAction {
 
     /**
      * Count of users which had liked the post
@@ -49,14 +44,15 @@ public class Likes extends RealmObject implements Countable {
     }
 
     public boolean canLike() {
-        return canLike == USER_LIKES_VALUE;
+        return checkAction(canLike);
     }
 
     public boolean canPublish() {
-        return canPublish == USER_LIKES_VALUE;
+        return checkAction(canPublish);
     }
 
-    public boolean isUserLikes() {
-        return userLikes == USER_LIKES_VALUE;
+    @Override
+    public boolean isUserPerformed() {
+        return checkAction(userLikes);
     }
 }

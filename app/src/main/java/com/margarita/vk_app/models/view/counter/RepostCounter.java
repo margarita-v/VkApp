@@ -7,9 +7,8 @@ public class RepostCounter extends CounterViewModel {
     private Reposts reposts;
 
     public RepostCounter(Reposts reposts) {
-        super(reposts);
+        super(reposts, true);
         this.reposts = reposts;
-        setAccentColor(this.reposts != null && this.reposts.isUserReposted());
     }
 
     public Reposts getReposts() {
