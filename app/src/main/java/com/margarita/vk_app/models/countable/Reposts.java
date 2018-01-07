@@ -8,6 +8,11 @@ import io.realm.RealmObject;
 
 public class Reposts extends RealmObject implements Countable {
 
+    /**
+     * Flag which shows if the current user had reposted some post
+     */
+    private static final int USER_REPOSTED_VALUE = 1;
+
     @Expose
     private Integer count;
 
@@ -20,7 +25,7 @@ public class Reposts extends RealmObject implements Countable {
         return count;
     }
 
-    public Integer getUserReposted() {
-        return userReposted;
+    public boolean isUserReposted() {
+        return userReposted == USER_REPOSTED_VALUE;
     }
 }
